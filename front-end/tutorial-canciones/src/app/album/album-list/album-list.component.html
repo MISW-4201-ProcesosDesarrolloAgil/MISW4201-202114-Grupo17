@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-10 text-center">
+              <label class="fs-4">Álbumes</label>
+            </div>
+            <div class="col-2 text-center">
+              <button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irCrearAlbum()"><i class="bi bi-plus-lg"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="input-group my-2">
+            <input #busqueda type="search" class="form-control" placeholder="Buscar álbumes" aria-label="Search" (keyup)="buscarAlbum(busqueda.value)">
+          </div>
+
+          <table class="table table-hover mb-0" aria-describedby="colecName">
+            <tbody>
+                <tr *ngFor="let album of mostrarAlbumes; index as i" (click)="onSelect(album, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
+                  <td >{{album.titulo}}</td>
+                  <td >{{album.anio}}</td>
+                </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <app-album-detail (deleteAlbum)="eliminarAlbum()" [album]="albumSeleccionado"></app-album-detail>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+# This is a basic workflow to help you get started with Actions
+
+name: merge-develop
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    if: "!startsWith(github.event.head_commit.message, 'RELEASE')"
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checks-out repositorio
+        uses: actions/checkout@v2
+
+      - name: Configuración del entorno python
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.7'
+      
+      - name: Instalación de dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+    
+      - name: Ejecución de pruebas unitarias
+        run: python -m unittest discover -s tests -v
+        
+      - name: Analisis de cobertura
+        run: |
+          coverage run -m unittest discover -s tests -v
+          coverage report -m
+          
+  merge-branh-develop:
+    
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Automerge
+        uses: ridedott/merge-me-action@v1
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  merge-branch-release:
+
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.head_commit.message, 'RELEASE')
+    steps:
+      
+      - name: Delete branch release
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{github.token}}
+          branches: release
+
+      - name: merge-branch-release 
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          branch: 'release'
+            
+  merge-branch-main:
+  
+    needs: merge-branch-release
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Merge staging -> uat
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: release
+          target_branch: main
+          github_token: ${{ github.token }}

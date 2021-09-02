@@ -3,6 +3,8 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow import fields
 import enum
 
+from sqlalchemy.orm import backref
+
 
 db = SQLAlchemy()
 
@@ -41,9 +43,9 @@ class Album(db.Model):
     
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(50))
+    nombre = db.Column(db.String(50), unique=True)
     contrasena = db.Column(db.String(50))
-    albums = db.relationship('Album', cascade='all, delete, delete-orphan')
+    albums = db.relationship('Album', backref="usuario",cascade='all, delete, delete-orphan')
     albumescompartidos = db.relationship('Album',secondary=usuarios_albumes_compartidos,back_populates='usuarioscompartidos')
 
 

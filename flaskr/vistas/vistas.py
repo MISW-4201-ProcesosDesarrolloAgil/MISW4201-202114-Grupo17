@@ -6,7 +6,7 @@ from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album,
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager
-from ..helpers import validarPass,validarUsuario
+from ..helpers import validarPass,validarUsuario,noCompartirUsuarioCreador
 
 jwt=JWTManager()
 cancion_schema = CancionSchema()
@@ -144,8 +144,6 @@ class VistaLogOut(Resource):
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
 
-
-
 class VistaAlbumsUsuario(Resource):
 
     @jwt_required()
@@ -154,7 +152,8 @@ class VistaAlbumsUsuario(Resource):
             validarUsuario(get_jwt_identity(),id_usuario)
             nuevo_album = Album(titulo=request.json["titulo"], anio=request.json["anio"], descripcion=request.json["descripcion"], medio=request.json["medio"])
             usuario = Usuario.query.get_or_404(id_usuario)
-            usuario.albumes.append(nuevo_album)
+            nuevo_album.usuario_creador=usuario.id
+            db.session.add(nuevo_album)
             db.session.commit()
             db.session.rollback()
             return album_schema.dump(nuevo_album)
@@ -169,7 +168,8 @@ class VistaAlbumsUsuario(Resource):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
-            return [album_schema.dump(al) for al in usuario.albumes]
+            total_albums = usuario.albums + usuario.albumescompartidos
+            return [album_schema.dump(al) for al in total_albums]
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
 
@@ -209,6 +209,7 @@ class VistaAlbum(Resource):
     def get(self,id_usuario,id_album):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
+            print(Album.query.get_or_404(id_album).usuario)
             return album_schema.dump(Album.query.get_or_404(id_album))
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
@@ -221,6 +222,11 @@ class VistaAlbum(Resource):
             album.anio = request.json.get("anio", album.anio)
             album.descripcion = request.json.get("descripcion", album.descripcion)
             album.medio = request.json.get("medio", album.medio)
+            if(request.json['usuarioscompartidos'] is not None):
+                noCompartirUsuarioCreador(album.usuario.id,request.json['usuarioscompartidos'])
+                for usuario_id in request.json['usuarioscompartidos']:
+                    usuario = Usuario.query.get_or_404(usuario_id)
+                    album.usuarioscompartidos.append(usuario)
             db.session.commit()
             return album_schema.dump(album)
         except ValidationError as e:

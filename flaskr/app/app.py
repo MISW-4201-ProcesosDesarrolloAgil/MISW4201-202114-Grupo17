@@ -1,12 +1,9 @@
-from .vistas import VistaLogOut
-from .modelos.modelos import Usuario, Album,UsuarioSchema,Medio
 from . import create_app
 from flask_restful import Api
-from .modelos import db
-from .vistas import VistaCanciones, VistaCancion, VistaSignIn, VistaAlbum, VistaAlbumsUsuario, VistaCancionesAlbum, VistaLogIn, VistaAlbumesCanciones,jwt
+from modelos import db
+from vistas import VistaCanciones, VistaCancion, VistaSignIn, VistaAlbum, VistaAlbumsUsuario, VistaCancionesAlbum, VistaLogIn, VistaLogOut, VistaAlbumesCanciones,jwt
 from flask_cors import CORS
 
-usuario_schema = UsuarioSchema()
 app=create_app('default')
 app_context = app.app_context()
 app_context.push()

@@ -2,11 +2,11 @@ from flask import request,jsonify
 from marshmallow.exceptions import ValidationError
 import redis
 from datetime import timedelta
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
+from modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager
-from ..helpers import validarPass,validarUsuario,noCompartirUsuarioCreador
+from helpers import validarPass,validarUsuario,noCompartirUsuarioCreador
 
 jwt=JWTManager()
 cancion_schema = CancionSchema()
@@ -90,6 +90,7 @@ class VistaAlbumesCanciones(Resource):
 class VistaSignIn(Resource):
     
     def post(self):
+        print(request.json["nombre"])
         nuevo_usuario = Usuario(nombre=request.json["nombre"], contrasena=request.json["contrasena"])
         db.session.add(nuevo_usuario)
         db.session.commit()

@@ -20,3 +20,4 @@ SQLAlchemy==1.4.15
 Werkzeug==2.0.1
 redis
 redis-server
+requests

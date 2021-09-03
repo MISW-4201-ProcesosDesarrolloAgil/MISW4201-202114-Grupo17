@@ -28,58 +28,5 @@ api.add_resource(VistaAlbumsUsuario, '/usuario/<int:id_usuario>/albumes')
 api.add_resource(VistaAlbum, '/usuario/<int:id_usuario>/album/<int:id_album>')
 api.add_resource(VistaCancionesAlbum, '/usuario/<int:id_usuario>/album/<int:id_album>/canciones')
 
-# with app.app_context():
-
-# 	medioArray = [Medio.DISCO,Medio.CASETE,Medio.CD]
-
-# 	usuario1 = Usuario(
-# 		nombre='Juan Carlos',
-# 		contrasena = 'lola123'
-# 	)
-# 	db.session.add(usuario1)
-# 	db.session.commit()	
-
-# 	for i in range(9):
-# 		nuevoAlbum = Album(
-# 			titulo='Album{}'.format(i),
-# 			anio = 2000+i,
-# 			descripcion='Descripcion de prueba {}'.format(i),
-# 			medio = medioArray[i%3],
-# 			)
-# 		nuevoAlbum.usuario_creador=usuario1.id
-# 		db.session.add(nuevoAlbum)
-# 		db.session.commit()	
-# 	usuario2 = Usuario(
-# 		nombre='Edgar Luna',
-# 		contrasena = 'lola123'
-# 	)
-# 	db.session.add(usuario2)
-# 	db.session.commit()	
-
-# 	for i in range(3):
-# 		nuevoAlbum = Album(
-# 			titulo='AlbumOtro{}'.format(i),
-# 			anio = 2000+i,
-# 			descripcion='Descripcion de prueba {}'.format(i),
-# 			medio = medioArray[i%3],
-# 			)
-# 		nuevoAlbum.usuario_creador=usuario2.id
-# 		db.session.add(nuevoAlbum)
-# 		db.session.commit()	
-
-# 	usuario1query = Usuario.query.all()[0]
-# 	usuario2query = Usuario.query.all()[1]
-# 	for i in range(len(usuario1query.albums)):
-# 		print(i)
-# 		usuario1query.albums[i].usuarioscompartidos.append(usuario2query)
-# 		db.session.commit()
-
-
-
-# 	usuariosquery = Usuario.query.all()
-# 	usuarios = [usuario_schema.dumps(usuarioquery) for usuarioquery in usuariosquery]
-# 	print('-------------------------')
-# 	print(usuarios)
-# 	print('-------------------------')
 
 jwt.init_app(app)

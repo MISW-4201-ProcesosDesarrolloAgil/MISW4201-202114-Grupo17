@@ -1,13 +1,27 @@
-from flask import request
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
+from flask import request,jsonify
+from marshmallow.exceptions import ValidationError
+import redis
+from datetime import timedelta
+from modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager
+from helpers import validarUsuario
 
+jwt=JWTManager()
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
 album_schema = AlbumSchema()
 
+jwt_redis_blocklist = redis.StrictRedis(
+    host="localhost", port=6379, db=0, decode_responses=True
+)
+
+@jwt.token_in_blocklist_loader
+def check_if_token_is_revoked(jwt_header, jwt_payload):
+    jti = jwt_payload["jti"]
+    token_in_redis = jwt_redis_blocklist.get(jti)
+    return token_in_redis is not None
 
 class VistaCanciones(Resource):
 
@@ -77,6 +91,18 @@ class VistaLogIn(Resource):
         else:
             token_de_acceso = create_access_token(identity = usuario.id)
             return {"mensaje":"Inicio de sesión exitoso", "token": token_de_acceso}
+
+class VistaLogOut(Resource):
+    @jwt_required()
+    def post(self,id_usuario):
+        try:
+            validarUsuario(get_jwt_identity(),id_usuario)
+            jti = get_jwt()["jti"]
+            jwt_redis_blocklist.set(jti, "", ex=timedelta(hours=1))
+            respuesta= jsonify({"mensaje":"Se ha desconectado correctamente"})
+            return respuesta
+        except ValidationError as e:
+            return {"mensaje":e.messages[0]},401
 
 class VistaAlbumsUsuario(Resource):
 

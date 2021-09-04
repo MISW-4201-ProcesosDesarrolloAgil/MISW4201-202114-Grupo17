@@ -90,7 +90,6 @@ class VistaAlbumesCanciones(Resource):
 class VistaSignIn(Resource):
     
     def post(self):
-        print(request.json["nombre"])
         nuevo_usuario = Usuario(nombre=request.json["nombre"], contrasena=request.json["contrasena"])
         db.session.add(nuevo_usuario)
         db.session.commit()
@@ -156,7 +155,6 @@ class VistaAlbumsUsuario(Resource):
             nuevo_album.usuario_creador=usuario.id
             db.session.add(nuevo_album)
             db.session.commit()
-            db.session.rollback()
             return album_schema.dump(nuevo_album)
         except (IntegrityError,ValidationError) as e:
             if isinstance(e,ValidationError):
@@ -210,7 +208,6 @@ class VistaAlbum(Resource):
     def get(self,id_usuario,id_album):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
-            print(Album.query.get_or_404(id_album).usuario)
             return album_schema.dump(Album.query.get_or_404(id_album))
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401

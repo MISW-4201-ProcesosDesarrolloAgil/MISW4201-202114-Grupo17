@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-usuario-login',
   templateUrl: './usuario-login.component.html',
-  styleUrls: ['./usuario-login.component.css']
+  styleUrls: ['./usuario-login.component.scss']
 })
 export class UsuarioLoginComponent implements OnInit {
 

@@ -23,6 +23,10 @@ def check_if_token_is_revoked(jwt_header, jwt_payload):
     token_in_redis = jwt_redis_blocklist.get(jti)
     return token_in_redis is not None
 
+def withoutPass(usuario):
+    contrasena,rest = (lambda contrasena, **rest: (contrasena, rest))(**usuario)
+    return rest
+
 class VistaCanciones(Resource):
     @jwt_required()
     def post(self,id_usuario):
@@ -167,7 +171,8 @@ class VistaAlbumsUsuario(Resource):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
-            return [album_schema.dump(al) for al in usuario.albums]
+            totalAlbum = usuario.albums + usuario.albumescompartidos
+            return [album_schema.dump(al) for al in totalAlbum]
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
 
@@ -242,3 +247,12 @@ class VistaAlbum(Resource):
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
 
+class VistaUsuarios(Resource):
+    @jwt_required()
+    def get(self):
+        logUser = Usuario.query.get_or_404(get_jwt_identity())
+        usuarios = Usuario.query.all()
+        usuarios.remove(logUser)
+        usuariosFormat = [usuario_schema.dump(usuario) for usuario in usuarios]
+        usuariosPure = list(map(withoutPass,usuariosFormat))
+        return usuariosPure

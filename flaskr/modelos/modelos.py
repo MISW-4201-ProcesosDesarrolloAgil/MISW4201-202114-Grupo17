@@ -38,6 +38,9 @@ class Album(db.Model):
     usuario_creador = db.Column(db.Integer, db.ForeignKey("usuario.id"))
     canciones = db.relationship('Cancion', secondary = 'album_cancion', back_populates="albumes")
     usuarioscompartidos = db.relationship('Usuario',secondary=usuarios_albumes_compartidos,back_populates='albumescompartidos')
+    __mapper_args__ = {
+        'confirm_deleted_rows': False
+    }
 
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,6 +48,9 @@ class Usuario(db.Model):
     contrasena = db.Column(db.String(50))
     albums = db.relationship('Album', backref="usuario",cascade='all, delete, delete-orphan')
     albumescompartidos = db.relationship('Album',secondary=usuarios_albumes_compartidos,back_populates='usuarioscompartidos')
+    __mapper_args__ = {
+        'confirm_deleted_rows': False
+    }
 
 class EnumADiccionario(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):

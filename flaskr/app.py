@@ -1,7 +1,7 @@
 from flaskr import create_app
 from flask_restful import Api
 from .modelos import db
-from vistas import VistaCanciones, VistaCancion, VistaSignIn, VistaAlbum, VistaAlbumsUsuario, VistaCancionesAlbum, VistaLogIn, VistaLogOut, VistaAlbumesCanciones,jwt
+from .vistas import VistaCanciones, VistaCancion, VistaSignIn, VistaAlbum, VistaAlbumsUsuario, VistaCancionesAlbum, VistaLogIn, VistaLogOut, VistaAlbumesCanciones,jwt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
 

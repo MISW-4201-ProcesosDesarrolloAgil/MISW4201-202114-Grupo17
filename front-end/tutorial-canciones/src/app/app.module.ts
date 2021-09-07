@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { UsuarioModule } from './usuario/usuario.module';
 import { AlbumModule } from './album/album.module';
 import { AppHeaderModule } from './app-header/app-header.module';
+import { AppSidebarModule } from './app-sidebar/app-sidebar.module';
 import { CancionModule } from './cancion/cancion.module';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CancionModule } from './cancion/cancion.module';
     AlbumModule,
     CancionModule,
     AppHeaderModule,
+    AppSidebarModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',

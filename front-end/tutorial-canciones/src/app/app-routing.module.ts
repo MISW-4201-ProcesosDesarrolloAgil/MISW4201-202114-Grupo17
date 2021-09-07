@@ -32,12 +32,12 @@ const routes: Routes = [
     component: AlbumListComponent
   },
   {
-    path: 'albumes/:userId/:userToken/:albumId',
-    component: AlbumDetailComponent
-  },
-  {
     path: 'albumes/create/:userId/:userToken',
     component: AlbumCreateComponent
+  },
+  {
+    path: 'albumes/:userId/:userToken/:albumId',
+    component: AlbumDetailComponent
   },
   {
     path: 'albumes/edit/:albumId/:userId/:userToken',

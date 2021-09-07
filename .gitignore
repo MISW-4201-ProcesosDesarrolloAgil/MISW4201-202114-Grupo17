@@ -145,3 +145,5 @@ cython_debug/
 
 #DataBase
 test.db
+front-end/package-lock.json
+front-end/tutorial-canciones/package-lock.json

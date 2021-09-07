@@ -54,8 +54,8 @@
                   <div class="icon-comments-container">
                     <i class="bi bi-chat-left-text-fill icon-comments"></i>
                   </div>
-                  <div class="users-shared-container">
-                    <p>Daniel Larios, Edgar Luna</p>
+                  <div *ngIf="album.usuario !== userId"  class="users-shared-container">
+                    <p>{{ this.getAlbumUser(album.usuario) }}</p>
                   </div>
                 </div>
               </td>

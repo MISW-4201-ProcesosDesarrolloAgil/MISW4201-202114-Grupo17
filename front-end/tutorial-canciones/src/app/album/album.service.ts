@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Album} from './album';
 import { Cancion } from '../cancion/cancion';
+import { Usuario } from '../usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,13 @@ export class AlbumService {
 
   asociarCancion(albumId: number, cancionId: number): Observable<Cancion>{
     return this.http.post<Cancion>(`${this.backUrl}/album/${albumId}/canciones`, {"id_cancion": cancionId})
+  }
+
+  getUsers( token: string): Observable<Usuario[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`       
+    })
+    return this.http.get<Usuario[]>(`${this.backUrl}/usuarios`, {headers: headers})
   }
 
 }

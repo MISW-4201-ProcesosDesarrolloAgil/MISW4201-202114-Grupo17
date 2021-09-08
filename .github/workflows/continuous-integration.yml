@@ -38,12 +38,11 @@ jobs:
     
       - name: Ejecución de pruebas unitarias
         run: |
-          python -m unittest backtest/backtest.py
-#          python -m unittest discover -s flaskr/tests -v
+          python -m unittest discover -s backtest/backtest.py -v
         
       - name: Analisis de cobertura
         run: |
-          coverage run -m unittest discover -s flaskr/tests -v
+          coverage run -m unittest discover -s backtest/backtest.py -v
           coverage report -m
           
   #merge-branch-develop:

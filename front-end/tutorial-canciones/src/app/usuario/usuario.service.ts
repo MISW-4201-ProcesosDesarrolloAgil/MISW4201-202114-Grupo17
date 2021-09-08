@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   })
 export class UsuarioService {
 
-    private backUrl: string = "http://localhost:5000"
+    private backUrl: string = environment.baseUrl;
 
     constructor(private http: HttpClient) { }
 
@@ -16,6 +17,6 @@ export class UsuarioService {
     }
 
     userSignUp(nombre: string, contrasena: string): Observable<any>{
-        return this.http.post<any>(`${this.backUrl}/signin`, {"nombre": nombre, "contrasena": contrasena})
+        return this.http.post<any>(`${this.backUrl}/signIn`, {"nombre": nombre, "contrasena": contrasena})
     }
 }

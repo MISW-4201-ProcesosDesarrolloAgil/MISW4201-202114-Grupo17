@@ -10,11 +10,17 @@ import { CancionEditComponent } from './cancion/cancion-edit/cancion-edit.compon
 import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join-cancion.component';
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
 import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UsuarioLoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
     pathMatch: 'full'
   },
   {

@@ -26,8 +26,9 @@ jobs:
 
       - name: Configuración del entorno python
         uses: actions/setup-python@v2
-        with:
+        with: |
             python-version: '3.8.10'
+            python -m pip install --upgrade pip
       
       - name: Instalación de dependencias
         run: |

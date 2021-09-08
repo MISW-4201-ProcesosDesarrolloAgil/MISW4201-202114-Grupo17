@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
-import { Album, Cancion } from '../album';
+import { Album, Cancion, Medio } from '../album';
 import { AlbumService } from '../album.service';
 
 @Component({
   selector: 'app-album-list',
   templateUrl: './album-list.component.html',
-  styleUrls: ['./album-list.component.css']
+  styleUrls: ['./album-list.component.scss']
 })
 export class AlbumListComponent implements OnInit {
 
@@ -34,6 +34,10 @@ export class AlbumListComponent implements OnInit {
       this.token = this.router.snapshot.params.userToken
       this.getAlbumes();
     }
+  }
+
+  enumAsString(enumVariable: Medio): string {
+    return enumVariable.llave as unknown as string
   }
 
   getAlbumes():void{

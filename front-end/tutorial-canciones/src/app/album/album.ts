@@ -8,6 +8,7 @@ export class Album {
     usuario: number;
     interpretes: Array<string>;
     canciones: Array<Cancion>
+    usuarioscompartidos: number[]
 
     constructor(
         id: number,

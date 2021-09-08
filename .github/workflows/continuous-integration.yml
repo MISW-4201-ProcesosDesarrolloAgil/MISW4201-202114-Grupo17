@@ -34,16 +34,15 @@ jobs:
           sudo apt-get install redis-server
           python -m pip install --upgrade pip
           python -m pip install -r flaskr/requirements.txt
-    # pip install -r requirements.txt
     
       - name: Ejecución de pruebas unitarias
         run: |
           python -m unittest backtest/backtest.py
         
-      - name: Analisis de cobertura
-        run: |
-          coverage run -m unittest backtest/backtest.py
-          coverage report -m
+    #  - name: Analisis de cobertura
+    #    run: |
+    #      coverage run -m unittest backtest/backtest.py
+    #      coverage report -m
           
   #merge-branch-develop:
 

@@ -35,8 +35,11 @@ export class AlbumService {
     return this.http.post<Album>(`${this.backUrl}/usuario/${idUsuario}/albumes`, album, {headers: headers})
   }
 
-  getAlbum(albumId: number): Observable<Album>{
-    return this.http.get<Album>(`${this.backUrl}/album/${albumId}`)
+  getAlbum(albumId: number, userId: number, token: string): Observable<Album>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`       
+    })
+    return this.http.get<Album>(`${this.backUrl}/usuario/${userId}/album/${albumId}`,{headers: headers})
   }
 
   editarAlbum(idUsuario: number, token: string, albumId: number, album: Album): Observable<Album>{

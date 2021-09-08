@@ -9,11 +9,17 @@ import { CancionCreateComponent } from './cancion/cancion-create/cancion-create.
 import { CancionEditComponent } from './cancion/cancion-edit/cancion-edit.component';
 import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join-cancion.component';
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UsuarioLoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
     pathMatch: 'full'
   },
   {

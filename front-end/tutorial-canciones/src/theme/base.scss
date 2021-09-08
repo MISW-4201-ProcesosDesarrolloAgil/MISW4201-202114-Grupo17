@@ -1,0 +1,60 @@
+@import './colors.scss';
+@import './breakpoints.scss';
+
+body {
+    background-color:$paletteBlue !important;
+    font: 400 15px/22px 'Roboto', Sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100vh;
+  }
+
+button {
+    background-color: $palettePurple !important;
+    border-color: $palettePurple !important;
+    border: 2px solid currentColor !important;
+    border-radius: $divRadius !important;
+    font-size: 4rem;
+    font-weight: 100;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    position: relative;
+    text-decoration: none;
+    transition: .1s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+    
+    &:hover{
+        border: 2px solid transparent;
+        border-radius: $divRadius !important;
+        color: $paletteOrange;
+        will-change: transform;
+    }
+
+    &::after{
+        background-color: $paletteOrange;
+        border-radius: $divRadius - 1 !important;
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-100%, 0) rotate(10deg);
+        transform-origin: top left;
+        transition: .1s transform ease-out;
+        will-change: transform;
+        z-index: -1;
+    }
+
+    &:hover::after{
+        transform: translate(0,0)
+    }
+}
+
+a {
+    color: $paletteOrange
+}

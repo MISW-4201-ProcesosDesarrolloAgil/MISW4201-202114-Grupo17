@@ -83,10 +83,15 @@ export class AlbumDetailComponent implements OnInit {
     this.toastr.warning(warning, "Error de autenticación")
   }
 
-  openShareModal()
+  changeShareAlbum()
   {
     this.shareAlbumOn = !this.shareAlbumOn
+  }
+
+  startModal()
+  {
     $('#myModal').modal('show')
   }
+
 
 }

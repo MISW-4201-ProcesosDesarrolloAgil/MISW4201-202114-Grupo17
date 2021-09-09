@@ -8,16 +8,22 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class AlbumShareComponent implements OnInit {
 
   @Input() usuarioscompartidos:Array<number>
+  @Output() openModal= new EventEmitter
   @Output() quitShare = new EventEmitter
   constructor() { }
 
   ngOnInit(): void {
-    console.log('hola')
+    this.abrirModal()
   }
 
   terminarcompartir():void
   {
     this.quitShare.emit()
+  }
+
+  abrirModal()
+  {
+    this.openModal.emit()
   }
 
 }

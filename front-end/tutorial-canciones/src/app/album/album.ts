@@ -18,7 +18,8 @@ export class Album {
         medio: Medio,
         usuario: number,
         interpretes: Array<string>,
-        canciones: Array<Cancion>
+        canciones: Array<Cancion>,
+        usuarioscompartidos: number[]
     ){
         this.id = id,
         this.titulo = titulo,
@@ -28,6 +29,7 @@ export class Album {
         this.usuario = usuario,
         this.interpretes = interpretes,
         this.canciones = canciones
+        this.usuarioscompartidos = usuarioscompartidos || []
     }
 }
 

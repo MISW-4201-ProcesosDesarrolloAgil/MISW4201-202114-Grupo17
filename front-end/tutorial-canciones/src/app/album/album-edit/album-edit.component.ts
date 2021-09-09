@@ -49,9 +49,9 @@ export class AlbumEditComponent implements OnInit {
     } else {
       this.albumService
         .getAlbum(
-          parseInt(this.router.snapshot.params.albumId),
-          parseInt(this.router.snapshot.params.userId),
-          this.router.snapshot.params.token
+          this.router.snapshot.params.albumId,
+          this.router.snapshot.params.userId,
+          this.router.snapshot.params.userToken
         )
         .subscribe((album) => {
           this.albumId = album.id;

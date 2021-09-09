@@ -2,7 +2,7 @@ from flask import request,jsonify
 from marshmallow.exceptions import ValidationError
 import redis
 from datetime import timedelta
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema, Medio
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager
@@ -222,18 +222,19 @@ class VistaAlbum(Resource):
     def put(self,id_usuario,id_album):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
-            album = Album.query.get_or_404(id_album)
-            album.titulo = request.json.get("titulo",album.titulo)
-            album.anio = request.json.get("anio", album.anio)
-            album.descripcion = request.json.get("descripcion", album.descripcion)
-            album.medio = request.json.get("medio", album.medio)
+            albumModificar = Album.query.get_or_404(id_album)
+            albumModificar.titulo = request.json.get("titulo",albumModificar.titulo)
+            albumModificar.anio = request.json.get("anio", albumModificar.anio)
+            albumModificar.descripcion = request.json.get("descripcion", albumModificar.descripcion)
+            print(albumModificar.medio)
+            albumModificar.medio = request.json.get("medio", albumModificar.medio)
             if(request.json['usuarioscompartidos'] is not None):
-                noCompartirUsuarioCreador(album.usuario.id,request.json['usuarioscompartidos'])
+                noCompartirUsuarioCreador(albumModificar.usuario.id,request.json['usuarioscompartidos'])
                 for usuario_id in request.json['usuarioscompartidos']:
                     usuario = Usuario.query.get_or_404(usuario_id)
-                    album.usuarioscompartidos.append(usuario)
+                    albumModificar.usuarioscompartidos.append(usuario)
             db.session.commit()
-            return album_schema.dump(album)
+            return album_schema.dump(albumModificar)
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
     @jwt_required()

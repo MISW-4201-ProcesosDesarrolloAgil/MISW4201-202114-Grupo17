@@ -19,7 +19,7 @@ export class Album {
         usuario: number,
         interpretes: Array<string>,
         canciones: Array<Cancion>,
-        usuarioscompartidos: number[]
+        usuarioscompartidos?: number[]
     ){
         this.id = id,
         this.titulo = titulo,

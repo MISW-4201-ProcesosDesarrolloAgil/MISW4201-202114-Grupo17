@@ -47,6 +47,7 @@ export class AlbumService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
+    console.log(album)
     return this.http.put<Album>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, album, {headers: headers})
   }
 

@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-album-detail',
   templateUrl: './album-detail.component.html',
@@ -15,13 +17,16 @@ export class AlbumDetailComponent implements OnInit {
   token: string;
   albumId: number;
   album: Album;
+  shareAlbumOn:boolean
 
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
     private albumService: AlbumService,
     private toastr: ToastrService,
-  ) { }
+  ) {
+    this.shareAlbumOn = false
+  }
 
   ngOnInit() {
     this.userId = parseInt(this.router.snapshot.params.userId)
@@ -29,6 +34,7 @@ export class AlbumDetailComponent implements OnInit {
     this.albumId = parseInt(this.router.snapshot.params.albumId)
     this.albumService.getAlbum(this.albumId,this.userId,this.token).subscribe(album => {
       this.album = album
+      this.shareAlbumOn=false
     })
   }
 
@@ -76,5 +82,23 @@ export class AlbumDetailComponent implements OnInit {
   showWarning(warning: string){
     this.toastr.warning(warning, "Error de autenticación")
   }
+
+  changeShareAlbum()
+  {
+    this.shareAlbumOn = !this.shareAlbumOn
+  }
+
+  reloadComponent()
+  {
+    $('#myModal').modal('hide')
+    this.shareAlbumOn = !this.shareAlbumOn
+    this.ngOnInit()
+  }
+
+  startModal()
+  {
+    $('#myModal').modal('show')
+  }
+
 
 }

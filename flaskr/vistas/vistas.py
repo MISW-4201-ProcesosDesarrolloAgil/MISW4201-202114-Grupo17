@@ -220,8 +220,9 @@ class VistaAlbum(Resource):
             return {"mensaje":e.messages[0]},401
     @jwt_required()
     def put(self,id_usuario,id_album):
-        try:
+        try: 
             validarUsuario(get_jwt_identity(),id_usuario)
+
             album = Album.query.get_or_404(id_album)
             album.titulo = request.json.get("titulo",album.titulo)
             album.anio = request.json.get("anio", album.anio)
@@ -229,9 +230,11 @@ class VistaAlbum(Resource):
             album.medio = request.json.get("medio", album.medio)
             if(request.json['usuarioscompartidos'] is not None):
                 noCompartirUsuarioCreador(album.usuario.id,request.json['usuarioscompartidos'])
+                usuariosReq = []
                 for usuario_id in request.json['usuarioscompartidos']:
                     usuario = Usuario.query.get_or_404(usuario_id)
-                    album.usuarioscompartidos.append(usuario)
+                    usuariosReq.append(usuario)
+                album.usuarioscompartidos=usuariosReq
             db.session.commit()
             return album_schema.dump(album)
         except ValidationError as e:

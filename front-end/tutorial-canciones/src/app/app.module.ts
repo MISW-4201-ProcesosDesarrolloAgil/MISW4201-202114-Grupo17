@@ -12,6 +12,7 @@ import { AppHeaderModule } from './app-header/app-header.module';
 import { AppSidebarModule } from './app-sidebar/app-sidebar.module';
 import { CancionModule } from './cancion/cancion.module';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { AppFooterModule } from './app-footer/app-footer.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AlbumModule,
     CancionModule,
     AppHeaderModule,
+    AppFooterModule,
     AppSidebarModule,
     ToastrModule.forRoot({
       timeOut: 7000,

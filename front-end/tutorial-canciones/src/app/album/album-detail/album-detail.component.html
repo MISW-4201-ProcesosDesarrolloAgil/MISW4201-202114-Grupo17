@@ -56,7 +56,7 @@
   </div>
 
 
-  <app-album-share *ngIf="shareAlbumOn" class="modal fade" tabindex="-1" id="myModal" [usuarioscompartidos]="album.usuarioscompartidos" (quitShare)="shareAlbumOn=!shareAlbumOn" (openModal)="startModal()">
+  <app-album-share *ngIf="shareAlbumOn" class="modal fade" tabindex="-1" id="myModal" [usuarioscompartidos]="album.usuarioscompartidos" [token]="token" [logUserId]="userId" (quitShare)="reloadComponent()" (openModal)="startModal()">
   </app-album-share>
 
 

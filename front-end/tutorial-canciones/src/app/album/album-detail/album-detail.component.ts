@@ -88,6 +88,13 @@ export class AlbumDetailComponent implements OnInit {
     this.shareAlbumOn = !this.shareAlbumOn
   }
 
+  reloadComponent()
+  {
+    $('#myModal').modal('hide')
+    this.shareAlbumOn = !this.shareAlbumOn
+    this.ngOnInit()
+  }
+
   startModal()
   {
     $('#myModal').modal('show')

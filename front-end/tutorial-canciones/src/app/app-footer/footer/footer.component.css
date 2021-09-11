@@ -2,5 +2,13 @@ footer.footer {
   background-color: rgb(35, 35, 43);
   color: rgb(94, 91, 91);
   padding-top: 30px;
+}
 
+.link-about {
+  color: rgb(94, 91, 91);
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
 }

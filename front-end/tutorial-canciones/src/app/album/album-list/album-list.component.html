@@ -1,7 +1,6 @@
 <app-sidebar></app-sidebar>
 <div class="row-custom">
   <div class="content">
-
     <div class="container my-4">
       <div class="row">
         <div class="col-12">
@@ -32,39 +31,42 @@
             </div>
             <hr />
             <table
-          class="table table-hover mb-0 table-striped"
-          aria-describedby="colecName"
-        >
-          <thead>
-            <th>Titulo</th>
-            <th>Año</th>
-            <th>Medio</th>
-            <th>Descripción</th>
-            <th>Compartido por</th>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="let album of mostrarAlbumes; index as i"
-              (click)="onSelect(album, i)"
-              [ngClass]="{ selected: i === indiceSeleccionado }"
+              class="table table-hover mb-0 table-striped"
+              aria-describedby="colecName"
             >
-              <td>{{ album.titulo }}</td>
-              <td>{{ album.anio }}</td>
-              <td>{{ enumAsString(album.medio) }}</td>
-              <td>{{ album.descripcion }}</td>
-              <td>
-                <div (click)="irCrearAlbum()" class="row-container">
-                  <div class="icon-comments-container">
-                    <i class="bi bi-chat-left-text-fill icon-comments"></i>
-                  </div>
-                  <div *ngIf="album.usuario !== userId"  class="users-shared-container">
-                    <p>{{ this.getAlbumUser(album.usuario) }}</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <thead>
+                <th>Titulo</th>
+                <th>Año</th>
+                <th>Medio</th>
+                <th>Descripción</th>
+                <th>Compartido por</th>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let album of mostrarAlbumes; index as i"
+                  (click)="onSelect(album, i)"
+                  [ngClass]="{ selected: i === indiceSeleccionado }"
+                >
+                  <td>{{ album.titulo }}</td>
+                  <td>{{ album.anio }}</td>
+                  <td>{{ enumAsString(album.medio) }}</td>
+                  <td>{{ album.descripcion }}</td>
+                  <td>
+                    <div (click)="irCrearAlbum()" class="row-container">
+                      <div class="icon-comments-container">
+                        <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                      </div>
+                      <div
+                        *ngIf="album.usuario !== userId"
+                        class="users-shared-container"
+                      >
+                        <p>{{ this.getAlbumUser(album.usuario) }}</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <hr />

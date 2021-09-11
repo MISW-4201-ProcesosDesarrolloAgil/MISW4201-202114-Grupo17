@@ -1,0 +1,128 @@
+@import "../../../theme/colors.scss";
+
+:host {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.row-custom {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.selected {
+  background-color: #ececec;
+}
+
+input {
+  box-shadow: $box-shados-feed-cards;
+}
+
+.album-list-container {
+  background-color: $white;
+  border-radius: $divRadius;
+  padding: 2em;
+  box-shadow: $box-shados-feed-cards;
+  z-index: 2;
+  margin-top: 2em;
+
+  th {
+    background-color: $paletteOrange;
+    color: $white;
+    text-align: start;
+  }
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: flex-end;
+  .btn-circle {
+    background-color: $paletteOrange;
+    border-color: currentColor !important;
+    color: $white !important;
+    height: 3em;
+    width: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
+    i {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.left-options-container {
+  display: flex;
+  align-items: center;
+  margin-top: -0.5em;
+  justify-content: flex-end;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: rgba($paletteOrange, 0.3); // Choose your own color here
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p {
+    margin: auto;
+  }
+}
+.icon-comments-container {
+  flex: 1;
+  cursor: pointer;
+  .icon-comments {
+    font-size: 2em;
+  }
+}
+
+.users-shared-container {
+  flex: 3;
+}
+
+thead {
+  height: 3em;
+  font-size: 1.1em;
+  th {
+    height: 3em;
+    vertical-align: middle;
+    padding-left: 0.5em;
+    font-weight: 400;
+  }
+}
+
+.btn-circle {
+    background-color: $paletteOrange;
+    border-color: currentColor !important;
+    color: $white !important;
+    height: 3em;
+    width: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
+    i {
+      font-size: 1.5em;
+    }
+  }

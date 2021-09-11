@@ -7,7 +7,7 @@ import { AlbumService } from '../album.service';
 @Component({
   selector: 'app-album-detail',
   templateUrl: './album-detail.component.html',
-  styleUrls: ['./album-detail.component.css']
+  styleUrls: ['./album-detail.component.scss']
 })
 export class AlbumDetailComponent implements OnInit {
   
@@ -23,12 +23,15 @@ export class AlbumDetailComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
+  indiceSeleccionado: number
+
   ngOnInit() {
     this.userId = parseInt(this.router.snapshot.params.userId)
     this.token = this.router.snapshot.params.userToken
     this.albumId = parseInt(this.router.snapshot.params.albumId)
     this.albumService.getAlbum(this.albumId,this.userId,this.token).subscribe(album => {
       this.album = album
+      console.log(album)
     })
   }
 
@@ -43,6 +46,23 @@ export class AlbumDetailComponent implements OnInit {
   goToShareAlbum(){
     //Logica para arbir modal o ir a vista
     console.log('Agregar Lógica')
+  }
+
+  onSelect(a: Album, index: number){
+    console.log(a,index)
+    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${a.id}`])
+  }
+
+  goToCommentsAlbum(){
+    console.log('Logic to go to comments')
+  }
+
+  goToCommentsCancion(){
+    console.log('Logic to go to comments')
+  }
+
+  goToDeleteSong(){
+    console.log('Logic to delete Song')
   }
 
   eliminarAlbum(){

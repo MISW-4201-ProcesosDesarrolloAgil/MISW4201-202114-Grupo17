@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {  }
 
   goTo(menu: string){
-    if(menu === "logIn"){
+    if (menu === "logIn") {
+      sessionStorage.clear();
       this.routerPath.navigate([`/`])
     }
   }

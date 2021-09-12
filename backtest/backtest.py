@@ -39,7 +39,7 @@ class TestIonicBack(unittest.TestCase):
                 "medio":fakeMedio[self.fkr.random_int(min=0,max=2)]
             }
             responseAlbum = self.app.post(
-                '/usuario/1/albumes',
+                '/usuario/{}/albumes'.format(idUsuarios[0]),
                 json=albumPayload,
                 headers={
                     'Authorization':'Bearer {}'.format(tokens[0])
@@ -50,20 +50,23 @@ class TestIonicBack(unittest.TestCase):
         
         #Comparte el Album 1 con los usuarios 2 y 3
         responseAlbumCompartido = self.app.put(
-            '/usuario/1/album/1',
+            '/usuario/{}/album/{}'.format(idUsuarios[0],idAlbums[0]),
             json={
-                'usuarioscompartidos':[2,3]
+                'usuarioscompartidos':[idUsuarios[1],idUsuarios[2]]
             },
             headers={
                 'Authorization':'Bearer {}'.format(tokens[0])
             }
         ).get_json()
+        print(responseAlbumCompartido)
         usuariosCompartidosAlbumUno = Album.query.get(responseAlbumCompartido['id']).usuarioscompartidos
 
-        self.assertEqual(usuariosCompartidosAlbumUno[0].id,2)
-        self.assertEqual(usuariosCompartidosAlbumUno[1].id,3)
+        self.assertEqual(usuariosCompartidosAlbumUno[0].id,idUsuarios[1])
+        self.assertEqual(usuariosCompartidosAlbumUno[1].id,idUsuarios[2])
     #CA04 verifica que cuando un usuario tenga albumes creados y compartidos, al pedir los albumes del usuario, se retorne 1 array concatenado de albumes creados + compartidos
     def test_retorna_albums_propios_y_compartidos(self):
+        usuariosActuales = Usuario.query.all()
+        lenUsuariosActuales = len(usuariosActuales)
         idUsuarios=[]
         idAlbums=[]
         tokens = []
@@ -88,20 +91,22 @@ class TestIonicBack(unittest.TestCase):
                 "medio":fakeMedio[self.fkr.random_int(min=0,max=2)]
             }
             responseAlbum = self.app.post(
-                '/usuario/{}/albumes'.format(i+1),
+                '/usuario/{}/albumes'.format(idUsuarios[i]),
                 json=albumPayload,
                 headers={
                     'Authorization':'Bearer {}'.format(tokens[i])
                 }
                 ).get_json()
-            self.instancias.append(Album.query.get(responseAlbum['id']))
+
             idAlbums.append(responseAlbum['id'])
+            self.instancias.append(Album.query.get(responseAlbum['id']))
+            
         
         #Comparte el Album 1 con los usuarios 2 y 3
         self.app.put(
-            '/usuario/1/album/1',
+            '/usuario/{}/album/{}'.format(idUsuarios[0],idAlbums[0]),
             json={
-                'usuarioscompartidos':[2,3]
+                'usuarioscompartidos':[idUsuarios[1],idUsuarios[2]]
             },
             headers={
                 'Authorization':'Bearer {}'.format(tokens[0])
@@ -110,7 +115,7 @@ class TestIonicBack(unittest.TestCase):
 
         #Obtiene los albums del usuario 2
         responseAlbumsUsuario = self.app.get(
-                '/usuario/2/albumes',
+                '/usuario/{}/albumes'.format(idUsuarios[1]),
                 json=albumPayload,
                 headers={
                     'Authorization':'Bearer {}'.format(tokens[1])
@@ -119,6 +124,7 @@ class TestIonicBack(unittest.TestCase):
         self.assertEqual(len(responseAlbumsUsuario),2)
         
         
+
 
     def tearDown(self) -> None:
         for i in self.instancias:

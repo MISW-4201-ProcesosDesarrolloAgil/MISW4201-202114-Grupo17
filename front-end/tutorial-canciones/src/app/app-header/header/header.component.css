@@ -1,12 +1,19 @@
 nav.navbar {
   background-color: rgb(0, 129, 167);
 }
- button.btn-Salir {
-   background-color: rgb(255, 107, 53);
-   color : white;
- }
 
- svg.bi-bell-fill {
-   margin-left: 10px;
-   margin-right: 10px;
- }
+button.btn-Salir {
+  background-color: rgb(255, 107, 53);
+  color : white;
+}
+
+svg.bi-bell-fill {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.image-logo {
+  width: auto;
+  height: 50px;
+  padding-left: 30px;
+}

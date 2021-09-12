@@ -1,0 +1,20 @@
+
+.content-app {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.row-custom {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+}

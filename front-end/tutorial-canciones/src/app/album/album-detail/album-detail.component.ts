@@ -5,6 +5,8 @@ import { Usuario } from 'src/app/usuario/usuario';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-album-detail',
   templateUrl: './album-detail.component.html',
@@ -16,13 +18,16 @@ export class AlbumDetailComponent implements OnInit {
   token: string;
   albumId: number;
   album: Album;
+  shareAlbumOn:boolean
 
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
     private albumService: AlbumService,
     private toastr: ToastrService,
-  ) { }
+  ) {
+    this.shareAlbumOn = false
+  }
 
   indiceSeleccionado: number
   applicationUsers: Usuario[]
@@ -33,7 +38,7 @@ export class AlbumDetailComponent implements OnInit {
     this.albumId = parseInt(this.router.snapshot.params.albumId)
     this.albumService.getAlbum(this.albumId,this.userId,this.token).subscribe(album => {
       this.album = album
-      console.log(album)
+      this.shareAlbumOn=false
     })
     this.getUsers()
   }
@@ -120,5 +125,23 @@ export class AlbumDetailComponent implements OnInit {
     return user?.nombre
     else return ""
   }
+
+  changeShareAlbum()
+  {
+    this.shareAlbumOn = !this.shareAlbumOn
+  }
+
+  reloadComponent()
+  {
+    $('#myModal').modal('hide')
+    this.shareAlbumOn = !this.shareAlbumOn
+    this.ngOnInit()
+  }
+
+  startModal()
+  {
+    $('#myModal').modal('show')
+  }
+
 
 }

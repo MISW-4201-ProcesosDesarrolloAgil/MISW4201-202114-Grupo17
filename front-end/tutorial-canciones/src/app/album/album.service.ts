@@ -69,4 +69,16 @@ export class AlbumService {
     return this.http.get<Usuario[]>(`${this.backUrl}/usuarios`, {headers: headers})
   }
 
+  compartirAlbum(idUsuario: number, token: string, albumId: number, usuarioscompartidos: Array<number>): Observable<Album>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    console.log(usuarioscompartidos)
+    const usuarioscompartidosjson=
+    {
+      "usuarioscompartidos":usuarioscompartidos
+    }
+    return this.http.put<any>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, usuarioscompartidosjson, {headers: headers})
+  }
+
 }

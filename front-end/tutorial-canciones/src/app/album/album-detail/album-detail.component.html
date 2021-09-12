@@ -72,7 +72,7 @@
         </tbody>
       </table>
       <div class="row col-12 my-4 opciones-album-container">
-        <div class="col-8 opciones-left">
+        <div class="col-6 opciones-left">
           <div class="col-12 text-left">
             <div
               *ngIf="album.usuario !== userId"
@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4 opciones-right align-right">
+        <div class="col-6 opciones-right">
           <button
             *ngIf="album"
             type="button"
@@ -115,7 +115,7 @@
             *ngIf="album"
             type="button"
             class="btn me-1"
-            (click)="goToShareAlbum()"
+            (click)="changeShareAlbum()"
             title="Eliminar álbum"
           >
             <i class="bi bi-person-plus-fill"></i>
@@ -124,4 +124,17 @@
       </div>
     </div>
   </div>
+
+  <app-album-share
+    *ngIf="shareAlbumOn"
+    class="modal fade"
+    tabindex="-1"
+    id="myModal"
+    [usuarioscompartidos]="album.usuarioscompartidos"
+    [token]="token"
+    [logUserId]="userId"
+    (quitShare)="reloadComponent()"
+    (openModal)="startModal()"
+  >
+  </app-album-share>
 </div>

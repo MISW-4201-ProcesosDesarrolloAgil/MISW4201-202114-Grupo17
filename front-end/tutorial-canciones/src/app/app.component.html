@@ -1,9 +1,11 @@
-<div class="row" id="header">
-  <app-header *ngIf="router.url !== '/'"></app-header>
+<app-header *ngIf="router.url !== '/'"></app-header>
+<div class="content-app">
+<app-sidebar *ngIf="router.url !== '/'"></app-sidebar>
+  <div class="row-custom">
+    <div class="content">
+      <!--Componentes-->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
-<div class="row" id="router">
-  <router-outlet></router-outlet>
-</div>
-<div class="row" id="footer">
-  <app-footer *ngIf="router.url !== '/'"></app-footer>
-</div>
+<app-footer *ngIf="router.url !== '/'"></app-footer>

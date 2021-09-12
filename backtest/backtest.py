@@ -58,7 +58,6 @@ class TestIonicBack(unittest.TestCase):
                 'Authorization':'Bearer {}'.format(tokens[0])
             }
         ).get_json()
-        print(responseAlbumCompartido)
         usuariosCompartidosAlbumUno = Album.query.get(responseAlbumCompartido['id']).usuarioscompartidos
 
         self.assertEqual(usuariosCompartidosAlbumUno[0].id,idUsuarios[1])

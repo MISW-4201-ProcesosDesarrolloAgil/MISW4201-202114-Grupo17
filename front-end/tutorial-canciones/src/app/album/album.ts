@@ -29,7 +29,7 @@ export class Album {
         this.usuario = usuario,
         this.interpretes = interpretes,
         this.canciones = canciones,
-        usuarioscompartidos?this.usuarioscompartidos=usuarioscompartidos:this.usuarioscompartidos=[]
+        usuarioscompartidos ? this.usuarioscompartidos=usuarioscompartidos : this.usuarioscompartidos=[]
     }
 }
 

@@ -81,6 +81,13 @@
               <label class="fs-5">Compartido por:</label>
               <p>{{ this.getAlbumUser(album.usuario) }}</p>
             </div>
+            <div
+              *ngIf="album.usuarioscompartidos.length > 0"
+              class="users-shared-container"
+            >
+              <label class="fs-5">Compartido con:</label>
+              <p *ngFor="let usuario of album.usuarioscompartidos">{{ this.getAlbumUser(usuario) }}</p>
+            </div>
           </div>
         </div>
         <div class="col-6 opciones-right">

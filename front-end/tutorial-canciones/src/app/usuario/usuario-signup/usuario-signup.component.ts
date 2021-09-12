@@ -32,10 +32,12 @@ export class UsuarioSignupComponent implements OnInit {
     })
   }
 
-  registrarUsuario(){  
+  registrarUsuario(){
     this.usuarioService.userSignUp(this.usuarioForm.get('nombre')?.value, this.usuarioForm.get('password')?.value)
     .subscribe(res => {
       const decodedToken = this.helper.decodeToken(res.token);
+      sessionStorage.UserId = decodedToken.sub;
+      sessionStorage.UserToken = res.token;
       this.router.navigate([`/albumes/${decodedToken.sub}/${res.token}`])
       this.showSuccess()
     },

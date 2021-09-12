@@ -47,14 +47,15 @@ export class AlbumService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    return this.http.put<Album>(`${this.backUrl}/album/${albumId}`, album, {headers: headers})
+    console.log(album)
+    return this.http.put<Album>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, album, {headers: headers})
   }
 
   eliminarAlbum(idUsuario: number, token: string, albumId: number): Observable<Album>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    return this.http.delete<Album>(`${this.backUrl}/album/${albumId}`, {headers: headers})
+    return this.http.delete<Album>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, {headers: headers})
   }
 
   asociarCancion(albumId: number, cancionId: number): Observable<Cancion>{

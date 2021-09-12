@@ -11,6 +11,7 @@ import { AlbumService } from '../album.service';
   styleUrls: ['./album-edit.component.css'],
 })
 export class AlbumEditComponent implements OnInit {
+  albumInstance:Album;
   userId: number;
   token: string;
   albumId: number;
@@ -49,12 +50,13 @@ export class AlbumEditComponent implements OnInit {
     } else {
       this.albumService
         .getAlbum(
-          parseInt(this.router.snapshot.params.albumId),
-          parseInt(this.router.snapshot.params.userId),
-          this.router.snapshot.params.token
+          this.router.snapshot.params.albumId,
+          this.router.snapshot.params.userId,
+          this.router.snapshot.params.userToken
         )
         .subscribe((album) => {
           this.albumId = album.id;
+          this.albumInstance = album;
           this.albumForm = this.formBuilder.group({
             titulo: [
               album.titulo,
@@ -93,18 +95,18 @@ export class AlbumEditComponent implements OnInit {
     this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`]);
   }
 
-  editarAlbum(newAlbum: Album) {
-    console.log(newAlbum);
-    this.albumForm
-      .get('anio')
-      ?.setValue(parseInt(this.albumForm.get('anio')?.value));
+  editarAlbum() {
+    this.albumInstance.titulo = this.albumForm.get('titulo')?.value
+    this.albumInstance.anio = parseInt(this.albumForm.get('anio')?.value)
+    this.albumInstance.descripcion = this.albumForm.get('descripcion')?.value
+    this.albumInstance.medio = this.albumForm.get('medio')?.value;
     this.albumService
-      .editarAlbum(this.userId, this.token, this.albumId, newAlbum)
+      .editarAlbum(this.userId, this.token, this.albumId, this.albumInstance)
       .subscribe(
         (album) => {
           this.showSuccess(album);
           this.albumForm.reset();
-          this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`]);
+          this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumId}`]);
         },
         (error) => {
           if (error.statusText === 'UNAUTHORIZED') {

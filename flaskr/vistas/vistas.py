@@ -2,7 +2,7 @@ from flask import request,jsonify
 from marshmallow.exceptions import ValidationError
 import redis
 from datetime import timedelta
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema, Medio
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager

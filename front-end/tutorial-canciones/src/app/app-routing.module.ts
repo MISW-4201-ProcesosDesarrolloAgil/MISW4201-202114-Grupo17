@@ -34,10 +34,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'albumes',
-    component: AlbumListComponent
-  },
-  {
     path: 'albumes/:userId/:userToken',
     component: AlbumListComponent
   },
@@ -56,10 +52,6 @@ const routes: Routes = [
   {
     path: 'albumes/join/:albumId/:userId/:userToken',
     component: AlbumJoinCancionComponent
-  },
-  {
-    path: 'canciones',
-    component: CancionListComponent
   },
   {
     path: 'canciones/:userId/:userToken',

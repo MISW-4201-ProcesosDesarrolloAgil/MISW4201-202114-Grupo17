@@ -126,3 +126,12 @@ thead {
       font-size: 1.5em;
     }
   }
+
+.back-button{
+    color: $white !important;
+    border: currentColor !important;
+    height: 3em;
+    width:  5em;
+    margin: 0;
+    box-shadow: $box-shados-feed-cards;
+}

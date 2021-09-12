@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Usuario } from 'src/app/usuario/usuario';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
 
@@ -24,6 +25,7 @@ export class AlbumDetailComponent implements OnInit {
   ) { }
 
   indiceSeleccionado: number
+  applicationUsers: Usuario[]
 
   ngOnInit() {
     this.userId = parseInt(this.router.snapshot.params.userId)
@@ -33,6 +35,11 @@ export class AlbumDetailComponent implements OnInit {
       this.album = album
       console.log(album)
     })
+    this.getUsers()
+  }
+
+  goBack(){
+    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
   }
 
   goToEdit(){
@@ -70,6 +77,7 @@ export class AlbumDetailComponent implements OnInit {
     .subscribe(album => {
       this.ngOnInit();
       this.showSuccess();
+      this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
     },
     error=> {
       if(error.statusText === "UNAUTHORIZED"){
@@ -95,6 +103,22 @@ export class AlbumDetailComponent implements OnInit {
 
   showWarning(warning: string){
     this.toastr.warning(warning, "Error de autenticación")
+  }
+
+  getUsers() {
+    this.albumService.getUsers(this.token).subscribe(users => {
+      console.log(users)
+    this.applicationUsers = users
+    },error => {
+      this.showError("Ha ocurrido un error, " + error.message)
+    })
+  }
+
+  getAlbumUser(id: number ): string{
+    const user = this.applicationUsers.find(user => user.id === id)
+    if(user)
+    return user?.nombre
+    else return ""
   }
 
 }

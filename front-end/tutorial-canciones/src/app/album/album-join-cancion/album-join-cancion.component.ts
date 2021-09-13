@@ -38,7 +38,7 @@ export class AlbumJoinCancionComponent implements OnInit {
       this.userId = parseInt(this.router.snapshot.params.userId)
       this.token = this.router.snapshot.params.userToken
       this.albumId = this.router.snapshot.params.albumId
-      this.albumService.getAlbum(this.albumId)
+      this.albumService.getAlbum(this.albumId, this.userId, this.token)
       .subscribe(album => {
         this.album = album
         this.albumCancionForm = this.formBuilder.group({

@@ -34,27 +34,26 @@ jobs:
           sudo apt-get install redis-server
           python -m pip install --upgrade pip
           python -m pip install -r flaskr/requirements.txt
-    # pip install -r requirements.txt
     
       - name: Ejecución de pruebas unitarias
         run: |
-          python -m unittest discover -s flaskr/tests -v
+          python -m unittest backtest/backtest.py
         
-      - name: Analisis de cobertura
-        run: |
-          coverage run -m unittest discover -s flaskr/tests -v
-          coverage report -m
+    #  - name: Analisis de cobertura
+    #    run: |
+    #      coverage run -m unittest backtest/backtest.py
+    #      coverage report -m
           
-  merge-branch-develop:
+  #merge-branch-develop:
 
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
 
-      - name: Merge en develop
-        uses: ridedott/merge-me-action@v1
-        with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+ #     - name: Merge en develop
+#        uses: ridedott/merge-me-action@v1
+ #       with:
+ #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 #  merge-branch-release:
 

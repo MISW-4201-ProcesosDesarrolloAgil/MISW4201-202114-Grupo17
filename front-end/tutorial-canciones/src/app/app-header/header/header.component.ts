@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,23 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private routerPath: Router,
-    private router: ActivatedRoute
+    private routerPath: Router
     ) { }
 
   ngOnInit(): void {  }
 
   goTo(menu: string){
-    const userId = parseInt(this.router.snapshot.params.userId)
-    const token = this.router.snapshot.params.userToken
-    if(menu === "logIn"){
+    if (menu === "logIn") {
+      sessionStorage.clear();
       this.routerPath.navigate([`/`])
-    }
-    else if(menu === "album"){
-      this.routerPath.navigate([`/albumes/${userId}/${token}`])
-    }
-    else{
-      this.routerPath.navigate([`/canciones/${userId}/${token}`])
     }
   }
 

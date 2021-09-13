@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<app-header *ngIf="router.url !== '/'"></app-header>
+<div class="content-app">
+<app-sidebar *ngIf="router.url !== '/'"></app-sidebar>
+  <div class="row-custom">
+    <div class="content">
+      <!--Componentes-->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<app-footer *ngIf="router.url !== '/'"></app-footer>

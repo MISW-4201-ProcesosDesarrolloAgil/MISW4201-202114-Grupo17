@@ -1,0 +1,12 @@
+@import '../../../theme/colors.scss';
+
+.container {
+    margin-top: 2em;
+    padding: 2em;
+
+    .login-form {
+        background-color: $white;
+        border-radius: $divRadius;
+    }
+}
+

@@ -1,0 +1,14 @@
+footer.footer {
+  background-color: #333333;
+  color: rgb(94, 91, 91);
+  padding-top: 30px;
+}
+
+.link-about {
+  color: rgb(94, 91, 91);
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}

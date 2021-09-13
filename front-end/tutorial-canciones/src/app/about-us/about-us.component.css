@@ -1,0 +1,49 @@
+.pink-text {
+  color: #7952b3!important;
+}
+
+.cyan-text {
+  color: #00bcd4!important;
+}
+
+.indigo-text {
+  color: #3f51b5!important;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both
+} @media (prefers-reduced-motion) {
+  .animated {
+    transition: none!important;
+    -webkit-animation: unset!important;
+    animation: unset!important
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300
+}
+
+.grey-text {
+  color: #9e9e9e!important;
+}
+
+.w-responsive {
+  width:75%
+} @media (max-width:740px) {
+  .w-responsive {
+    width:100%
+}}
+
+.team-section .avatar img {
+  max-width:200px;
+  height:auto;
+}

@@ -1,15 +1,18 @@
 export class Usuario {
     id: number;
     nombre: string
-    albumes: Array<any>
+    albums: Array<any>
+    albumescompartidos:Array<any>
 
     constructor(
         id: number,
         nombre: string,
-        albumes: Array<any>,
+        albums: Array<any>,
+        albumescompartidos:Array<any>
     ){
         this.id = id;
         this.nombre = nombre;
-        this.albumes = albumes
+        this.albums = albums
+        this.albumescompartidos = albumescompartidos
     }
 }

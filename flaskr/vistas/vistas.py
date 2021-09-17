@@ -1,6 +1,7 @@
 from flask import request, jsonify
 from marshmallow.exceptions import ValidationError
 import redis
+import os
 from datetime import timedelta
 from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
 from flask_restful import Resource

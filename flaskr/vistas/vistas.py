@@ -1,21 +1,20 @@
-from flask import request,jsonify
+from flask import request, jsonify
 from marshmallow.exceptions import ValidationError
 import redis
 from datetime import timedelta
-from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema, Medio
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import jwt_required, create_access_token,get_jwt,get_jwt_identity,JWTManager
-from ..helpers import validarPass,validarUsuario,noCompartirUsuarioCreador,puedeDetallarAlbum
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt, get_jwt_identity, JWTManager
+from ..helpers import validarPass, validarUsuario, noCompartirUsuarioCreador, puedeDetallarAlbum
 
-jwt=JWTManager()
+jwt = JWTManager()
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
 album_schema = AlbumSchema()
 
-jwt_redis_blocklist = redis.StrictRedis(
-    host="localhost", port=6379, db=0, decode_responses=True
-)
+jwt_redis_blocklist = redis.StrictRedis(host="localhost", port=6379, db=0, decode_responses=True)
+
 
 @jwt.token_in_blocklist_loader
 def check_if_token_is_revoked(jwt_header, jwt_payload):
@@ -23,73 +22,88 @@ def check_if_token_is_revoked(jwt_header, jwt_payload):
     token_in_redis = jwt_redis_blocklist.get(jti)
     return token_in_redis is not None
 
+
 def withoutPass(usuario):
-    contrasena,rest = (lambda contrasena, **rest: (contrasena, rest))(**usuario)
+    contrasena, rest = (lambda contrasena, **rest: (contrasena, rest))(**usuario)
     return rest
 
-class VistaCanciones(Resource):
+
+class VistaCancionesUsuario(Resource):
+
     @jwt_required()
-    def post(self,id_usuario):
+    def post(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
-            nueva_cancion = Cancion(titulo=request.json["titulo"], minutos=request.json["minutos"], segundos=request.json["segundos"], interprete=request.json["interprete"])
+            validarUsuario(get_jwt_identity(), id_usuario)
+            nueva_cancion = Cancion(
+                titulo=request.json["titulo"],
+                minutos=request.json["minutos"],
+                segundos=request.json["segundos"],
+                interprete=request.json["interprete"],
+                usuario_creador=id_usuario
+            )
             db.session.add(nueva_cancion)
             db.session.commit()
             return cancion_schema.dump(nueva_cancion)
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
     @jwt_required()
-    def get(self,id_usuario):
+    def get(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             return [cancion_schema.dump(ca) for ca in Cancion.query.all()]  
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaCancion(Resource):
+
     @jwt_required()
-    def get(self,id_usuario,id_cancion):
+    def get(self, id_usuario, id_cancion):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             return cancion_schema.dump(Cancion.query.get_or_404(id_cancion)) 
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
 
     @jwt_required()
-    def put(self,id_usuario,id_cancion):
+    def put(self, id_usuario, id_cancion):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             cancion = Cancion.query.get_or_404(id_cancion)
-            cancion.titulo = request.json.get("titulo",cancion.titulo)
-            cancion.minutos = request.json.get("minutos",cancion.minutos)
-            cancion.segundos = request.json.get("segundos",cancion.segundos)
-            cancion.interprete = request.json.get("interprete",cancion.interprete)
+            cancion.titulo = request.json.get("titulo", cancion.titulo)
+            cancion.minutos = request.json.get("minutos", cancion.minutos)
+            cancion.segundos = request.json.get("segundos", cancion.segundos)
+            cancion.interprete = request.json.get("interprete", cancion.interprete)
             db.session.commit()
             return cancion_schema.dump(cancion)
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
 
     @jwt_required()
-    def delete(self,id_usuario,id_cancion):
+    def delete(self, id_usuario, id_cancion):
 
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             cancion = Cancion.query.get_or_404(id_cancion)
             db.session.delete(cancion)
             db.session.commit()
-            return '',204
+            return '', 204
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaAlbumesCanciones(Resource):
+
     @jwt_required()
-    def get(self,id_usuario,id_cancion):
+    def get(self, id_usuario, id_cancion):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             cancion = Cancion.query.get_or_404(id_cancion)
             return [album_schema.dump(al) for al in cancion.albumes]
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaSignIn(Resource):
     
@@ -97,30 +111,31 @@ class VistaSignIn(Resource):
         nuevo_usuario = Usuario(nombre=request.json["nombre"], contrasena=request.json["contrasena"])
         db.session.add(nuevo_usuario)
         db.session.commit()
-        token_de_acceso = create_access_token(identity = nuevo_usuario.id)
-        return {"mensaje":"usuario creado exitosamente", "token":token_de_acceso}
+        token_de_acceso = create_access_token(identity=nuevo_usuario.id)
+        return {"mensaje": "usuario creado exitosamente", "token": token_de_acceso}
 
     @jwt_required()
     def put(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
-            usuario.contrasena = request.json.get("contrasena",usuario.contrasena)
+            usuario.contrasena = request.json.get("contrasena", usuario.contrasena)
             db.session.commit()
             return usuario_schema.dump(usuario)
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
 
     @jwt_required()
     def delete(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
             db.session.delete(usuario)
             db.session.commit()
-            return '',204
+            return '', 204
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaLogIn(Resource):
 
@@ -128,27 +143,30 @@ class VistaLogIn(Resource):
         try:
             usuario = Usuario.query.filter(Usuario.nombre == request.json["nombre"]).first()
             if usuario is None:
-                return {"mensaje":"El usuario no existe"}, 404
+                return {"mensaje": "El usuario no existe"}, 404
             else:
-                validarPass(usuario.contrasena,request.json["contrasena"])
-                token_de_acceso = create_access_token(identity = usuario.id)
-                return {"mensaje":"Inicio de sesión exitoso", "token": token_de_acceso}
+                validarPass(usuario.contrasena, request.json["contrasena"])
+                token_de_acceso = create_access_token(identity=usuario.id)
+                return {"mensaje": "Inicio de sesión exitoso", "token": token_de_acceso}
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaLogOut(Resource):
+
     @jwt_required()
-    def post(self,id_usuario):
+    def post(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             jti = get_jwt()["jti"]
             jwt_redis_blocklist.set(jti, "", ex=timedelta(hours=1))
-            respuesta= jsonify({"mensaje":"Se ha desconectado correctamente"})
+            respuesta = jsonify({"mensaje": "Se ha desconectado correctamente"})
             return respuesta
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
 
-class VistaAlbumsUsuario(Resource):
+
+class VistaAlbumesUsuario(Resource):
 
     @jwt_required()
     def post(self, id_usuario):
@@ -160,21 +178,22 @@ class VistaAlbumsUsuario(Resource):
             db.session.add(nuevo_album)
             db.session.commit()
             return album_schema.dump(nuevo_album)
-        except (IntegrityError,ValidationError) as e:
-            if isinstance(e,ValidationError):
-                return {"mensaje":e.messages[0]},401
+        except (IntegrityError, ValidationError) as e:
+            if isinstance(e, ValidationError):
+                return {"mensaje": e.messages[0]}, 401
             else:
-                return {"mensaje":'El usuario ya tiene un album con dicho nombre'},409
+                return {"mensaje": 'El usuario ya tiene un album con dicho nombre'}, 409
 
     @jwt_required()
     def get(self, id_usuario):
         try:
-            validarUsuario(get_jwt_identity(),id_usuario)
+            validarUsuario(get_jwt_identity(), id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
-            totalAlbum = usuario.albums + usuario.albumescompartidos
-            return [album_schema.dump(al) for al in totalAlbum]
+            total_album = usuario.albums + usuario.albumescompartidos
+            return [album_schema.dump(al) for al in total_album]
         except ValidationError as e:
-            return {"mensaje":e.messages[0]},401
+            return {"mensaje": e.messages[0]}, 401
+
 
 class VistaCancionesAlbum(Resource):
     @jwt_required()
@@ -207,6 +226,7 @@ class VistaCancionesAlbum(Resource):
             return [cancion_schema.dump(ca) for ca in album.canciones]
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
+
 
 class VistaAlbum(Resource):
     @jwt_required()
@@ -250,12 +270,14 @@ class VistaAlbum(Resource):
         except ValidationError as e:
             return {"mensaje":e.messages[0]},401
 
+
 class VistaUsuarios(Resource):
+
     @jwt_required()
     def get(self):
-        logUser = Usuario.query.get_or_404(get_jwt_identity())
+        log_user = Usuario.query.get_or_404(get_jwt_identity())
         usuarios = Usuario.query.all()
-        usuarios.remove(logUser)
-        usuariosFormat = [usuario_schema.dump(usuario) for usuario in usuarios]
-        usuariosPure = list(map(withoutPass,usuariosFormat))
-        return usuariosPure
+        usuarios.remove(log_user)
+        usuarios_format = [usuario_schema.dump(usuario) for usuario in usuarios]
+        usuarios_pure = list(map(withoutPass, usuarios_format))
+        return usuarios_pure

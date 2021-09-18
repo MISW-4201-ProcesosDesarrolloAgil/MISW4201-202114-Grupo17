@@ -3,6 +3,7 @@ import { Cancion } from '../cancion';
 import { CancionService } from '../cancion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Usuario } from 'src/app/usuario/usuario';
 
 @Component({
   selector: 'app-cancion-list',
@@ -15,7 +16,7 @@ export class CancionListComponent implements OnInit {
     private cancionService: CancionService,
     private routerPath: Router,
     private router: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) { }
 
   userId: number
@@ -24,6 +25,7 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
+  applicationUsers : Usuario[]
 
   ngOnInit() {
     if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
@@ -89,6 +91,22 @@ export class CancionListComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success(`La canción fue eliminada`, "Eliminada exitosamente");
+  }
+
+  getUsers() {
+    this.cancionService.getUsers(this.token).subscribe(users => {
+      console.log(users)
+    this.applicationUsers = users
+    },error => {
+      this.showError("Ha ocurrido un error, " + error.message)
+    })
+  }
+
+  getCancionUser(id: number ): string{
+    const user = this.applicationUsers.find(user => user.id === id)
+    if(user)
+    return user?.nombre
+    else return ""
   }
 
 }

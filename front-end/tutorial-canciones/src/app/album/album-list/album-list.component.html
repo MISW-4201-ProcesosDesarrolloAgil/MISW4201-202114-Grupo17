@@ -32,6 +32,7 @@
             <table
               class="table table-hover mb-0 table-striped"
               aria-describedby="colecName"
+              *ngIf="applicationUsers && albumes"
             >
               <thead>
                 <th>Titulo</th>
@@ -51,7 +52,7 @@
                   <td>{{ enumAsString(album.medio) }}</td>
                   <td>{{ album.descripcion }}</td>
                   <td>
-                    <div (click)="irCrearAlbum()" class="row-container">
+                    <div class="row-container">
                       <div class="icon-comments-container">
                         <i class="bi bi-chat-left-text-fill icon-comments"></i>
                       </div>
@@ -68,9 +69,16 @@
                 </tr>
               </tbody>
             </table>
+
+            <div class="d-flex justify-content-center" *ngIf="!applicationUsers && !albumes">
+              <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+                <span class="sr-only"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

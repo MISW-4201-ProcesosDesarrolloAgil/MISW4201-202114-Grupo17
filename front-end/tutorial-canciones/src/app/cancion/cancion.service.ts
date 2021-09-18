@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Cancion } from './cancion';
 import { Album } from '../album/album';
+import { Usuario } from '../usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,13 @@ export class CancionService {
 
   eliminarCancion(cancionId: number): Observable<Cancion>{
     return this.http.delete<Cancion>(`${this.backUrl}/cancion/${cancionId}`)
+  }
+
+  getUsers( token: string): Observable<Usuario[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`       
+    })
+    return this.http.get<Usuario[]>(`${this.backUrl}/usuarios`, {headers: headers})
   }
 
 }

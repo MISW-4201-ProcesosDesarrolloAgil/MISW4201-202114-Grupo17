@@ -1,3 +1,4 @@
+
 export class Cancion {
     id: number;
     titulo: string;
@@ -5,6 +6,8 @@ export class Cancion {
     segundos: number;
     interprete: string;
     albumes: Array<any>
+    usuario:number
+    usuarioscompartidos:Array<number>|undefined
 
     constructor(
         id: number,
@@ -12,13 +15,17 @@ export class Cancion {
         minutos: number,
         segundos: number,
         interprete: string,
-        albumes: Array<any>
+        albumes: Array<any>,
+        usuario:number,
+        usuarioscompartidos?:Array<number>
     ){
         this.id = id,
         this.titulo = titulo,
         this.minutos = minutos,
         this.segundos = segundos,
-        this.interprete = interprete
-        this.albumes = albumes
+        this.interprete = interprete,
+        this.albumes = albumes,
+        this.usuario=usuario,
+        this.usuarioscompartidos=usuarioscompartidos
     }
 }

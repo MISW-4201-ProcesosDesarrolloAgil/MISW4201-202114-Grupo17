@@ -69,7 +69,6 @@ export class AlbumCreateComponent implements OnInit {
   }
 
   cancelCreate(){
-    this.albumForm.reset()
     this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
   }
 

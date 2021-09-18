@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsuarioLoginComponent } from './usuario-login/usuario-login.component';
 import { UsuarioSignupComponent } from './usuario-signup/usuario-signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsuarioService } from './usuario.service';
 
 
 @NgModule({

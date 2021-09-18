@@ -91,8 +91,7 @@ export class AlbumEditComponent implements OnInit {
   }
 
   cancelCreate() {
-    this.albumForm.reset();
-    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`]);
+    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumInstance.id}`]);
   }
 
   editarAlbum() {

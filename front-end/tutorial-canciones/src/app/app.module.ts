@@ -13,6 +13,7 @@ import { AppSidebarModule } from './app-sidebar/app-sidebar.module';
 import { CancionModule } from './cancion/cancion.module';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AppFooterModule } from './app-footer/app-footer.module';
+import { AlbumService } from './album/album.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { AppFooterModule } from './app-footer/app-footer.module';
     }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AlbumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

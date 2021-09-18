@@ -24,3 +24,12 @@ def puedeDetallarAlbum(id_usuario_log,usuario_creador,arregloCompartidos):
 	arregloIdCompartidos.append(idCreador)
 	if not(id_usuario_log in arregloIdCompartidos):
 		raise ValidationError('No tiene permisos para detallar éste album')
+
+
+def puedeDetallarCancion(id_usuario_log, id_creador, arreglo_compartidos):
+	arreglo_id_compartidos = []
+	if len(arreglo_compartidos) != 0:
+		arreglo_id_compartidos = list(map(soloIdUsuarios, arreglo_compartidos))
+	arreglo_id_compartidos.append(id_creador)
+	if not(id_usuario_log in arreglo_id_compartidos):
+		raise ValidationError('No tiene permisos para detallar ésta canción')

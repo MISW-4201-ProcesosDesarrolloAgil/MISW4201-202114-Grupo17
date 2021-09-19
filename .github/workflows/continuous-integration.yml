@@ -22,13 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: set-application
-        uses: dorny/paths-filter@v2
-        id: changes
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: filter
         with:
-          filters: |
-            is_front:
-              - 'front-end/**'
+          filters: 'front-end/**'
+          
+      - name: filter-test
+        run: echo steps.filter.outputs.any
     
   # This workflow contains a job called "build"
   build:

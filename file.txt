@@ -1,1 +1,1 @@
-Esta es una prueba con filter
+Esta es una prueba con filter adicional con example

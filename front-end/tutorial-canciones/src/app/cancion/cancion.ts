@@ -7,7 +7,7 @@ export class Cancion {
     interprete: string;
     albumes: Array<any>
     usuario:number
-    usuarioscompartidos:Array<number>|undefined
+    usuarioscompartidos:number[]
 
     constructor(
         id: number,
@@ -26,6 +26,7 @@ export class Cancion {
         this.interprete = interprete,
         this.albumes = albumes,
         this.usuario=usuario,
-        this.usuarioscompartidos=usuarioscompartidos
+        usuarioscompartidos ? this.usuarioscompartidos=usuarioscompartidos : this.usuarioscompartidos=[]
+
     }
 }

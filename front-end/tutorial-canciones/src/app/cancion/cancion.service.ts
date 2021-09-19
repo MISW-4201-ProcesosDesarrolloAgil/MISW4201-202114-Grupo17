@@ -66,9 +66,20 @@ export class CancionService {
 
   getUsers( token: string): Observable<Usuario[]>{
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`       
+      'Authorization': `Bearer ${token}`
     })
     return this.http.get<Usuario[]>(`${this.backUrl}/usuarios`, {headers: headers})
   }
 
+  compartirCancion(idUsuario: number, token: string, cancionId: number, usuarioscompartidos: Array<number>): Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    console.log(usuarioscompartidos)
+    const usuarioscompartidosjson=
+    {
+      "usuarioscompartidos":usuarioscompartidos
+    }
+    return this.http.put<any>(`${this.backUrl}/usuario/${idUsuario}/cancion/${cancionId}`, usuarioscompartidosjson, {headers: headers})
+  }
 }

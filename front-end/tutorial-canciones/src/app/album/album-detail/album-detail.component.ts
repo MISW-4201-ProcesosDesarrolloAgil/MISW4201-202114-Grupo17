@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CancionService } from 'src/app/cancion/cancion.service';
 import { Usuario } from 'src/app/usuario/usuario';
-import { Album } from '../album';
+import { Album, Cancion } from '../album';
 import { AlbumService } from '../album.service';
 
 declare var $: any;
@@ -19,12 +20,15 @@ export class AlbumDetailComponent implements OnInit {
   albumId: number;
   album: Album;
   shareAlbumOn:boolean
+  cancionesAlbum:Cancion[]
+  finishLoad:boolean
 
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
     private albumService: AlbumService,
     private toastr: ToastrService,
+    private cs:CancionService
   ) {
     this.shareAlbumOn = false
   }
@@ -33,14 +37,32 @@ export class AlbumDetailComponent implements OnInit {
   applicationUsers: Usuario[]
 
   ngOnInit() {
+    this.finishLoad = false
+    this.cancionesAlbum=[]
     this.userId = parseInt(this.router.snapshot.params.userId)
     this.token = this.router.snapshot.params.userToken
     this.albumId = parseInt(this.router.snapshot.params.albumId)
     this.albumService.getAlbum(this.albumId,this.userId,this.token).subscribe(album => {
       this.album = album
+      this.obtenerInstanciasCanciones()
       this.shareAlbumOn=false
     })
     this.getUsers()
+  }
+
+  obtenerInstanciasCanciones()
+  {
+    this.cs.getCanciones(this.token,this.userId).subscribe(canciones=>
+      {
+        canciones.forEach(cancion=>
+          {
+            if(this.album.canciones.includes(cancion.id))
+            {
+              this.cancionesAlbum.push(cancion)
+            }
+          })
+        this.finishLoad=true
+      })
   }
 
   goBack(){
@@ -75,6 +97,10 @@ export class AlbumDetailComponent implements OnInit {
 
   goToDeleteSong(){
     console.log('Logic to delete Song')
+  }
+
+  goToDetailCancion(cancionId:number){
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancionId}`])
   }
 
   eliminarAlbum(){
@@ -112,7 +138,6 @@ export class AlbumDetailComponent implements OnInit {
 
   getUsers() {
     this.albumService.getUsers(this.token).subscribe(users => {
-      console.log(users)
     this.applicationUsers = users
     },error => {
       this.showError("Ha ocurrido un error, " + error.message)

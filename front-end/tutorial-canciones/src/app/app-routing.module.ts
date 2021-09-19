@@ -11,6 +11,8 @@ import { AlbumJoinCancionComponent } from './album/album-join-cancion/album-join
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
 import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { BlocktokenGuard } from './blocktoken.guard';
+import { CancionDetailComponent } from './cancion/cancion-detail/cancion-detail.component';
 
 const routes: Routes = [
   {
@@ -35,35 +37,48 @@ const routes: Routes = [
   },
   {
     path: 'albumes/:userId/:userToken',
-    component: AlbumListComponent
+    component: AlbumListComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'albumes/create/:userId/:userToken',
-    component: AlbumCreateComponent
+    component: AlbumCreateComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'albumes/:userId/:userToken/:albumId',
-    component: AlbumDetailComponent
+    component: AlbumDetailComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'albumes/edit/:albumId/:userId/:userToken',
-    component: AlbumEditComponent
+    component: AlbumEditComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'albumes/join/:albumId/:userId/:userToken',
-    component: AlbumJoinCancionComponent
+    component: AlbumJoinCancionComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'canciones/:userId/:userToken',
-    component: CancionListComponent
+    component: CancionListComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
-    path: 'canciones/create/:userId/:userToken',
-    component: CancionCreateComponent
+    path: 'canciones/:userId/:userToken/:cancionId',
+    component: CancionDetailComponent,
+    canActivate:[BlocktokenGuard]
+  },
+  {
+    path: 'cancioness/create/:userId/:userToken',
+    component: CancionCreateComponent,
+    canActivate:[BlocktokenGuard]
   },
   {
     path: 'canciones/edit/:cancionId/:userId/:userToken',
-    component: CancionEditComponent
+    component: CancionEditComponent,
+    canActivate:[BlocktokenGuard]
   }
 ];
 

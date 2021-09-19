@@ -1,147 +1,156 @@
 <div class="container">
-  <div class="row">
-    <div class="col-1">
-      <button type="button" class="btn-circle back-button" (click)="goBack()">
-        <i class="bi bi-arrow-left-short icon-comments icon-comments"></i>
-      </button>
+  <div *ngIf="finishLoad">
+    <div class="row">
+      <div class="col-1">
+        <button type="button" class="btn-circle back-button" (click)="goBack()">
+          <i class="bi bi-arrow-left-short icon-comments icon-comments"></i>
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="album-list-container my-4">
-      <div class="row">
-        <div class="col-7 text-left">
-          <label class="fs-4">{{ album?.titulo }} ({{ album?.anio }})</label>
+    <div class="row">
+      <div class="album-list-container my-4">
+        <div class="row">
+          <div class="col-7 text-left">
+            <label class="fs-4">{{ album?.titulo }} ({{ album?.anio }})</label>
+          </div>
+          <div class="col-5 left-options-container">
+            <div class="add-button-container">
+              <button
+                type="button"
+                class="my-1 btn btn-outline-primary btn-circle"
+                (click)="goToCommentsAlbum()"
+              >
+                <i
+                  class="bi bi-chat-left-text-fill icon-comments icon-comments"
+                ></i>
+              </button>
+            </div>
+            <div>
+              <label class="fs-4">Medio: {{ album?.medio?.llave }}</label>
+            </div>
+          </div>
         </div>
-        <div class="col-5 left-options-container">
-          <div class="add-button-container">
-            <button
-              type="button"
-              class="my-1 btn btn-outline-primary btn-circle"
-              (click)="goToCommentsAlbum()"
+        <hr />
+        <div class="col-12 text-left">
+          <label class="fs-5">Descripción:</label>
+        </div>
+        <div class="fs-6 text-justify description-text text-truncate my-2">
+          <p>{{ album?.descripcion }}</p>
+        </div>
+        <table
+          class="table table-hover mb-0 table-striped"
+          aria-describedby="colecName"
+        >
+          <thead>
+            <th>Titulo</th>
+            <th>Duración</th>
+            <th>Artista</th>
+            <th>Opciones</th>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let cancion of cancionesAlbum; index as i"
             >
-              <i
-                class="bi bi-chat-left-text-fill icon-comments icon-comments"
-              ></i>
+              <td>{{ cancion.titulo }}</td>
+              <td>{{ cancion.minutos }}:{{ cancion.segundos }}</td>
+              <td>{{ cancion.interprete }}</td>
+              <td>
+                <div class='row buttonsActions'>
+                  <div (click)="goToCommentsCancion()" class="row-container col-6">
+                    <div class="icon-comments-container">
+                      <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                    </div>
+                  </div>
+                  <div (click)="goToDetailCancion(cancion.id)" class="row-container col-6">
+                    <div class="icon-comments-container">
+                      <i class="bi bi-eye-fill icon-comments"></i>
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+        <div class="row col-12 my-4 opciones-album-container">
+          <div class="col-6 opciones-left">
+            <div class="col-12 text-left">
+              <div
+                *ngIf="album.usuario !== userId"
+                class="users-shared-container"
+              >
+                <label class="fs-5">Compartido por:</label>
+                <p>{{ this.getAlbumUser(album.usuario) }}</p>
+              </div>
+              <div
+                *ngIf="album.usuarioscompartidos.length > 0"
+                class="users-shared-container"
+              >
+                <label class="fs-5">Compartido con:</label>
+                <p *ngFor="let usuario of album.usuarioscompartidos">{{ this.getAlbumUser(usuario) }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 opciones-right">
+            <button
+              *ngIf="album"
+              type="button"
+              class="btn ms-3 me-2"
+              (click)="goToEdit()"
+              title="Editar álbum"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button
+              *ngIf="album"
+              type="button"
+              class="btn me-1 me-2"
+              (click)="goToJoinCancion()"
+              title="Agregar canción"
+            >
+              <i class="bi bi-plus"></i><i class="bi bi-music-note"></i>
+            </button>
+            <button
+              *ngIf="album"
+              type="button"
+              class="btn me-1"
+              (click)="eliminarAlbum()"
+              title="Eliminar álbum"
+            >
+              <i class="bi bi-trash-fill"></i>
+            </button>
+            <button
+              *ngIf="album"
+              type="button"
+              class="btn me-1"
+              (click)="changeShareAlbum()"
+              title="Eliminar álbum"
+            >
+              <i class="bi bi-person-plus-fill"></i>
             </button>
           </div>
-          <div>
-            <label class="fs-4">Medio: {{ album?.medio?.llave }}</label>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="col-12 text-left">
-        <label class="fs-5">Descripción:</label>
-      </div>
-      <div class="fs-6 text-justify description-text text-truncate my-2">
-        <p>{{ album?.descripcion }}</p>
-      </div>
-      <table
-        class="table table-hover mb-0 table-striped"
-        aria-describedby="colecName"
-      >
-        <thead>
-          <th>Titulo</th>
-          <th>Duración</th>
-          <th>Artista</th>
-          <th>Opciones</th>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let cancion of album.canciones; index as i"
-            (click)="onSelect(album, i)"
-            [ngClass]="{ selected: i === indiceSeleccionado }"
-          >
-            <td>{{ cancion.titulo }}</td>
-            <td>{{ cancion.minutos }}:{{ cancion.segundos }}</td>
-            <td>{{ cancion.interprete }}</td>
-            <td>{{ album.titulo }}</td>
-            <td>
-              <div (click)="goToCommentsCancion()" class="row-container">
-                <div class="icon-comments-container">
-                  <i class="bi bi-chat-left-text-fill icon-comments"></i>
-                </div>
-              </div>
-              <div (click)="goToDeleteSong()" class="row-container">
-                <div class="icon-comments-container">
-                  <i class="bi bi-chat-left-text-fill icon-comments"></i>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row col-12 my-4 opciones-album-container">
-        <div class="col-6 opciones-left">
-          <div class="col-12 text-left">
-            <div
-              *ngIf="album.usuario !== userId"
-              class="users-shared-container"
-            >
-              <label class="fs-5">Compartido por:</label>
-              <p>{{ this.getAlbumUser(album.usuario) }}</p>
-            </div>
-            <div
-              *ngIf="album.usuarioscompartidos.length > 0"
-              class="users-shared-container"
-            >
-              <label class="fs-5">Compartido con:</label>
-              <p *ngFor="let usuario of album.usuarioscompartidos">{{ this.getAlbumUser(usuario) }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 opciones-right">
-          <button
-            *ngIf="album"
-            type="button"
-            class="btn ms-3 me-2"
-            (click)="goToEdit()"
-            title="Editar álbum"
-          >
-            <i class="bi bi-pencil-square"></i>
-          </button>
-          <button
-            *ngIf="album"
-            type="button"
-            class="btn me-1 me-2"
-            (click)="goToJoinCancion()"
-            title="Agregar canción"
-          >
-            <i class="bi bi-plus"></i><i class="bi bi-music-note"></i>
-          </button>
-          <button
-            *ngIf="album"
-            type="button"
-            class="btn me-1"
-            (click)="eliminarAlbum()"
-            title="Eliminar álbum"
-          >
-            <i class="bi bi-trash-fill"></i>
-          </button>
-          <button
-            *ngIf="album"
-            type="button"
-            class="btn me-1"
-            (click)="changeShareAlbum()"
-            title="Eliminar álbum"
-          >
-            <i class="bi bi-person-plus-fill"></i>
-          </button>
         </div>
       </div>
     </div>
+  
+    <app-album-share
+      *ngIf="shareAlbumOn"
+      class="modal fade"
+      tabindex="-1"
+      id="myModal"
+      [usuarioscompartidos]="album.usuarioscompartidos"
+      [token]="token"
+      [logUserId]="userId"
+      (quitShare)="reloadComponent()"
+      (openModal)="startModal()"
+    >
+    </app-album-share>
   </div>
 
-  <app-album-share
-    *ngIf="shareAlbumOn"
-    class="modal fade"
-    tabindex="-1"
-    id="myModal"
-    [usuarioscompartidos]="album.usuarioscompartidos"
-    [token]="token"
-    [logUserId]="userId"
-    (quitShare)="reloadComponent()"
-    (openModal)="startModal()"
-  >
-  </app-album-share>
+
+  <div class="d-flex justify-content-center" *ngIf="!finishLoad">
+    <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+      <span class="sr-only"></span>
+    </div>
+  </div>
 </div>

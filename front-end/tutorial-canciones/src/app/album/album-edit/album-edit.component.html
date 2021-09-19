@@ -8,7 +8,7 @@
             <p class="mt-5 mb-2 fs-3 fw-bold">Editar Álbum</p>
           </div>
         </div>
-        <form class="mx-5 my-3" [formGroup]="albumForm" (ngSubmit)="editarAlbum()">
+        <form class="mx-5 my-3" [formGroup]="albumForm" (ngSubmit)="editarAlbum()" *ngIf="albumInstance">
 
           <div class="form-group my-2">
             <div class="row">
@@ -105,7 +105,7 @@
 
           <div class="row mt-4">
             <div class="col-6 text-end">
-              <button class="btn btn-danger" (click)="cancelCreate()">Cancelar</button>
+              <button class="btn btn-danger" type="button" (click)="cancelCreate()">Cancelar</button>
             </div>
             <div class="col-6 text-start">
               <button type="submit" class="btn btn-primary" [disabled]="!albumForm.valid">Guardar cambios</button>
@@ -114,6 +114,12 @@
 
 
         </form>
+
+        <div class="d-flex justify-content-center" *ngIf="!albumInstance">
+          <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+            <span class="sr-only"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

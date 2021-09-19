@@ -1,25 +1,5 @@
 @import "../../../theme/colors.scss";
 
-:host {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
-.row-custom {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: 0px;
-  margin-left: 0px;
-  width: 100%;
-}
-
-.content {
-  width: 100%;
-  padding: 20px;
-  min-height: 100vh;
-}
-
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -56,25 +36,12 @@ input {
 .add-button-container {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
   .btn-circle {
     background-color: $paletteOrange;
     border-color: currentColor !important;
     color: $white !important;
-    height: 3em;
-    width: 3em;
-    margin-left: 1em;
-    margin-right: 1em;
-    i {
-      font-size: 1.5em;
-    }
   }
-}
-
-.left-options-container {
-  display: flex;
-  align-items: center;
-  margin-top: -0.5em;
-  justify-content: flex-end;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,
@@ -112,30 +79,4 @@ thead {
     padding-left: 0.5em;
     font-weight: 400;
   }
-}
-
-.btn-circle {
-    background-color: $paletteOrange;
-    border-color: currentColor !important;
-    color: $white !important;
-    height: 3em;
-    width: 3em;
-    margin-left: 1em;
-    margin-right: 1em;
-    i {
-      font-size: 1.5em;
-    }
-  }
-
-.back-button{
-    color: $white !important;
-    border: currentColor !important;
-    height: 3em;
-    width:  5em;
-    margin: 0;
-    box-shadow: $box-shados-feed-cards;
-}
-.buttonsActions
-{
-  width: 30%;
 }

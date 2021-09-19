@@ -1,5 +1,10 @@
+<div class="d-flex justify-content-center" *ngIf="!album">
+  <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+    <span class="sr-only"></span>
+  </div>
+</div>
 
-<div class="container">
+<div class="container" *ngIf="album">
     <div class="row justify-content-center">
       <div class="col-10">
         <div class="card mx-3 my-5">
@@ -46,7 +51,7 @@
 
             <div class="row mt-4">
               <div class="col-6 text-end">
-                <button class="btn btn-danger" (click)="cancelarAsociacion()">Cancelar</button>
+                <button class="btn btn-danger" type="button" (click)="cancelarAsociacion()">Cancelar</button>
               </div>
               <div class="col-6 text-start">
                 <button type="submit" class="btn btn-primary" [disabled]="!albumCancionForm.valid">Asociar canción</button>

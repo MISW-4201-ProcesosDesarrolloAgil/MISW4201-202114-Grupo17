@@ -1,25 +1,58 @@
 name: GitHub Action - IONIC
 
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch.
+  # Triggers the workflow on push or pull request events but only for the feature branches.
   push:
-    branches: [develop]
+    branches: 
+    - 'feature/*'
+    - 'feature/**'
   pull_request:
-    branches: [develop]
+    branches:
+    - 'feature/*'
+    - 'feature/**'
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a job called "build"
-  build:
-    # if: "!startsWith(github.event.head_commit.message, 'RELEASE')"
+jobs: 
+
+  # JOB to run change detection
+  changes:
+    
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Set job outputs to values from filter step
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    
+    steps:
+    # For pull requests it's not necessary to checkout the code
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - '!front-end/**'
+            frontend:
+              - 'front-end/**'
+
+  # JOB to build and test backend code
+  build-backend:
+
+    needs: changes
+
+    if: ${{ needs.changes.outputs.backend == 'true' }}
+    
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checks-out repositorio
         uses: actions/checkout@v2
@@ -39,18 +72,37 @@ jobs:
         run: |
           python -m unittest backtest/backtest.py
         
-    #  - name: Analisis de cobertura
-    #    run: |
-    #      coverage run -m unittest backtest/backtest.py
-    #      coverage report -m
+      - name: Analisis de cobertura
+        run: |
+          coverage run -m unittest backtest/backtest.py
+          coverage report --include="flaskr/app.py,flaskr/vistas/*,flaskr/modelos/*,flaskr/helpers/*"
           
-  #merge-branch-develop:
+  # JOB to build and test frontend code
+  build-frontend:
 
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
+    needs: changes
 
- #     - name: Merge en develop
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    steps:            
+    
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checks-out repositorio
+        uses: actions/checkout@v2
+          
+  merge-feature-into-develop:
+
+    needs: [build-backend, build-frontend]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Merge into develop
+        run: echo "Implement here Merge"
+
 #        uses: ridedott/merge-me-action@v1
  #       with:
  #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

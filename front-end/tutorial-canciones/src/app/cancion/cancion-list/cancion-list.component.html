@@ -1,38 +1,89 @@
-<div class="container my-4">
-  <div class="row">
-    <div class="col-4">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-10 text-center">
-              <label class="fs-4">Canciones</label>
-            </div>
-            <div class="col-2 text-center">
-              <button type="button" class="my-1 btn btn-outline-primary btn-circle" (click)="irCrearCancion()"><i class="bi bi-plus-lg"></i></button>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-
+<div class="row-custom">
+  <div class="content">
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-12">
           <div class="input-group my-2">
-            <input #busqueda type="search" class="form-control" placeholder="Buscar canciones" aria-label="Search" (keyup)="buscarCancion(busqueda.value)">
+            <input
+              #busqueda
+              type="search"
+              class="form-control"
+              placeholder="Buscar cancion"
+              aria-label="Search"
+              (keyup)="buscarCancion(busqueda.value)"
+            />
           </div>
+          <div class="album-list-container">
+            <div class="row">
+              <div class="col-10 text-left">
+                <label class="fs-4">Canciones</label>
+              </div>
+              <div class="col-2 add-button-container">
+                <button
+                  type="button"
+                  class="my-1 btn btn-outline-primary btn-circle"
+                  (click)="irCrearCancion()"
+                >
+                  <i class="bi bi-plus-lg"></i>
+                </button>
+              </div>
+            </div>
+            <hr />
+            <table
+              class="table table-hover mb-0 table-striped"
+              aria-describedby="colecName"
+            >
+              <thead>
+                <th>Titulo</th>
+                <th>Duración</th>
+                <th>Interprete</th>
+                <th>Compartida por</th>
+                <th>Interactuar</th>
+              </thead>
+              <tbody *ngIf="canciones">
+                <tr
+                  *ngFor="let cancion of mostrarCanciones; index as i"
+                >
+                  <td>{{ cancion.titulo }}</td>
+                  <td>{{ cancion.minutos }}:{{cancion.segundos}}</td>
+                  <td>{{ cancion.interprete }}</td>
+                  <td>
+                    <div class="row-container">
+                      <div
+                        *ngIf="cancion.usuario !== userId"
+                        class="users-shared-container"
+                      >
+                        <p class="mx-3">
+                          {{ this.getCancionUser(cancion.usuario) }}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="row">
+                      <div class="icon-comments-container col-6">
+                        <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                      </div>
+                      <div class="icon-comments-container col-6">
+                        <i class="bi bi-eye-fill icon-comments" (click)="onSelect(cancion, i)"></i>
+                      </div>
+                    </div>
 
-          <table class="table table-hover mb-0" aria-describedby="colecName">
-            <tbody>
-                <tr *ngFor="let cancion of mostrarCanciones; index as i" (click)="onSelect(cancion, i)" [ngClass]="{'selected': i === indiceSeleccionado}">
-                  <td>{{cancion.titulo}}</td>
-                  <td>{{cancion.minutos}}:{{cancion.segundos}}</td>
+                  </td>
                 </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
 
+            <div class="d-flex justify-content-center" *ngIf="!applicationUsers && !canciones">
+              <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+                <span class="sr-only"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-8">
-      <app-cancion-detail (deleteCancion)="eliminarCancion()" [cancion]="cancionSeleccionada"></app-cancion-detail>
-    </div>
   </div>
 </div>
+
 

@@ -3,11 +3,12 @@ import { Cancion } from '../cancion';
 import { CancionService } from '../cancion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Usuario } from 'src/app/usuario/usuario';
 
 @Component({
   selector: 'app-cancion-list',
   templateUrl: './cancion-list.component.html',
-  styleUrls: ['./cancion-list.component.css']
+  styleUrls: ['./cancion-list.component.scss']
 })
 export class CancionListComponent implements OnInit {
 
@@ -15,7 +16,7 @@ export class CancionListComponent implements OnInit {
     private cancionService: CancionService,
     private routerPath: Router,
     private router: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) { }
 
   userId: number
@@ -24,6 +25,7 @@ export class CancionListComponent implements OnInit {
   mostrarCanciones: Array<Cancion>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
+  applicationUsers : Usuario[]
 
   ngOnInit() {
     if(!parseInt(this.router.snapshot.params.userId) || this.router.snapshot.params.userToken === " "){
@@ -37,24 +39,24 @@ export class CancionListComponent implements OnInit {
   }
 
   getCanciones():void{
-    this.cancionService.getCanciones()
+    this.cancionService.getCanciones(this.token,this.userId)
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
-      this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
 
   onSelect(cancion: Cancion, indice: number){
-    this.indiceSeleccionado = indice
-    this.cancionSeleccionada = cancion
-    this.cancionService.getAlbumesCancion(cancion.id)
-    .subscribe(albumes => {
-      this.cancionSeleccionada.albumes = albumes
-    },
-    error => {
-      this.showError(`Ha ocurrido un error: ${error.message}`)
-    })
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancion.id}`])
+    // this.indiceSeleccionado = indice
+    // this.cancionSeleccionada = cancion
+    // this.cancionService.getAlbumesCancion(cancion.id)
+    // .subscribe(albumes => {
+    //   this.cancionSeleccionada.albumes = albumes
+    // },
+    // error => {
+    //   this.showError(`Ha ocurrido un error: ${error.message}`)
+    // })
     
   }
 
@@ -68,19 +70,8 @@ export class CancionListComponent implements OnInit {
     this.mostrarCanciones = cancionesBusqueda
   }
 
-  eliminarCancion(){
-    this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
-    .subscribe(cancion => {
-      this.ngOnInit()
-      this.showSuccess()
-    },
-    error=> {
-      this.showError("Ha ocurrido un error. " + error.message)
-    })
-  }
-
   irCrearCancion(){
-    this.routerPath.navigate([`/canciones/create/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/cancioness/create/${this.userId}/${this.token}`])
   }
 
   showError(error: string){
@@ -89,6 +80,22 @@ export class CancionListComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success(`La canción fue eliminada`, "Eliminada exitosamente");
+  }
+
+  getUsers() {
+    this.cancionService.getUsers(this.token).subscribe(users => {
+      console.log(users)
+    this.applicationUsers = users
+    },error => {
+      this.showError("Ha ocurrido un error, " + error.message)
+    })
+  }
+
+  getCancionUser(id: number ): string{
+    const user = this.applicationUsers.find(user => user.id === id)
+    if(user)
+    return user?.nombre
+    else return ""
   }
 
 }

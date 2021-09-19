@@ -12,6 +12,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs: 
+
+  set-application:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: set-application
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            is_front:
+              - 'front-end/**'
     
   # This workflow contains a job called "build"
   build:

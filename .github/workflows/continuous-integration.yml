@@ -17,19 +17,29 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs: 
 
-  set-application:
+  # JOB to run change detection
+  changes:
     
     runs-on: ubuntu-latest
     
+    # Set job outputs to values from filter step
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./
+    # For pull requests it's not necessary to checkout the code
+      - uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters: 'front-end/**'
+          filters: |
+            backend:
+              - '!front-end/**'
+            frontend:
+              - 'front-end/**'
           
       - name: filter-test
-        run: echo steps.filter.outputs.any
+        run: echo steps.filter.outputs.backend
     
   # This workflow contains a job called "build"
   build:

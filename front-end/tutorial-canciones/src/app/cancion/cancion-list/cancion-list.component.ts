@@ -35,6 +35,7 @@ export class CancionListComponent implements OnInit {
       this.userId = parseInt(this.router.snapshot.params.userId)
       this.token = this.router.snapshot.params.userToken
       this.getCanciones();
+      this.getUsers()
     }
   }
 

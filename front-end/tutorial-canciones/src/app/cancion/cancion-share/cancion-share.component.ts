@@ -15,7 +15,7 @@ export class CancionShareComponent implements OnInit {
   selectedUsers:Array<number>
   cancionId:string
 
-  @Input() usuarioscompartidos:Array<number>
+  @Input() usuarios_compartidos:Array<number>
   @Input() token: string
   @Input() logUserId:number
   @Output() openModal= new EventEmitter
@@ -45,7 +45,7 @@ export class CancionShareComponent implements OnInit {
     this.cs.getUsers(this.token).subscribe(usuariosApp=>
       {
         this.usuarios = usuariosApp
-        this.usuarioscompartidos.forEach(us=>
+        this.usuarios_compartidos.forEach(us=>
           {
             this.selectedUsers.push(us)
           })

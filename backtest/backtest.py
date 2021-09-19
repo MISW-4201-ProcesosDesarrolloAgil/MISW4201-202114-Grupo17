@@ -148,7 +148,7 @@ class TestIonicBack(unittest.TestCase):
 
     def create_faker_users(self):
         users = []
-        for i in range(4):
+        for i in range(3):
             user_payload = {
                 "nombre": '{}'.format(self.fkr.unique.name()),
                 "contrasena": "admin_1234"
@@ -162,7 +162,7 @@ class TestIonicBack(unittest.TestCase):
 
     def create_faker_songs(self):
         songs = []
-        for i in range(4):
+        for i in range(3):
             song_payload = {
                 "titulo": self.fkr.name(),
                 "minutos": self.fkr.random_int(min=0, max=60),

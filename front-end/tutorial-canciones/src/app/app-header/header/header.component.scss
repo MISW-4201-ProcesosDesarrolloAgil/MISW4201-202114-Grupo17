@@ -1,13 +1,13 @@
-nav.navbar {
+.navbar {
   background-color: rgb(0, 129, 167);
 }
 
-button.btn-Salir {
+.btn-salir {
   background-color: rgb(255, 107, 53);
   color : white;
 }
 
-svg.bi-bell-fill {
+.bi-bell-fill {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -16,4 +16,13 @@ svg.bi-bell-fill {
   width: auto;
   height: 50px;
   padding-left: 30px;
+}
+
+.container-fluid{
+  width: 100vw;
+  padding: 0;
+}
+
+.menu-button{
+  margin-right: 20px;
 }

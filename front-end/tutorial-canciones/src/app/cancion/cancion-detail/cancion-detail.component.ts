@@ -8,6 +8,8 @@ import { Usuario } from 'src/app/usuario/usuario';
 import { Cancion } from '../cancion';
 import { CancionService } from '../cancion.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-cancion-detail',
   templateUrl: './cancion-detail.component.html',
@@ -19,6 +21,7 @@ export class CancionDetailComponent implements OnInit {
   cancionId:number;
   userId: number;
   token: string;
+  shareCancionOn:boolean
   applicationUsers: Usuario[]
   albumesCancion: Album[]
   finishLoad:boolean
@@ -30,7 +33,12 @@ export class CancionDetailComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private as: AlbumService
-  ) { }
+  ) {
+    this.shareCancionOn = false
+  }
+
+  indiceSeleccionado: number
+
 
   ngOnInit() {
     this.albumesCancion=[]
@@ -40,7 +48,7 @@ export class CancionDetailComponent implements OnInit {
     this.cancionId = this.ar.snapshot.params.cancionId
     this.getCancion()
     this.getUsers()
-    
+
   }
 
   eliminarCancion(){
@@ -70,6 +78,7 @@ export class CancionDetailComponent implements OnInit {
       {
         this.cancion = cancion
         this.obtenerInstanciasAlbum()
+        this.shareCancionOn=false
       })
   }
 
@@ -88,17 +97,33 @@ export class CancionDetailComponent implements OnInit {
       })
   }
 
+  showError(error: string){
+    this.toastr.error(error, "Error de autenticación")
+  }
   getUsers()
   {
     this.cs.getUsers(this.token).subscribe(users=>
       {
         this.applicationUsers = users
+      },error => {
+        this.showError("Ha ocurrido un error, " + error.message)
       })
   }
 
   changeShareCancion()
   {
-    
+    this.shareCancionOn = !this.shareCancionOn
   }
 
+  reloadComponent()
+  {
+    $('#myModal').modal('hide')
+    this.shareCancionOn = !this.shareCancionOn
+    this.ngOnInit()
+  }
+
+  startModal()
+  {
+    $('#myModal').modal('show')
+  }
 }

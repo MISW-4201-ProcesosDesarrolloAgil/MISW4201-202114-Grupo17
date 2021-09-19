@@ -53,7 +53,7 @@ export class AlbumJoinCancionComponent implements OnInit {
 
   getCanciones(cancionesAlbum: Array<any>){
     let cancionesNoAgregadas: Array<Cancion> = []
-    this.cancionService.getCanciones()
+    this.cancionService.getCanciones(this.token,this.userId)
     .subscribe(canciones => {
       canciones.map(c => {
         if(!cancionesAlbum.includes(c.id)){
@@ -66,15 +66,15 @@ export class AlbumJoinCancionComponent implements OnInit {
 
   cancelarAsociacion(){
     this.albumCancionForm.reset()
-    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumId}`])
   }
 
   asociarCancion(){
-    this.albumService.asociarCancion(this.albumId, this.albumCancionForm.get('idCancion')?.value)
+    this.albumService.asociarCancion(this.albumId, this.albumCancionForm.get('idCancion')?.value,this.userId,this.token)
     .subscribe(cancion => {
       this.showSuccess(this.albumCancionForm.get('tituloAlbum')?.value, cancion.titulo)
       this.albumCancionForm.reset()
-      this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumId}`])
     },
     error=> {
       if(error.statusText === "UNPROCESSABLE ENTITY"){

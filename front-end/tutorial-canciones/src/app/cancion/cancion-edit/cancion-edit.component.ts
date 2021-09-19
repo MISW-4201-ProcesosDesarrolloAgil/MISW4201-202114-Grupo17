@@ -32,7 +32,7 @@ export class CancionEditComponent implements OnInit {
     else{
       this.userId = parseInt(this.router.snapshot.params.userId)
       this.token = this.router.snapshot.params.userToken
-      this.cancionService.getCancion(this.router.snapshot.params.cancionId)
+      this.cancionService.getCancion(this.router.snapshot.params.cancionId,this.userId,this.token)
       .subscribe(cancion => {
         this.cancionId = cancion.id
         this.cancionForm = this.formBuilder.group({
@@ -47,17 +47,18 @@ export class CancionEditComponent implements OnInit {
 
   cancelCreate(){
     this.cancionForm.reset()
-    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
   }
 
   editarCancion(newCancion: Cancion){
     this.cancionForm.get('minutos')?.setValue(parseInt(this.cancionForm.get('minutos')?.value))
     this.cancionForm.get('segundos')?.setValue(parseInt(this.cancionForm.get('segundos')?.value))
-    this.cancionService.editarCancion(newCancion, this.cancionId)
+    console.log(newCancion)
+    this.cancionService.editarCancion(newCancion, this.cancionId,this.userId,this.token)
     .subscribe(cancion => {
       this.showSuccess(cancion)
       this.cancionForm.reset()
-      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
     },
     error=> {
       if(error.statusText === "UNAUTHORIZED"){

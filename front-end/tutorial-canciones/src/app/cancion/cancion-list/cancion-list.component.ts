@@ -8,7 +8,7 @@ import { Usuario } from 'src/app/usuario/usuario';
 @Component({
   selector: 'app-cancion-list',
   templateUrl: './cancion-list.component.html',
-  styleUrls: ['./cancion-list.component.css']
+  styleUrls: ['./cancion-list.component.scss']
 })
 export class CancionListComponent implements OnInit {
 
@@ -39,24 +39,24 @@ export class CancionListComponent implements OnInit {
   }
 
   getCanciones():void{
-    this.cancionService.getCanciones()
+    this.cancionService.getCanciones(this.token,this.userId)
     .subscribe(canciones => {
       this.canciones = canciones
       this.mostrarCanciones = canciones
-      this.onSelect(this.mostrarCanciones[0], 0)
     })
   }
 
   onSelect(cancion: Cancion, indice: number){
-    this.indiceSeleccionado = indice
-    this.cancionSeleccionada = cancion
-    this.cancionService.getAlbumesCancion(cancion.id)
-    .subscribe(albumes => {
-      this.cancionSeleccionada.albumes = albumes
-    },
-    error => {
-      this.showError(`Ha ocurrido un error: ${error.message}`)
-    })
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancion.id}`])
+    // this.indiceSeleccionado = indice
+    // this.cancionSeleccionada = cancion
+    // this.cancionService.getAlbumesCancion(cancion.id)
+    // .subscribe(albumes => {
+    //   this.cancionSeleccionada.albumes = albumes
+    // },
+    // error => {
+    //   this.showError(`Ha ocurrido un error: ${error.message}`)
+    // })
     
   }
 
@@ -70,19 +70,8 @@ export class CancionListComponent implements OnInit {
     this.mostrarCanciones = cancionesBusqueda
   }
 
-  eliminarCancion(){
-    this.cancionService.eliminarCancion(this.cancionSeleccionada.id)
-    .subscribe(cancion => {
-      this.ngOnInit()
-      this.showSuccess()
-    },
-    error=> {
-      this.showError("Ha ocurrido un error. " + error.message)
-    })
-  }
-
   irCrearCancion(){
-    this.routerPath.navigate([`/canciones/create/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/cancioness/create/${this.userId}/${this.token}`])
   }
 
   showError(error: string){

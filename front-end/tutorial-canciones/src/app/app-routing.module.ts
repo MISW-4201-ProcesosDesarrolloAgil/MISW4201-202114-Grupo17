@@ -12,6 +12,7 @@ import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.
 import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { BlocktokenGuard } from './blocktoken.guard';
+import { CancionDetailComponent } from './cancion/cancion-detail/cancion-detail.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,12 @@ const routes: Routes = [
     canActivate:[BlocktokenGuard]
   },
   {
-    path: 'canciones/create/:userId/:userToken',
+    path: 'canciones/:userId/:userToken/:cancionId',
+    component: CancionDetailComponent,
+    canActivate:[BlocktokenGuard]
+  },
+  {
+    path: 'cancioness/create/:userId/:userToken',
     component: CancionCreateComponent,
     canActivate:[BlocktokenGuard]
   },

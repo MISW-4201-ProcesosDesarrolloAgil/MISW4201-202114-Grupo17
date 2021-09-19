@@ -15,35 +15,53 @@ export class CancionService {
 
   constructor(private http: HttpClient) { }
 
-  getCancionesAlbum(idAlbum: number, token: string): Observable<Cancion[]>{
+  getCancionesAlbum(idAlbum: number, token: string, userId:number): Observable<Cancion[]>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    return this.http.get<Cancion[]>(`${this.backUrl}/album/${idAlbum}/canciones`, {headers: headers})
+    return this.http.get<Cancion[]>(`${this.backUrl}/usuario/${userId}/album/${idAlbum}/canciones`, {headers: headers})
   }
 
-  getCanciones(): Observable<Cancion[]>{
-    return this.http.get<Cancion[]>(`${this.backUrl}/canciones`)
+  getCanciones(token:string, userId:number): Observable<Cancion[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get<Cancion[]>(`${this.backUrl}/usuario/${userId}/canciones`,{headers:headers})
   }
 
-  getAlbumesCancion(cancionId: number): Observable<Album[]>{
-    return this.http.get<Album[]>(`${this.backUrl}/cancion/${cancionId}/albumes`)
+  getAlbumesCancion(cancionId: number,userId:number,token:string): Observable<Album[]>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get<Album[]>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}/albumes`,{headers:headers})
   }
 
-  crearCancion(cancion: Cancion):Observable<Cancion>{
-    return this.http.post<Cancion>(`${this.backUrl}/canciones`, cancion)
+  crearCancion(cancion: Cancion,userId:number,token:string):Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post<Cancion>(`${this.backUrl}/usuario/${userId}/canciones`, cancion, {headers:headers})
   }
 
-  getCancion(cancionId: number): Observable<Cancion>{
-    return this.http.get<Cancion>(`${this.backUrl}/cancion/${cancionId}`)
+  getCancion(cancionId: number,userId:number,token:string): Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get<Cancion>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}`,{headers:headers})
   }
 
-  editarCancion(cancion: Cancion, cancionId: number):Observable<Cancion>{
-    return this.http.put<Cancion>(`${this.backUrl}/cancion/${cancionId}`, cancion)
+  editarCancion(cancion: Cancion, cancionId: number,userId:number,token:string):Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.put<Cancion>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}`, cancion, {headers:headers})
   }
 
-  eliminarCancion(cancionId: number): Observable<Cancion>{
-    return this.http.delete<Cancion>(`${this.backUrl}/cancion/${cancionId}`)
+  eliminarCancion(cancionId: number,userId:number,token:string): Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.delete<Cancion>(`${this.backUrl}/usuario/${userId}/cancion/${cancionId}`,{headers:headers})
   }
 
   getUsers( token: string): Observable<Usuario[]>{

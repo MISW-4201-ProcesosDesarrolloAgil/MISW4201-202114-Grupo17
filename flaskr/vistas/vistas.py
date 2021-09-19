@@ -68,8 +68,11 @@ class VistaCancion(Resource):
     def get(self, id_usuario, id_cancion):
         try:
             validarUsuario(get_jwt_identity(), id_usuario)
-            song = Album.query.get_or_404(id_cancion)
-            puedeDetallarCancion(get_jwt_identity(), song.usuario_creador, song.usuarios_compartidos)
+            song:Cancion = Cancion.query.get_or_404(id_cancion)
+            usuariosCompartidos = []
+            if(song.usuarios_compartidos):
+                usuariosCompartidos=song.usuarios_compartidos
+            puedeDetallarCancion(get_jwt_identity(), song.usuario_creador, usuariosCompartidos)
             return cancion_schema.dump(Cancion.query.get_or_404(id_cancion)) 
         except ValidationError as e:
             return {"mensaje": e.messages[0]}, 401
@@ -85,7 +88,7 @@ class VistaCancion(Resource):
             cancion.segundos = request.json.get("segundos", cancion.segundos)
             cancion.interprete = request.json.get("interprete", cancion.interprete)
             cancion.usuario_creador = request.json.get("usuario_creador", usuario.id)
-            if (request.json['usuarioscompartidos'] is not None):
+            if (request.json.get("usuarioscompartidos", None) is not None):
                 noCompartirUsuarioCreador(cancion.usuario_creador, request.json['usuarioscompartidos'])
                 usuarios = []
                 for usuario_id in request.json['usuarioscompartidos']:

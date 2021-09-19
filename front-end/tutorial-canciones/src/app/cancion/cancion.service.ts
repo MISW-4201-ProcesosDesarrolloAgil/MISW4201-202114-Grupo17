@@ -78,7 +78,7 @@ export class CancionService {
     console.log(usuarios_compartidos)
     const usuarios_compartidosjson=
     {
-      "usuarios_compartidos":usuarios_compartidos
+      "usuarioscompartidos":usuarios_compartidos
     }
     return this.http.put<any>(`${this.backUrl}/usuario/${idUsuario}/cancion/${cancionId}`, usuarios_compartidosjson, {headers: headers})
   }

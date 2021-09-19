@@ -20,6 +20,7 @@ jobs:
   # JOB to run change detection
   changes:
     
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     
     # Set job outputs to values from filter step
@@ -38,21 +39,19 @@ jobs:
               - '!front-end/**'
             frontend:
               - 'front-end/**'
-          
-      - name: filter-test
-        run: echo steps.filter.outputs.backend
+
+  # JOB to build and test backend code
+  build-backend:
+
+    needs: changes
+
+    if: ${{ needs.changes.outputs.backend == 'true' }}
     
-  # This workflow contains a job called "build"
-  build:
-    # if: "!startsWith(github.event.head_commit.message, 'RELEASE')"
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
-      - name: gthub.ref
-        run: echo ${{github.ref}}
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checks-out repositorio
@@ -78,13 +77,32 @@ jobs:
           coverage run -m unittest backtest/backtest.py
           coverage report --include="flaskr/app.py,flaskr/vistas/*,flaskr/modelos/*,flaskr/helpers/*"
           
-  #merge-branch-develop:
+  # JOB to build and test frontend code
+  build-frontend:
 
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
+    needs: changes
 
- #     - name: Merge en develop
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    steps:            
+    
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checks-out repositorio
+        uses: actions/checkout@v2
+          
+  merge-feature-into-develop:
+
+    needs: [build-backend, build-frontend]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Merge into develop
+        run: echo "Implement here Merge"
+
 #        uses: ridedott/merge-me-action@v1
  #       with:
  #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

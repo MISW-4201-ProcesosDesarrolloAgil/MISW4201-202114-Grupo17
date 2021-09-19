@@ -3,9 +3,9 @@ name: GitHub Action - IONIC
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch.
   push:
-    branches: [develop]
+    branches: ['ECDLC-**']
   pull_request:
-    branches: [develop]
+    branches: ['ECDLC-**']
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,10 +39,10 @@ jobs:
         run: |
           python -m unittest backtest/backtest.py
         
-    #  - name: Analisis de cobertura
-    #    run: |
-    #      coverage run -m unittest backtest/backtest.py
-    #      coverage report -m
+      - name: Analisis de cobertura
+        run: |
+          coverage run -m unittest backtest/backtest.py
+          coverage report --include="flaskr/app.py,flaskr/vistas/*,flaskr/modelos/*,flaskr/helpers/*"
           
   #merge-branch-develop:
 

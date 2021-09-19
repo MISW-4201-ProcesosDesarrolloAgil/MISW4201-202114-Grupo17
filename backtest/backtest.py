@@ -1,5 +1,4 @@
-  
-from flaskr.modelos import Usuario,Album,Cancion
+from flaskr.modelos import Usuario, Album, Cancion
 from faker import Faker
 from flaskr.app import db, app
 import unittest
@@ -7,13 +6,24 @@ from flask_jwt_extended import decode_token
 
 
 class TestIonicBack(unittest.TestCase):
-    def setUp(self) -> None:
-        self.instancias = []
-        self.app = app.test_client()
+
+    def __init__(self, method_name: str = ...):
+        super().__init__(method_name)
+        self.users = None
+        self.tokens = []
         self.fkr = Faker()
         Faker.seed(4321)
-        
-    #CA01 y CA03 Crea varios usuarios y un album para ser compartido con usuarios distintos al que creo el album
+
+    def setUp(self) -> None:
+        self.instancias = []
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tutorial_canciones_tests.db'
+        self.app = app.test_client()
+        db.drop_all()
+        db.create_all()
+        self.users = self.create_faker_users()
+        self.songs = self.create_faker_songs()
+
+    # CA01 y CA03 Crea varios usuarios y un album para ser compartido con usuarios distintos al que creo el album
     def test_crear_album_compartir_con_usuarios(self):
         idUsuarios=[]
         idAlbums=[]
@@ -62,7 +72,9 @@ class TestIonicBack(unittest.TestCase):
 
         self.assertEqual(usuariosCompartidosAlbumUno[0].id,idUsuarios[1])
         self.assertEqual(usuariosCompartidosAlbumUno[1].id,idUsuarios[2])
-    #CA04 verifica que cuando un usuario tenga albumes creados y compartidos, al pedir los albumes del usuario, se retorne 1 array concatenado de albumes creados + compartidos
+
+    # CA04 verifica que cuando un usuario tenga albumes creados y compartidos, al pedir los albumes del usuario
+    # se retorne 1 array concatenado de albumes creados + compartidos
     def test_retorna_albums_propios_y_compartidos(self):
         usuariosActuales = Usuario.query.all()
         lenUsuariosActuales = len(usuariosActuales)
@@ -121,11 +133,50 @@ class TestIonicBack(unittest.TestCase):
                 }
             ).get_json()
         self.assertEqual(len(responseAlbumsUsuario),2)
-        
-        
 
+    # CA02 Compartir una canción con usuarios distintos al que la creo.
+    def test_compartir_cancion_con_usuarios(self):
+        response = self.app.put(
+            '/usuario/{}/cancion/{}'.format(self.users[0], self.songs[0]),
+            json={'usuarioscompartidos': [self.users[1], self.users[2]]},
+            headers={'Authorization': 'Bearer {}'.format(self.tokens[0])}
+        ).get_json()
+        users_shared = Cancion.query.get(response['id']).usuarios_compartidos
+        self.assertEqual(users_shared[0].id, self.users[1])
+        self.assertEqual(users_shared[1].id, self.users[2])
+
+    def create_faker_users(self):
+        users = []
+        for i in range(4):
+            user_payload = {
+                "nombre": '{}'.format(self.fkr.unique.name()),
+                "contrasena": "admin_1234"
+            }
+            response = self.app.post('/signIn', json=user_payload).get_json()
+            user_id = decode_token(encoded_token=response['token'])['sub']
+            users.append(user_id)
+            self.tokens.append(response['token'])
+            self.instancias.append(Usuario.query.get(user_id))
+        return users
+
+    def create_faker_songs(self):
+        songs = []
+        for i in range(4):
+            song_payload = {
+                "titulo": self.fkr.name(),
+                "minutos": self.fkr.random_int(min=0, max=60),
+                "segundos": self.fkr.random_int(min=0, max=60),
+                "interprete": self.fkr.name(),
+                "usuario_creador": self.fkr.random_int(min=0, max=len(self.users))
+            }
+            response = self.app.post(
+                '/usuario/{}/canciones'.format(self.users[0]),
+                json=song_payload,
+                headers={'Authorization': 'Bearer {}'.format(self.tokens[0])}
+            ).get_json()
+            self.instancias.append(Cancion.query.get(response['id']))
+            songs.append(response['id'])
+        return songs
 
     def tearDown(self) -> None:
-        for i in self.instancias:
-            db.session.delete(i)
-        db.session.commit()
+        pass

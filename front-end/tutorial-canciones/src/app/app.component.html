@@ -1,6 +1,6 @@
-<app-header *ngIf="router.url !== '/'"></app-header>
+<app-header *ngIf="router.url !== '/' &&  router.url !== '/signup'"></app-header>
 <div class="content-app">
-<app-sidebar class="d-none d-md-block" *ngIf="router.url !== '/'"></app-sidebar>
+<app-sidebar class="d-none d-md-block" *ngIf="router.url !== '/' &&  router.url !== '/signup'"></app-sidebar>
   <div class="row-custom">
     <div class="content">
       <!--Componentes-->

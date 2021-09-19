@@ -42,38 +42,73 @@
           aria-describedby="colecName"
         >
           <thead>
-            <th>Titulo</th>
-            <th>Duración</th>
-            <th>Artista</th>
-            <th>Opciones</th>
+            <th class="d-lg-none">Canciones</th>
+            <th class="d-none d-lg-table-cell">Titulo</th>
+            <th class="d-none d-lg-table-cell">Duración</th>
+            <th class="d-none d-lg-table-cell">Artista</th>
+            <th class="d-none d-lg-table-cell">Opciones</th>
           </thead>
           <tbody>
-            <tr
-              *ngFor="let cancion of cancionesAlbum; index as i"
-            >
-              <td>{{ cancion.titulo }}</td>
-              <td>{{ cancion.minutos }}:{{ cancion.segundos }}</td>
-              <td>{{ cancion.interprete }}</td>
-              <td>
-                <div class='row buttonsActions'>
-                  <div (click)="goToCommentsCancion()" class="row-container col-6">
+            <tr *ngFor="let cancion of cancionesAlbum; index as i">
+              <td class="d-none d-lg-table-cell">{{ cancion.titulo }}</td>
+              <td class="d-none d-lg-table-cell">
+                {{ cancion.minutos }}:{{ cancion.segundos }}
+              </td>
+              <td class="d-none d-lg-table-cell">{{ cancion.interprete }}</td>
+              <td class="d-none d-lg-table-cell">
+                <div class="row buttonsActions">
+                  <div
+                    (click)="goToCommentsCancion()"
+                    class="row-container col-6"
+                  >
                     <div class="icon-comments-container">
                       <i class="bi bi-chat-left-text-fill icon-comments"></i>
                     </div>
                   </div>
-                  <div (click)="goToDetailCancion(cancion.id)" class="row-container col-6">
+                  <div
+                    (click)="goToDetailCancion(cancion.id)"
+                    class="row-container col-6"
+                  >
                     <div class="icon-comments-container">
                       <i class="bi bi-eye-fill icon-comments"></i>
                     </div>
                   </div>
                 </div>
               </td>
-
+              <td class="d-lg-none">
+                <div class="row">
+                  <div
+                    class="row-container col-8"
+                  >
+                    <div class="icon-comments-container">
+                      {{ cancion.titulo }}
+                    </div>
+                  </div>
+                  <div class="buttonsActions">
+                    <div
+                      (click)="goToCommentsCancion()"
+                      class="row-container col-4"
+                    >
+                      <div class="icon-comments-container">
+                        <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                      </div>
+                    </div>
+                    <div
+                      (click)="goToDetailCancion(cancion.id)"
+                      class="row-container col-4"
+                    >
+                      <div class="icon-comments-container">
+                        <i class="bi bi-eye-fill icon-comments"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
         <div class="row col-12 my-4 opciones-album-container">
-          <div class="col-6 opciones-left">
+          <div class="col-6 opciones-left d-none d-lg-block">
             <div class="col-12 text-left">
               <div
                 *ngIf="album.usuario !== userId"
@@ -87,7 +122,9 @@
                 class="users-shared-container"
               >
                 <label class="fs-5">Compartido con:</label>
-                <p *ngFor="let usuario of album.usuarioscompartidos">{{ this.getAlbumUser(usuario) }}</p>
+                <p *ngFor="let usuario of album.usuarioscompartidos">
+                  {{ this.getAlbumUser(usuario) }}
+                </p>
               </div>
             </div>
           </div>
@@ -132,7 +169,7 @@
         </div>
       </div>
     </div>
-  
+
     <app-album-share
       *ngIf="shareAlbumOn"
       class="modal fade"
@@ -147,9 +184,8 @@
     </app-album-share>
   </div>
 
-
   <div class="d-flex justify-content-center" *ngIf="!finishLoad">
-    <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+    <div class="spinner-border" role="status" style="width: 3rem; height: 3rem">
       <span class="sr-only"></span>
     </div>
   </div>

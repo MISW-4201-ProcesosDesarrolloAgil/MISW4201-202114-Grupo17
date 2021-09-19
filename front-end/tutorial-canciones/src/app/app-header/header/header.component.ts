@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private routerPath: Router,
+    public routerPath: Router,
     private us: UsuarioService
     ) { }
 

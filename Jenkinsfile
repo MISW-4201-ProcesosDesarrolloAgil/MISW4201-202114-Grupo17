@@ -3,7 +3,7 @@ pipeline {
     environment {
         HOME = "${WORKSPACE}"
         GIT_CREDENTIAL_ID = '67fc884e-63ed-47cc-8a49-e91b798c7178'
-        GIT_REPO = 'MISW4201-202114-Grupo00'
+        GIT_REPO = 'MISW4201-202114-Grupo17'
         GITHUB_TOKEN_ID = '782f4107-6a99-44c4-88ac-f6bd82b81b1d'
     }
     stages {

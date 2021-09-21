@@ -52,7 +52,6 @@ pipeline {
                 script {
                     docker.image('python:3.7.6').inside {
                         sh '''
-                            cd flaskr
                             python -m unittest backtest/backtest.py -v
                         '''
                     }
@@ -64,7 +63,6 @@ pipeline {
                 script {
                     docker.image('python:3.7.6').inside {
                         sh '''
-                            cd flaskr
                             python -m coverage run -m unittest backtest/backtest.py -v
                             python -m coverage html
                         ''' 

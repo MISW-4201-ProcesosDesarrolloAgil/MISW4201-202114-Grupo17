@@ -35,12 +35,18 @@ pipeline {
                 }  
             }
         }
+        stage('Run Redis') {
+            steps {
+                script {
+                    docker run --name my-redis -d redis
+                }
+            }
+        }
         stage('Install libraries') {
             steps {
                 script {
                     docker.image('python:3.7.6').inside {
                         sh '''
-                            apt-get install redis-server
                             cd flaskr
                             pip install --user -r requirements.txt
                         '''

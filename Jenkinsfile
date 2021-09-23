@@ -55,7 +55,7 @@ pipeline {
                     {
                         options
                         {
-                            timeout(unit:'SECONDS', time:40)
+                            timeout(unit:'SECONDS', time:9)
                         }
                         steps{
                             script{
@@ -70,7 +70,7 @@ pipeline {
                     }
                     stage('Run backend test')
                     {
-                        sleep 10
+                        sleep 5
                         steps {
                             script {
                                 docker.image('python:3.7.6').inside {

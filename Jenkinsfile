@@ -40,6 +40,7 @@ pipeline {
                 script {
                     docker.image('python:3.7.6').inside {
                         sh '''
+                            sudo apt-get install redis-server
                             cd flaskr
                             pip install --user -r requirements.txt
                         '''

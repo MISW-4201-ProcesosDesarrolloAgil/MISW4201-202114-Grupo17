@@ -17,9 +17,10 @@ class TestIonicBack(unittest.TestCase):
     def setUp(self) -> None:
         self.instancias = []
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tutorial_canciones_tests.db'
-        self.app = app.test_client()
+        db.init_app(app)
         db.drop_all()
         db.create_all()
+        self.app = app.test_client()
         self.users = self.create_faker_users()
         self.songs = self.create_faker_songs()
 

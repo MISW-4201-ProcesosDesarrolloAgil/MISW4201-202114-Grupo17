@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CancionService } from 'src/app/cancion/cancion.service';
@@ -43,10 +44,19 @@ export class AlbumDetailComponent implements OnInit {
     this.token = this.router.snapshot.params.userToken
     this.albumId = parseInt(this.router.snapshot.params.albumId)
     this.albumService.getAlbum(this.albumId,this.userId,this.token).subscribe(album => {
-      this.album = album
-      this.obtenerInstanciasCanciones()
-      this.shareAlbumOn=false
-    })
+        this.album = album
+        this.obtenerInstanciasCanciones()
+        this.shareAlbumOn=false
+      },
+      (error:HttpErrorResponse)=>
+      {
+        if(error.status == 404)
+        {
+          this.toastr.warning('El album no existe')
+          this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+        }
+      }
+    )
     this.getUsers()
   }
 
@@ -111,8 +121,18 @@ export class AlbumDetailComponent implements OnInit {
       this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
     },
     error=> {
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+      if (error.statusText === 'UNAUTHORIZED') {
+        if(error.error.mensaje)
+        {
+          this.showWarning(
+            error.error.mensaje
+          );
+        }
+        else{
+          this.showWarning(
+            'Su sesión ha caducado, por favor vuelva a iniciar sesión.'
+          );
+        }
       }
       else if(error.statusText === "UNPROCESSABLE ENTITY"){
         this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
@@ -121,7 +141,6 @@ export class AlbumDetailComponent implements OnInit {
         this.showError("Ha ocurrido un error. " + error.message)
       }
     })
-    this.ngOnInit()
   }
 
   showSuccess() {

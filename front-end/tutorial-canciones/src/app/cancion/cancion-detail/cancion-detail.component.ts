@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -56,9 +57,20 @@ export class CancionDetailComponent implements OnInit {
     {
       this.toastr.success(`Se elimino correctamente la canción ${this.cancion.titulo}`)
       this.router.navigate([`/canciones/${this.userId}/${this.token}`])
-    },()=>
+    },(error:HttpErrorResponse)=>
     {
-      this.toastr.error('Upss.... algo salio mal. Vuelve a intentarlo mas tarde')
+      if( error.status == 401 && error.error.mensaje)
+      {
+        this.toastr.warning(error.error.mensaje)
+      }
+      else if(error.status == 401)
+      {
+        this.toastr.warning('No está autorizado')
+      }
+      else{
+        this.toastr.error('Upss.... algo salio mal. Vuelve a intentarlo mas tarde')
+      }
+      
     }
     )
   }

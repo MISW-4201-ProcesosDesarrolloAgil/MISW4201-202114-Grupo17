@@ -7,7 +7,7 @@ from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album,
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt, get_jwt_identity, JWTManager
-from ..helpers import validarPass, validarUsuario, noCompartirUsuarioCreador, puedeDetallarAlbum, puedeDetallarCancion
+from ..helpers import validarPass, puedeEditarCancion, puedeEditarAlbum, validarUsuario, noCompartirUsuarioCreador, puedeDetallarAlbum, puedeDetallarCancion
 
 jwt = JWTManager()
 cancion_schema = CancionSchema()
@@ -83,6 +83,7 @@ class VistaCancion(Resource):
             validarUsuario(get_jwt_identity(), id_usuario)
             usuario = Usuario.query.get_or_404(id_usuario)
             cancion = Cancion.query.get_or_404(id_cancion)
+            puedeEditarCancion(get_jwt_identity(),cancion)
             cancion.titulo = request.json.get("titulo", cancion.titulo)
             cancion.minutos = request.json.get("minutos", cancion.minutos)
             cancion.segundos = request.json.get("segundos", cancion.segundos)
@@ -105,6 +106,7 @@ class VistaCancion(Resource):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             cancion = Cancion.query.get_or_404(id_cancion)
+            puedeEditarCancion(get_jwt_identity(),cancion)
             db.session.delete(cancion)
             db.session.commit()
             return '', 204
@@ -268,8 +270,8 @@ class VistaAlbum(Resource):
     def put(self,id_usuario,id_album):
         try: 
             validarUsuario(get_jwt_identity(),id_usuario)
-
             album = Album.query.get_or_404(id_album)
+            puedeEditarAlbum(get_jwt_identity(),album)
             album.titulo = request.json.get("titulo",album.titulo)
             album.anio = request.json.get("anio", album.anio)
             album.descripcion = request.json.get("descripcion", album.descripcion)
@@ -290,6 +292,7 @@ class VistaAlbum(Resource):
         try:
             validarUsuario(get_jwt_identity(),id_usuario)
             album = Album.query.get_or_404(id_album)
+            puedeEditarAlbum(get_jwt_identity(),album)
             db.session.delete(album)
             db.session.commit()
             return '',204

@@ -48,17 +48,7 @@ export class CancionListComponent implements OnInit {
   }
 
   onSelect(cancion: Cancion, indice: number){
-    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancion.id}`])
-    // this.indiceSeleccionado = indice
-    // this.cancionSeleccionada = cancion
-    // this.cancionService.getAlbumesCancion(cancion.id)
-    // .subscribe(albumes => {
-    //   this.cancionSeleccionada.albumes = albumes
-    // },
-    // error => {
-    //   this.showError(`Ha ocurrido un error: ${error.message}`)
-    // })
-    
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancion.id}`])  
   }
 
   buscarCancion(busqueda: string){

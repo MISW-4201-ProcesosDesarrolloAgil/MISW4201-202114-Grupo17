@@ -223,7 +223,7 @@ class VistaCancionesAlbum(Resource):
         try:
             validarUsuario(get_jwt_identity(), id_usuario)
             album = Album.query.get_or_404(id_album)
-            
+            puedeEditarAlbum(get_jwt_identity(),album)
             if "id_cancion" in request.json.keys():
                 nueva_cancion = Cancion.query.get(request.json["id_cancion"])
                 if nueva_cancion is not None:

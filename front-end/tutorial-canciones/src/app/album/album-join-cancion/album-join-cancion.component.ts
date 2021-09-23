@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -76,13 +77,22 @@ export class AlbumJoinCancionComponent implements OnInit {
       this.albumCancionForm.reset()
       this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumId}`])
     },
-    error=> {
-      if(error.statusText === "UNPROCESSABLE ENTITY"){
+    (error:HttpErrorResponse)=> {
+      if(error.status === 401 && error.error.mensaje)
+      {
+        this.showWarning(error.error.mensaje)
+      }
+      else if(error.status === 401)
+      {
+        this.showWarning('No tiene permisos para realizar esta acción')
+      }
+      else if(error.statusText === "UNPROCESSABLE ENTITY"){
         this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
       }
       else{
         this.showError("Ha ocurrido un error. " + error.message)
       }
+      this.routerPath.navigate([`albumes/${this.userId}/${this.token}/${this.albumId}`])
     })
   }
 
@@ -92,6 +102,11 @@ export class AlbumJoinCancionComponent implements OnInit {
 
   showError(error: string){
     this.toastr.error(error, "Error")
+  }
+
+  showWarning(error:string)
+  {
+    this.toastr.warning(error,'Problema de autorización')
   }
 
   showSuccess(tituloAlbum: string, tituloCancion: string) {

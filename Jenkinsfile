@@ -48,24 +48,32 @@ pipeline {
             }
         }
         stage('Run Testing') {
-            parallel
+            timeout(unit:'SECONDS',time:30)
             {
-                stage('start redis-server')
+            parallel
                 {
-                    steps{
-                        sh '''
-                            redis-server
-                        '''
+                    stage('start redis-server')
+                    {
+                        steps{
+                            script{
+                                docker.image('redis:latest').inside
+                                {
+                                    sh '''
+                                        redis-server
+                                    '''
+                                }
+                            }
+                        }
                     }
-                }
-                stage('Run backend test')
-                {
-                    steps {
-                        script {
-                            docker.image('python:3.7.6').inside {
-                                sh '''
-                                    python -m unittest backtest/backtest.py -v
-                                '''
+                    stage('Run backend test')
+                    {
+                        steps {
+                            script {
+                                docker.image('python:3.7.6').inside {
+                                    sh '''
+                                        python -m unittest backtest/backtest.py -v
+                                    '''
+                                }
                             }
                         }
                     }

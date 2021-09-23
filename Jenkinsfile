@@ -35,17 +35,6 @@ pipeline {
                 }  
             }
         }
-        stage('Run Redis') {
-            steps {
-                script {
-                    docker.image('redis:latest').inside {
-                        sh '''
-                            redis-server
-                        '''
-                    }
-                }
-            }
-        }
         stage('Install libraries') {
             steps {
                 script {
@@ -58,13 +47,27 @@ pipeline {
                 }
             }
         }
-        stage('Testing') {
-            steps {
-                script {
-                    docker.image('python:3.7.6').inside {
+        stage('Run Testing') {
+            parallel
+            {
+                stage('start redis-server')
+                {
+                    steps{
                         sh '''
-                            python -m unittest backtest/backtest.py -v
+                            redis-server
                         '''
+                    }
+                }
+                stage('Run backend test')
+                {
+                    steps {
+                        script {
+                            docker.image('python:3.7.6').inside {
+                                sh '''
+                                    python -m unittest backtest/backtest.py -v
+                                '''
+                            }
+                        }
                     }
                 }
             }

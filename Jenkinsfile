@@ -38,7 +38,11 @@ pipeline {
         stage('Run Redis') {
             steps {
                 script {
-                    docker run --name my-redis -d redis
+                    docker.image('redis:latest').inside {
+                        sh '''
+                            redis-server
+                        '''
+                    }
                 }
             }
         }

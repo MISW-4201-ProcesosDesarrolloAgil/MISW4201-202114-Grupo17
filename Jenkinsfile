@@ -47,13 +47,15 @@ pipeline {
                 }
             }
         }
-        timeout(unit:'SECONDS',time:30)
-        {
         stage('Run Testing') {
             parallel
                 {
                     stage('start redis-server')
                     {
+                        options
+                        {
+                            timeout(unit:'SECONDS', time:40)
+                        }
                         steps{
                             script{
                                 docker.image('redis:latest').inside
@@ -67,6 +69,7 @@ pipeline {
                     }
                     stage('Run backend test')
                     {
+                        sleep 10
                         steps {
                             script {
                                 docker.image('python:3.7.6').inside {
@@ -78,7 +81,6 @@ pipeline {
                         }
                     }
                 }
-        }
         }
 
         stage('Coverage') {

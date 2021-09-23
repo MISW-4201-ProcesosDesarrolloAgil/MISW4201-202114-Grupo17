@@ -47,9 +47,9 @@ pipeline {
                 }
             }
         }
+        timeout(unit:'SECONDS',time:30)
+        {
         stage('Run Testing') {
-            timeout(unit:'SECONDS',time:30)
-            {
             parallel
                 {
                     stage('start redis-server')
@@ -78,8 +78,9 @@ pipeline {
                         }
                     }
                 }
-            }
         }
+        }
+
         stage('Coverage') {
             steps {
                 script {

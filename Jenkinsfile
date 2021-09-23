@@ -70,7 +70,6 @@ pipeline {
                     }
                     stage('Run backend test')
                     {
-                        sleep 5
                         steps {
                             script {
                                 docker.image('python:3.7.6').inside {

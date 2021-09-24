@@ -1,4 +1,4 @@
-from flaskr.modelos import Usuario, Album, Cancion
+from flaskr.modelos import Usuario, Album, Cancion, CancionSchema
 from faker import Faker
 from flaskr.app import db, app
 import unittest
@@ -134,7 +134,7 @@ class TestIonicBack(unittest.TestCase):
         ).get_json()
         self.assertEqual(len(responseAlbumsUsuario), 2)
 
-    # CA02 Compartir una canción con usuarios distintos al que la creo.
+    # CA02 - Compartir una canción con usuarios distintos al que la creo.
     def test_compartir_cancion_con_usuarios(self):
         response = self.share_song_whit_users()
         users_shared = Cancion.query.get(response['id']).usuarios_compartidos
@@ -150,6 +150,17 @@ class TestIonicBack(unittest.TestCase):
         ).get_json()
         users_shared = response['usuarios_compartidos']
         self.assertListEqual(self.users[1:3], users_shared)
+
+    # CA06 - Agregar a la lista de canciones las que se le han compartido al usuario
+    def test_ver_en_lista_de_canciones_las_compartidas(self):
+        self.share_song_whit_users()
+        response = self.app.get(
+            '/usuario/{}/canciones'.format(self.users[1]),
+            headers={'Authorization': 'Bearer {}'.format(self.tokens[1])}
+        ).get_json()
+        user = Usuario.query.get(self.users[1])
+        songs = user.canciones + user.canciones_compartidas
+        self.assertEqual(len(songs), len(response))
 
     def share_song_whit_users(self):
         return self.app.put(
@@ -169,7 +180,6 @@ class TestIonicBack(unittest.TestCase):
             user_id = decode_token(encoded_token=response['token'])['sub']
             users.append(user_id)
             self.tokens.append(response['token'])
-            self.instancias.append(Usuario.query.get(user_id))
         return users
 
     def create_faker_songs(self):
@@ -187,7 +197,6 @@ class TestIonicBack(unittest.TestCase):
                 json=song_payload,
                 headers={'Authorization': 'Bearer {}'.format(self.tokens[0])}
             ).get_json()
-            self.instancias.append(Cancion.query.get(response['id']))
             songs.append(response['id'])
         return songs
 

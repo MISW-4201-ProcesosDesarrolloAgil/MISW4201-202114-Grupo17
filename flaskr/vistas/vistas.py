@@ -55,7 +55,7 @@ class VistaCancionesUsuario(Resource):
     def get(self, id_usuario):
         try:
             validarUsuario(get_jwt_identity(), id_usuario)
-            usuario:Usuario = Usuario.query.get_or_404(id_usuario)
+            usuario: Usuario = Usuario.query.get_or_404(id_usuario)
             total_canciones = usuario.canciones + usuario.canciones_compartidas
             return [cancion_schema.dump(song) for song in total_canciones] 
         except ValidationError as e:

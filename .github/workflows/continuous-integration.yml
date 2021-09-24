@@ -101,7 +101,7 @@ jobs:
 
     steps:
       - name: Merge feature -> develop
-        uses: devmasx/merge-branch@v1.4.0
+        uses: devmasx/merge-branch@v1.3.1
         with:
           type: now
           target_branch: develop

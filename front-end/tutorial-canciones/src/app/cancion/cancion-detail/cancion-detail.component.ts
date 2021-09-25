@@ -138,4 +138,11 @@ export class CancionDetailComponent implements OnInit {
   {
     $('#myModal').modal('show')
   }
+
+  getSongUser(id: number ): string{
+    const user = this.applicationUsers.find(user => user.id === id)
+    if(user)
+    return user?.nombre
+    else return ""
+  }
 }

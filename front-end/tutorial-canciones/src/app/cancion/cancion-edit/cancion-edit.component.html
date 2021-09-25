@@ -5,7 +5,7 @@
       <div class="card mx-3 my-5">
         <div class="row">
           <div class="col-12 text-center">
-            <p class="mt-5 mb-2 fs-3 fw-bold">Editar Canción</p>
+            <p class="mt-5 mb-2 fs-3 fw-bold" i18n>Editar Canción</p>
           </div>
         </div>
 
@@ -14,18 +14,18 @@
           <div class="form-group my-2">
             <div class="row">
               <div class="col-2 text-start">
-                <label for="titulo">Título </label>
+                <label for="titulo" i18n>Título </label>
               </div>
               <div class="col-10">
-                <input type="text" class="form-control" formControlName="titulo" placeholder="Titulo de la canción">
+                <input type="text" class="form-control" formControlName="titulo" placeholder="Titulo de la canción" i18n-placeholder>
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('titulo')?.hasError('required') && cancionForm.get('titulo')?.touched">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('titulo')?.hasError('required') && cancionForm.get('titulo')?.touched" i18n>
                   Debe ingresar un título para la canción
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('titulo')?.hasError('maxlength')">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('titulo')?.hasError('maxlength')" i18n>
                   El título no debe exceder los 128 carácteres
                 </div>
               </div>
@@ -35,7 +35,7 @@
           <div class="form-group my-2">
             <div class="row">
               <div class="col-2 text-start">
-                <label for="titulo">Tiempo </label>
+                <label for="titulo" i18n>Tiempo </label>
               </div>
               <div class="col-10">
                 <div class="row">
@@ -53,16 +53,16 @@
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="(cancionForm.get('minutos')?.hasError('required') && cancionForm.get('minutos')?.touched) || (cancionForm.get('segundos')?.hasError('required') && cancionForm.get('segundos')?.touched)">
+                <div class="alert alert-danger my-3" *ngIf="(cancionForm.get('minutos')?.hasError('required') && cancionForm.get('minutos')?.touched) || (cancionForm.get('segundos')?.hasError('required') && cancionForm.get('segundos')?.touched)" i18n>
                   Debe ingresar un tiempo de duración para la canción
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('minutos')?.hasError('maxlength')">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('minutos')?.hasError('maxlength')" i18n>
                   Los minutos no deben exceder los 2 carácteres
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('segundos')?.hasError('maxlength')">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('segundos')?.hasError('maxlength')" i18n>
                   Los segundos no deben exceder los 2 carácteres
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('minutos')?.hasError('pattern') || cancionForm.get('segundos')?.hasError('pattern')">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('minutos')?.hasError('pattern') || cancionForm.get('segundos')?.hasError('pattern')" i18n>
                   Solo debe ingresar números
                 </div>
               </div>
@@ -72,18 +72,18 @@
           <div class="form-group my-2">
             <div class="row">
               <div class="col-2 text-start">
-                <label for="titulo">Interprete </label>
+                <label for="titulo" i18n>Interprete </label>
               </div>
               <div class="col-10">
-                <input type="text" class="form-control" formControlName="interprete" placeholder="Interprete de la canción">
+                <input type="text" class="form-control" formControlName="interprete" placeholder="Interprete de la canción" i18n-placeholder>
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('interprete')?.hasError('required') && cancionForm.get('interprete')?.touched">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('interprete')?.hasError('required') && cancionForm.get('interprete')?.touched" i18n>
                   Debe ingresar un interprete para la canción
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('interprete')?.hasError('maxlength')">
+                <div class="alert alert-danger my-3" *ngIf="cancionForm.get('interprete')?.hasError('maxlength')" i18n>
                   El interprete no debe exceder los 128 carácteres
                 </div>
               </div>
@@ -92,10 +92,10 @@
 
           <div class="row mt-4">
             <div class="col-6 text-end">
-              <button class="btn btn-danger" type="button" (click)="cancelCreate()">Cancelar</button>
+              <button class="btn btn-danger" type="button" (click)="cancelCreate()" i18n>Cancelar</button>
             </div>
             <div class="col-6 text-start">
-              <button type="submit" class="btn btn-primary" [disabled]="!cancionForm.valid">Editar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!cancionForm.valid" i18n>Editar</button>
             </div>
           </div>
 

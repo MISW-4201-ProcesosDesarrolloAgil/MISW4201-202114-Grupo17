@@ -26,13 +26,13 @@
               </button>
             </div>
             <div>
-              <label class="fs-4">Medio: {{ album?.medio?.llave }}</label>
+              <label class="fs-4" i18n>Medio: {{ album?.medio?.llave }}</label>
             </div>
           </div>
         </div>
         <hr />
         <div class="col-12 text-left">
-          <label class="fs-5">Descripción:</label>
+          <label class="fs-5" i18n>Descripción:</label>
         </div>
         <div class="fs-6 text-justify description-text text-truncate my-2">
           <p>{{ album?.descripcion }}</p>
@@ -42,11 +42,11 @@
           aria-describedby="colecName"
         >
           <thead>
-            <th class="d-lg-none">Canciones</th>
-            <th class="d-none d-lg-table-cell">Titulo</th>
-            <th class="d-none d-lg-table-cell">Duración</th>
-            <th class="d-none d-lg-table-cell">Artista</th>
-            <th class="d-none d-lg-table-cell">Opciones</th>
+            <th class="d-lg-none" i18n>Canciones</th>
+            <th class="d-none d-lg-table-cell" i18n>Titulo</th>
+            <th class="d-none d-lg-table-cell" i18n>Duración</th>
+            <th class="d-none d-lg-table-cell" i18n>Artista</th>
+            <th class="d-none d-lg-table-cell" i18n>Opciones</th>
           </thead>
           <tbody>
             <tr *ngFor="let cancion of cancionesAlbum; index as i">
@@ -114,14 +114,14 @@
                 *ngIf="album.usuario !== userId"
                 class="users-shared-container"
               >
-                <label class="fs-5">Compartido por:</label>
+                <label class="fs-5" i18n>Compartido por:</label>
                 <p>{{ this.getAlbumUser(album.usuario) }}</p>
               </div>
               <div
                 *ngIf="album.usuarioscompartidos.length > 0"
                 class="users-shared-container"
               >
-                <label class="fs-5">Compartido con:</label>
+                <label class="fs-5" i18n>Compartido con:</label>
                 <p *ngFor="let usuario of album.usuarioscompartidos">
                   {{ this.getAlbumUser(usuario) }}
                 </p>
@@ -135,6 +135,7 @@
               class="btn ms-3 me-2"
               (click)="goToEdit()"
               title="Editar álbum"
+              i18n
             >
               <i class="bi bi-pencil-square"></i>
             </button>
@@ -144,6 +145,7 @@
               class="btn me-1 me-2"
               (click)="goToJoinCancion()"
               title="Agregar canción"
+              i18n
             >
               <i class="bi bi-plus"></i><i class="bi bi-music-note"></i>
             </button>
@@ -153,6 +155,7 @@
               class="btn me-1"
               (click)="eliminarAlbum()"
               title="Eliminar álbum"
+              i18n
             >
               <i class="bi bi-trash-fill"></i>
             </button>
@@ -161,7 +164,8 @@
               type="button"
               class="btn me-1"
               (click)="changeShareAlbum()"
-              title="Eliminar álbum"
+              title i18n="Compartir álbum"
+              i18n
             >
               <i class="bi bi-person-plus-fill"></i>
             </button>

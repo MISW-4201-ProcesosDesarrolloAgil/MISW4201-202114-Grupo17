@@ -80,7 +80,6 @@ export class CancionService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    console.log(usuarios_compartidos)
     const usuarios_compartidosjson=
     {
       "usuarioscompartidos":usuarios_compartidos

@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
         this.routerPath.navigate([`/`])
       },(e)=>
       {
-        console.log(e)
       })
     }
   }

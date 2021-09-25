@@ -91,7 +91,28 @@ export class CancionDetailComponent implements OnInit {
         this.cancion = cancion
         this.obtenerInstanciasAlbum()
         this.shareCancionOn=false
-      })
+      },
+      (error:HttpErrorResponse)=>
+      {
+        if(error.status == 404)
+        {
+          this.toastr.warning('El album no existe')
+          this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+        }
+        else if(error.status == 401)
+        {
+          if (error.error.mensaje){
+            this.toastr.warning(error.error.mensaje)
+            this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+          }
+          else{
+            this.toastr.warning('No tiene permiso para realizar ésta acción')
+            this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+          }
+
+        }
+      }
+      )
   }
 
   obtenerInstanciasAlbum()

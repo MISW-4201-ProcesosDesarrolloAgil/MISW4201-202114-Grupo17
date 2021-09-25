@@ -2,9 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Cancion } from 'src/app/cancion/cancion';
 import { CancionService } from 'src/app/cancion/cancion.service';
 import { Usuario } from 'src/app/usuario/usuario';
-import { Album, Cancion } from '../album';
+import { Album } from '../album';
 import { AlbumService } from '../album.service';
 
 declare var $: any;
@@ -54,6 +55,18 @@ export class AlbumDetailComponent implements OnInit {
         {
           this.toastr.warning('El album no existe')
           this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+        }
+        else if(error.status == 401)
+        {
+          if (error.error.mensaje){
+            this.toastr.warning(error.error.mensaje)
+            this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+          }
+          else{
+            this.toastr.warning('No tiene permiso para realizar ésta acción')
+            this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`])
+          }
+
         }
       }
     )

@@ -100,12 +100,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Merge into develop
-        run: echo "Implement here Merge"
-
-#        uses: ridedott/merge-me-action@v1
- #       with:
- #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Merge feature -> develop
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          target_branch: develop
+          github_token: ${{ github.token }}
 
 #  merge-branch-release:
 

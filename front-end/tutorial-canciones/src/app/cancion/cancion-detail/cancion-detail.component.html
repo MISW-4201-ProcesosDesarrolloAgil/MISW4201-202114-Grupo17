@@ -7,54 +7,29 @@
     </div>
   </div>
   <div class="song-list-container" *ngIf="finishLoad">
-
-    <div class="row">
-      <div class="d-flex justify-content-end">
-        <button
-          *ngIf="cancion"
-          type="button"
-          class="btn ms-2 me-1"
-          (click)="goToEdit()"
-          title="Editar álbum"
-        >
-          <i class="bi bi-pencil-square"></i>
-        </button>
-        <button
-          *ngIf="cancion"
-          type="button"
-          class="btn me-1"
-          (click)="eliminarCancion()"
-          title="Eliminar álbum"
-        >
-          <i class="bi bi-trash-fill"></i>
-        </button>
-        <button
-          *ngIf="cancion"
-          type="button"
-          class="btn me-1"
-          (click)="changeShareCancion()"
-          title="Compartir canción"
-        >
-          <i class="bi bi-person-plus-fill"></i>
-        </button>
+      <div class="col-12 text-center mb-2">
+        <label class="fs-4 fw-bold">Canción: {{ cancion?.titulo }}</label>
       </div>
-      <div class="col-12 text-center mb-2" >
-        <label class="fs-4 fw-bold">Canción: {{cancion?.titulo}}</label>
-      </div>
-    </div>
-
     <div class="row mt-2">
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <p class="my-0"><span class="fw-bold">Duración: </span> <span class="text-capitalize">{{cancion?.minutos}}:{{cancion?.segundos}}</span></p>
+            <p class="my-0">
+              <span class="fw-bold">Duración: </span>
+              <span class="text-capitalize"
+                >{{ cancion?.minutos }}:{{ cancion?.segundos }}</span
+              >
+            </p>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <p class="my-0"><span class="fw-bold">Intérpretes: </span> <span class="text-capitalize">{{cancion?.interprete}}</span></p>
+            <p class="my-0">
+              <span class="fw-bold">Intérpretes: </span>
+              <span class="text-capitalize">{{ cancion?.interprete }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -65,7 +40,7 @@
         <h5>Álbumes</h5>
       </div>
       <div class="col-12">
-        <table class="table table-hover table-bordered" >
+        <table class="table table-hover table-bordered">
           <thead class="table-light">
             <tr>
               <th scope="col" class="text-center">Título</th>
@@ -74,32 +49,83 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let album of albumesCancion" >
-              <td >{{album.titulo}}</td>
-              <td class="text-center">{{album.anio}}</td>
-              <td >{{album.medio.llave}}</td>
+            <tr *ngFor="let album of albumesCancion">
+              <td>{{ album.titulo }}</td>
+              <td class="text-center">{{ album.anio }}</td>
+              <td>{{ album.medio.llave }}</td>
             </tr>
           </tbody>
         </table>
       </div>
+              <div class="row col-12 my-4 opciones-album-container">
+          <div class="col-6 opciones-left d-none d-lg-block">
+            <div class="col-12 text-left">
+              <div
+                *ngIf="cancion.usuario !== userId"
+                class="users-shared-container"
+              >
+                <label class="fs-5">Compartido por:</label>
+                <p>{{ this.getSongUser(cancion.usuario) }}</p>
+              </div>
+              <div
+                *ngIf="cancion.usuarios_compartidos.length > 0"
+                class="users-shared-container"
+              >
+                <label class="fs-5">Compartido con:</label>
+                <p *ngFor="let usuario of cancion.usuarios_compartidos">
+                  {{ this.getSongUser(usuario) }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 opciones-right">
+            <button
+              *ngIf="cancion"
+              type="button"
+              class="btn ms-3 me-2"
+              (click)="goToEdit()"
+              title="Editar álbum"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button
+              *ngIf="cancion"
+              type="button"
+              class="btn me-1"
+              (click)="eliminarCancion()"
+              title="Eliminar álbum"
+            >
+              <i class="bi bi-trash-fill"></i>
+            </button>
+            <button
+              *ngIf="cancion"
+              type="button"
+              class="btn me-1"
+              (click)="changeShareCancion()"
+              title="Eliminar álbum"
+            >
+              <i class="bi bi-person-plus-fill"></i>
+            </button>
+          </div>
+        </div>
     </div>
 
     <app-cancion-share
-    *ngIf="shareCancionOn"
-    class="modal fade"
-    tabindex="-1"
-    id="myModal"
-    [usuarios_compartidos]= "cancion.usuarios_compartidos"
-    [token]="token"
-    [logUserId]="userId"
-    (quitShare)="reloadComponent()"
-    (openModal)="startModal()"
-  >
-  </app-cancion-share>
+      *ngIf="shareCancionOn"
+      class="modal fade"
+      tabindex="-1"
+      id="myModal"
+      [usuarios_compartidos]="cancion.usuarios_compartidos"
+      [token]="token"
+      [logUserId]="userId"
+      (quitShare)="reloadComponent()"
+      (openModal)="startModal()"
+    >
+    </app-cancion-share>
   </div>
 
   <div class="d-flex justify-content-center" *ngIf="!finishLoad">
-    <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+    <div class="spinner-border" role="status" style="width: 3rem; height: 3rem">
       <span class="sr-only"></span>
     </div>
   </div>

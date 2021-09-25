@@ -47,17 +47,42 @@ pipeline {
                 }
             }
         }
-        stage('Testing') {
-            steps {
-                script {
-                    docker.image('python:3.7.6').inside {
-                        sh '''
-                            python -m unittest backtest/backtest.py -v
-                        '''
+        
+        stage('Run Testing') {
+            parallel
+                {
+                    stage('start redis-server')
+                    {
+                        options
+                        {
+                            timeout(unit:'SECONDS', time:9)
+                        }
+                        steps{
+                            script{
+                                docker.image('redis:latest').inside
+                                {
+                                    sh '''
+                                        redis-server
+                                    '''
+                                }
+                            }
+                        }
+                    }
+                    stage('Run backend test')
+                    {
+                        steps {
+                            script {
+                                docker.image('python:3.7.6').inside {
+                                    sh '''
+                                        python -m unittest backtest/backtest.py -v
+                                    '''
+                                }
+                            }
+                        }
                     }
                 }
-            }
         }
+
         stage('Coverage') {
             steps {
                 script {

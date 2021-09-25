@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -60,9 +61,16 @@ export class CancionEditComponent implements OnInit {
       this.cancionForm.reset()
       this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
     },
-    error=> {
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+    (error:HttpErrorResponse)=> {
+      if(error.status === 401){
+        if(error.error.mensaje)
+        {
+          this.showWarning(error.error.mensaje)
+        }
+        else{
+          this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+        }
+        
       }
       else if(error.statusText === "UNPROCESSABLE ENTITY"){
         this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
@@ -70,6 +78,7 @@ export class CancionEditComponent implements OnInit {
       else{
         this.showError("Ha ocurrido un error. " + error.message)
       }
+      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
     })
   }
 

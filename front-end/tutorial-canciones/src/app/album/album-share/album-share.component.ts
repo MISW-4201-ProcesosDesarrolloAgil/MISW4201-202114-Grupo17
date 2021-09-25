@@ -3,6 +3,7 @@ import { AlbumService } from '../album.service';
 import { Usuario } from '../../usuario/usuario';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-album-share',
@@ -79,9 +80,20 @@ export class AlbumShareComponent implements OnInit {
           this.terminarcompartir()
         
       },
-      error=>
+      (error:HttpErrorResponse)=>
       {
-        this.toastr.error('Upsss.... algo salio mal. Vuelve a intentarlo mas adelante')
+        if(error.status === 401 && error.error.mensaje)
+        {
+          this.toastr.warning(error.error.mensaje)
+        }
+        else if(error.status === 401)
+        {
+          this.toastr.warning('No tiene permisos para realizar ésta acción')
+        }
+        else{
+          this.toastr.error('Upsss.... algo salio mal. Vuelve a intentarlo mas adelante')
+        }
+        this.terminarcompartir()
       }
       )
   }

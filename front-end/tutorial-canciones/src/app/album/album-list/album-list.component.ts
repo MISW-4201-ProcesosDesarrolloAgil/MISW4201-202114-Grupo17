@@ -75,16 +75,6 @@ export class AlbumListComponent implements OnInit {
   onSelect(a: Album, index: number){
     console.log(a,index)
     this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${a.id}`])
-/*     this.indiceSeleccionado = index
-    this.albumSeleccionado = a
-    this.albumService.getCancionesAlbum(a.id, this.token)
-    .subscribe(canciones => {
-      this.albumSeleccionado.canciones = canciones
-      this.albumSeleccionado.interpretes = this.getInterpretes(canciones)
-    },
-    error =>{
-      this.showError("Ha ocurrido un error, " + error.message)
-    }) */
   }
 
   getInterpretes(canciones: Array<Cancion>): Array<string>{

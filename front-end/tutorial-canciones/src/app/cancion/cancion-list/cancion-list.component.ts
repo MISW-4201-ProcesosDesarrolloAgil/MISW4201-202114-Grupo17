@@ -4,6 +4,7 @@ import { CancionService } from '../cancion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/usuario/usuario';
+import { Album } from 'src/app/album/album';
 
 @Component({
   selector: 'app-cancion-list',
@@ -22,7 +23,9 @@ export class CancionListComponent implements OnInit {
   userId: number
   token: string
   canciones: Array<Cancion>
+  albumes: Array<Album>
   mostrarCanciones: Array<Cancion>
+  mostrarAlbumes: Array<Album>
   cancionSeleccionada: Cancion
   indiceSeleccionado: number = 0
   applicationUsers : Usuario[]
@@ -45,20 +48,24 @@ export class CancionListComponent implements OnInit {
       this.canciones = canciones
       this.mostrarCanciones = canciones
     })
+    this.cancionService.getAlbumes(this.token,this.userId)
+     .subscribe(albumes => {
+       this.mostrarAlbumes = albumes
+       for (let i = 0; i<this.mostrarAlbumes.length;i++){
+        if (this.mostrarAlbumes[i].usuario != this.userId) {
+        this.cancionService.getCancionesAlbum(this.mostrarAlbumes[i].id ,this.token,this.userId)
+        .subscribe(cancionesAlbumCompartido=> {
+          for (let j = 0; j<cancionesAlbumCompartido.length;j++){
+            this.mostrarCanciones.push(cancionesAlbumCompartido[j])
+          }
+        })
+       }
+     }
+     })
   }
 
   onSelect(cancion: Cancion, indice: number){
     this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${cancion.id}`])
-    // this.indiceSeleccionado = indice
-    // this.cancionSeleccionada = cancion
-    // this.cancionService.getAlbumesCancion(cancion.id)
-    // .subscribe(albumes => {
-    //   this.cancionSeleccionada.albumes = albumes
-    // },
-    // error => {
-    //   this.showError(`Ha ocurrido un error: ${error.message}`)
-    // })
-    
   }
 
   buscarCancion(busqueda: string){

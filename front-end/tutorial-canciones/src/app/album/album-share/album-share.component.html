@@ -2,15 +2,15 @@
 	<div class="modal-content">
 		<div *ngIf="usuarios">
 			<div class="modal-header">
-				<h5>Seleccione usuarios con los que desea compartir</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="terminarcompartir()"></button>
+				<h5 i18n>Seleccione usuarios con los que desea compartir</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="terminarcompartir()"></button>
 			</div>
 			<div class="modal-body">
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Consecutivo</th>
-								<th>Nombre de Usuario</th>
+								<th i18n>Consecutivo</th>
+								<th i18n>Nombre de Usuario</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -23,8 +23,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-light" type="button" data-bs-dismiss="modal" (click) = "terminarcompartir()">Close</button>
-				<button class="btn btn-primary" type="button" (click)="compartirUsuarios()">Save</button>
+				<button class="btn btn-light" type="button" data-bs-dismiss="modal" (click) = "terminarcompartir()" i18n>Cerrar</button>
+				<button class="btn btn-primary" type="button" (click)="compartirUsuarios()" i18n>Guardar</button>
 			</div>
 		</div>
 

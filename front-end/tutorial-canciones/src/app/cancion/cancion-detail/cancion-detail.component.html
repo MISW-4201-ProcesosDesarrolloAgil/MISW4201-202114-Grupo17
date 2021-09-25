@@ -7,9 +7,9 @@
     </div>
   </div>
   <div class="song-list-container" *ngIf="finishLoad">
-      <div class="col-12 text-center mb-2">
-        <label class="fs-4 fw-bold" i18n>Canción: {{ cancion?.titulo }}</label>
-      </div>
+    <div class="col-12 text-center mb-2">
+      <label class="fs-4 fw-bold" i18n>Canción: {{ cancion?.titulo }}</label>
+    </div>
     <div class="row mt-2">
       <div class="col-6">
         <div class="card">
@@ -57,57 +57,57 @@
           </tbody>
         </table>
       </div>
-              <div class="row col-12 my-4 opciones-album-container">
-          <div class="col-6 opciones-left d-none d-lg-block">
-            <div class="col-12 text-left">
-              <div
-                *ngIf="cancion.usuario !== userId"
-                class="users-shared-container"
-              >
-                <label class="fs-5" i18n>Compartido por:</label>
-                <p>{{ this.getSongUser(cancion.usuario) }}</p>
-              </div>
-              <div
-                *ngIf="cancion.usuarios_compartidos.length > 0"
-                class="users-shared-container"
-              >
-                <label class="fs-5" i18n>Compartido con:</label>
-                <p *ngFor="let usuario of cancion.usuarios_compartidos">
-                  {{ this.getSongUser(usuario) }}
-                </p>
-              </div>
+      <div class="row col-12 my-4 opciones-album-container">
+        <div class="col-6 opciones-left d-none d-lg-block">
+          <div class="col-12 text-left">
+            <div
+              *ngIf="cancion.usuario !== userId"
+              class="users-shared-container"
+            >
+              <label class="fs-5" i18n>Compartido por:</label>
+              <p>{{ this.getSongUser(cancion.usuario) }}</p>
+            </div>
+            <div
+              *ngIf="cancion.usuarios_compartidos.length > 0"
+              class="users-shared-container"
+            >
+              <label class="fs-5" i18n>Compartido con:</label>
+              <p *ngFor="let usuario of cancion.usuarios_compartidos">
+                {{ this.getSongUser(usuario) }}
+              </p>
             </div>
           </div>
-          <div class="col-6 opciones-right">
-            <button
-              *ngIf="cancion"
-              type="button"
-              class="btn ms-3 me-2"
-              (click)="goToEdit()"
-              title="Editar álbum"
-            >
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button
-              *ngIf="cancion"
-              type="button"
-              class="btn me-1"
-              (click)="eliminarCancion()"
-              title="Eliminar álbum"
-            >
-              <i class="bi bi-trash-fill"></i>
-            </button>
-            <button
-              *ngIf="cancion"
-              type="button"
-              class="btn me-1"
-              (click)="changeShareCancion()"
-              title="Eliminar álbum"
-            >
-              <i class="bi bi-person-plus-fill"></i>
-            </button>
-          </div>
         </div>
+        <div class="col-6 opciones-right">
+          <button
+            *ngIf="cancion"
+            type="button"
+            class="btn ms-3 me-2"
+            (click)="goToEdit()"
+            title="Editar álbum"
+          >
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button
+            *ngIf="cancion"
+            type="button"
+            class="btn me-1"
+            (click)="eliminarCancion()"
+            title="Eliminar álbum"
+          >
+            <i class="bi bi-trash-fill"></i>
+          </button>
+          <button
+            *ngIf="cancion"
+            type="button"
+            class="btn me-1"
+            (click)="changeShareCancion()"
+            title="Eliminar álbum"
+          >
+            <i class="bi bi-person-plus-fill"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <app-cancion-share

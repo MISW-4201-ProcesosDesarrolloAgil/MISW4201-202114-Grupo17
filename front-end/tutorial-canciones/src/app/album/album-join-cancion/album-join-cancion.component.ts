@@ -11,7 +11,7 @@ import { AlbumService } from '../album.service';
 @Component({
   selector: 'app-album-join-cancion',
   templateUrl: './album-join-cancion.component.html',
-  styleUrls: ['./album-join-cancion.component.css']
+  styleUrls: ['./album-join-cancion.component.scss']
 })
 export class AlbumJoinCancionComponent implements OnInit {
 

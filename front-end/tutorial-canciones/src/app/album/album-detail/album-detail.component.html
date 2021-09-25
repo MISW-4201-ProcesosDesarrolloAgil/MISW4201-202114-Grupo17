@@ -42,44 +42,47 @@
           aria-describedby="colecName"
         >
           <thead>
-            <th class="d-lg-none" i18n>Canciones</th>
+            <th class="d-lg-none song-header" i18n>Canciones</th>
             <th class="d-none d-lg-table-cell" i18n>Titulo</th>
-            <th class="d-none d-lg-table-cell" i18n>Duración</th>
+            <th class="d-table-cell" i18n>Duración</th>
             <th class="d-none d-lg-table-cell" i18n>Artista</th>
             <th class="d-none d-lg-table-cell" i18n>Opciones</th>
           </thead>
           <tbody>
-            <tr *ngFor="let cancion of cancionesAlbum; index as i">
-              <td class="d-none d-lg-table-cell">{{ cancion.titulo }}</td>
-              <td class="d-none d-lg-table-cell">
+            <tr
+              *ngFor="let cancion of cancionesAlbum; index as i"
+              (click)="goToDetailCancion(cancionesAlbum[i].id)"
+              [ngClass]="{ selected: i === indiceSeleccionado }"
+              class="d-lg-none"
+            >
+              <td>{{ cancion.titulo }}</td>
+              <td class="minutes-mobile">
                 {{ cancion.minutos }}:{{ cancion.segundos }}
               </td>
-              <td class="d-none d-lg-table-cell">{{ cancion.interprete }}</td>
-              <td class="d-none d-lg-table-cell">
-                <div class="row buttonsActions">
-                  <div
-                    (click)="goToCommentsCancion()"
-                    class="row-container col-6"
-                  >
-                    <div class="icon-comments-container">
-                      <i class="bi bi-chat-left-text-fill icon-comments"></i>
-                    </div>
+            </tr>
+            <tr
+              *ngFor="let cancion of cancionesAlbum; index as i"
+              class="d-none d-lg-table-row"
+            >
+              <td>{{ cancion.titulo }}</td>
+              <td>{{ cancion.minutos }}:{{ cancion.segundos }}</td>
+              <td>{{ cancion.interprete }}</td>
+              <td class="d-none d-lg-table-cell content-table">
+                <div class="row">
+                  <div class="icon-comments-container col-6">
+                    <i class="bi bi-chat-left-text-fill icon-comments"></i>
                   </div>
-                  <div
-                    (click)="goToDetailCancion(cancion.id)"
-                    class="row-container col-6"
-                  >
-                    <div class="icon-comments-container">
-                      <i class="bi bi-eye-fill icon-comments"></i>
-                    </div>
+                  <div class="icon-comments-container col-6">
+                    <i
+                      class="bi bi-eye-fill icon-comments"
+                      (click)="goToDetailCancion(cancionesAlbum[i].id)"
+                    ></i>
                   </div>
                 </div>
               </td>
               <td class="d-lg-none">
                 <div class="row">
-                  <div
-                    class="row-container col-8"
-                  >
+                  <div class="row-container col-8">
                     <div class="icon-comments-container">
                       {{ cancion.titulo }}
                     </div>

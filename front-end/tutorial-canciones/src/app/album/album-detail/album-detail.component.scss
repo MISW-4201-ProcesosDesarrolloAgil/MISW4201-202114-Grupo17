@@ -11,14 +11,18 @@
       flex: 1;
     }
   }
-  th {
-    width: 100%;
-  }
   .buttonsActions {
     display: flex;
     width: 30%;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+  .song-header{
+    display: table-cell
   }
 }
 

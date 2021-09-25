@@ -1,0 +1,17 @@
+@import "../../../theme/breakpoints.scss";
+@import "../../../../node_modules/bootstrap/scss/mixins/";
+
+@include media-breakpoint-down(lg) {
+    .card-join {
+      width: 100% !important;
+    }
+
+    .mx-5{
+        margin: 2em !important;
+    }
+
+    button{
+        height: 100%;
+        width: 100%;
+    }
+  }

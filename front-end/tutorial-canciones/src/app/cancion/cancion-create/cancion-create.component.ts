@@ -8,7 +8,7 @@ import { CancionService } from '../cancion.service';
 @Component({
   selector: 'app-cancion-create',
   templateUrl: './cancion-create.component.html',
-  styleUrls: ['./cancion-create.component.css']
+  styleUrls: ['./cancion-create.component.scss']
 })
 export class CancionCreateComponent implements OnInit {
 

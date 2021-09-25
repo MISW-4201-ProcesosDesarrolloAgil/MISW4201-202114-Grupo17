@@ -1,66 +1,107 @@
 <div class="d-flex justify-content-center" *ngIf="!album">
-  <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+  <div class="spinner-border" role="status" style="width: 3rem; height: 3rem">
     <span class="sr-only"></span>
   </div>
 </div>
 
 <div class="container" *ngIf="album">
-    <div class="row justify-content-center">
-      <div class="col-10">
-        <div class="card mx-3 my-5">
-          <div class="row">
-            <div class="col-12 text-center">
-              <p class="mt-5 mb-2 fs-3 fw-bold" i18n>Asociar Canción a Álbum</p>
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-10 col-sm-12">
+      <div class="card mx-md-3 my-5">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p class="mt-5 mb-2 fs-3 fw-bold" i18n>Asociar Canción a Álbum</p>
+          </div>
+        </div>
+        <form
+          class="mx-5 my-3"
+          [formGroup]="albumCancionForm"
+          (ngSubmit)="asociarCancion()"
+        >
+          <div class="form-group my-2">
+            <div class="row">
+              <div class="col-md-4 col-lg-2 col-sm-4 text-start">
+                <label>Álbum</label>
+              </div>
+              <div class="col-md-8 col-lg-10 col-sm-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="tituloAlbum"
+                  placeholder="Titulo del album"
+                  [readonly]="true"
+                  i18n-placeholder
+                />
+              </div>
             </div>
           </div>
-          <form class="mx-5 my-3" [formGroup]="albumCancionForm" (ngSubmit)="asociarCancion()">
 
-            <div class="form-group my-2">
-              <div class="row">
-                <div class="col-2 text-start">
-                  <label>Álbum</label>
-                </div>
-                <div class="col-10">
-                  <input type="text" class="form-control" formControlName="tituloAlbum" placeholder="Titulo del album" i18n-placeholder [readonly]="true" >
+          <div class="form-group my-2">
+            <div class="row">
+              <div class="col-md-4 col-lg-2 col-sm-4 text-start">
+                <label for="medio" i18n>Canción </label>
+              </div>
+              <div class="col-md-8 col-lg-10 col-sm-8">
+                <select
+                  #cancion
+                  class="form-select"
+                  formControlName="tituloCancion"
+                  (change)="onSelect(cancion.value)"
+                >
+                  <option value="" i18n disabled>
+                    Seleccione la cancición que desea asociar
+                  </option>
+                  <option
+                    *ngFor="let cancion of canciones"
+                    value="{{ cancion.id }}"
+                  >
+                    {{ cancion.titulo }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-8">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="
+                    albumCancionForm
+                      .get('tituloCancion')
+                      ?.hasError('required') &&
+                    albumCancionForm.get('tituloCancion')?.touched
+                  "
+                  i18n
+                >
+                  Debe seleccionar una canción para asociarla al álbum
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="form-group my-2">
-              <div class=" row">
-                <div class="col-2 text-start">
-                  <label for="medio" i18n>Canción </label>
-                </div>
-                <div class="col-10">
-                  <select #cancion class="form-select" formControlName="tituloCancion" (change)="onSelect(cancion.value)">
-                    <option value="" disabled i18n>Seleccione la cancición que desea asociar</option>
-                    <option *ngFor="let cancion of canciones" value={{cancion.id}}>{{cancion.titulo}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-8">
-                  <div class="alert alert-danger my-3" *ngIf="albumCancionForm.get('tituloCancion')?.hasError('required') && albumCancionForm.get('tituloCancion')?.touched" i18n>
-                    Debe seleccionar una canción para asociarla al álbum
-                  </div>
-                </div>
-              </div>
+          <div class="row mt-4">
+            <div class="col-6 text-center">
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="cancelarAsociacion()"
+                i18n
+              >
+                Cancelar
+              </button>
             </div>
-
-
-
-            <div class="row mt-4">
-              <div class="col-6 text-end">
-                <button class="btn btn-danger" type="button" (click)="cancelarAsociacion()" i18n>Cancelar</button>
-              </div>
-              <div class="col-6 text-start">
-                <button type="submit" class="btn btn-primary" [disabled]="!albumCancionForm.valid" i18n>Asociar canción</button>
-              </div>
+            <div class="col-6 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!albumCancionForm.valid"
+                i18n
+              >
+                Asociar canción
+              </button>
             </div>
-
-
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

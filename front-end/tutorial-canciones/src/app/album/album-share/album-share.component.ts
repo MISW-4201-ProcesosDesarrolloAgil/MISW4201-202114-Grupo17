@@ -4,6 +4,10 @@ import { Usuario } from '../../usuario/usuario';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Album} from '../album';
+import { Cancion } from 'src/app/cancion/cancion';
+import { CancionService } from 'src/app/cancion/cancion.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album-share',
@@ -15,15 +19,25 @@ export class AlbumShareComponent implements OnInit {
   usuarios:Array<Usuario>
   selectedUsers:Array<number>
   albumId:string
+  sharedRemove:Array<number>
+  sharedAdded:Array<number>
+  subscriptions:Array<Subscription>
+  booleanFinishSubscription:Array<boolean>
 
   @Input() usuarioscompartidos:Array<number>
   @Input() token: string
   @Input() logUserId:number
+  @Input() albumInstance:Album
+  @Input() cancionesAlbum:Cancion[]
   @Output() openModal= new EventEmitter
   @Output() quitShare = new EventEmitter
 
-  constructor(private as:AlbumService, private ar:ActivatedRoute, private toastr:ToastrService) {
+  constructor(private as:AlbumService,private cs:CancionService, private ar:ActivatedRoute, private toastr:ToastrService) {
     this.selectedUsers=[]
+    this.sharedRemove = []
+    this.sharedAdded = []
+    this.subscriptions = []
+    this.booleanFinishSubscription = []
     this.albumId = ar.snapshot.params.albumId
   }
 
@@ -33,6 +47,10 @@ export class AlbumShareComponent implements OnInit {
 
   terminarcompartir():void
   {
+    this.subscriptions.forEach(sub=>
+      {
+        sub.unsubscribe()
+      })
     this.quitShare.emit()
   }
 
@@ -54,6 +72,7 @@ export class AlbumShareComponent implements OnInit {
       })
   }
 
+
   selectUser(i:number):void
   {
     if(this.selectedUsers.includes(this.usuarios[i].id))
@@ -66,6 +85,53 @@ export class AlbumShareComponent implements OnInit {
     }
   }
 
+  compartirUsuariosCanciones()
+  {
+    const albumIdInt = parseInt(this.albumId)
+    this.albumInstance.usuarioscompartidos.forEach(usuario=>
+      {
+        if(!this.selectedUsers.includes(usuario))
+        {
+          this.sharedRemove.push(usuario)
+        }
+      })
+    this.selectedUsers.forEach(usuario =>
+      {
+        if(!this.albumInstance.usuarioscompartidos.includes(usuario))
+        {
+          this.sharedAdded.push(usuario)
+        }
+      })
+    
+    this.cancionesAlbum.forEach(cancion=>
+      {
+        let usuariosShared = cancion.usuarios_compartidos
+        this.sharedRemove.forEach(user=>
+          {
+            if (usuariosShared.includes(user))
+            {
+              const indexUser = usuariosShared.findIndex((usuario)=>usuario ===user)
+              usuariosShared.splice(indexUser,1)
+            }
+          })
+        this.sharedAdded.forEach(user=>
+          {
+            if(!usuariosShared.includes(user))
+            {
+              usuariosShared.push(user)
+            }
+          })
+        this.subscriptions.push(this.cs.compartirCancion(this.logUserId,this.token,cancion.id,usuariosShared).subscribe(()=>
+        {
+          this.booleanFinishSubscription.push(true)
+          if (this.booleanFinishSubscription.length === this.cancionesAlbum.length)
+          {
+            this.terminarcompartir()
+          }
+        }))
+      })
+  }
+
   compartirUsuarios()
   {
     const albumIdInt = parseInt(this.albumId)
@@ -76,9 +142,8 @@ export class AlbumShareComponent implements OnInit {
       this.selectedUsers
       ).subscribe(album=>
         {
-          this.toastr.success('Se compartio correctamente con los usuarios seleccionados.')
-          this.terminarcompartir()
-        
+          this.compartirUsuariosCanciones()
+          this.toastr.success('Se compartio correctamente con los usuarios seleccionados.')       
       },
       (error:HttpErrorResponse)=>
       {

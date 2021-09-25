@@ -57,7 +57,7 @@ export class AlbumJoinCancionComponent implements OnInit {
     this.cancionService.getCanciones(this.token,this.userId)
     .subscribe(canciones => {
       canciones.map(c => {
-        if(!cancionesAlbum.includes(c.id)){
+        if(!cancionesAlbum.includes(c.id) && c.usuario === this.userId){
           cancionesNoAgregadas.push(c)
         }
       })

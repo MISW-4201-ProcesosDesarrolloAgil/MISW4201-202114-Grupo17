@@ -1,33 +1,57 @@
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-10 col-sm-12">
       <div class="card mx-md-3 my-5">
         <div class="row">
           <div class="col-12 text-center">
-            <p class="mt-5 mb-2 fs-3 fw-bold">Editar Álbum</p>
+            <p class="mt-5 mb-2 fs-3 fw-bold" i18n>Editar Álbum</p>
           </div>
         </div>
-        <form class="mx-5 my-3" [formGroup]="albumForm" (ngSubmit)="editarAlbum()" *ngIf="albumInstance">
-
+        <form
+          class="mx-5 my-3"
+          [formGroup]="albumForm"
+          (ngSubmit)="editarAlbum()"
+          *ngIf="albumInstance"
+        >
           <div class="form-group my-2">
             <div class="row">
               <div class="col-md-4 col-lg-2 col-sm-4 text-start">
                 <label>Título </label>
               </div>
               <div class="col-md-8 col-lg-10 col-sm-8">
-                <input type="text" class="form-control" formControlName="titulo" placeholder="Titulo del album">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="titulo"
+                  placeholder="Titulo del album"
+                  i18n-placeholder
+                />
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('titulo')?.hasError('required') && albumForm.get('titulo')?.touched">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="
+                    albumForm.get('titulo')?.hasError('required') &&
+                    albumForm.get('titulo')?.touched
+                  "
+                  i18n
+                >
                   Debe ingresar un título para el álbum
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('titulo')?.hasError('minlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('titulo')?.hasError('minlength')"
+                  i18n
+                >
                   El título debe tener por lo menos un carácter
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('titulo')?.hasError('maxlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('titulo')?.hasError('maxlength')"
+                  i18n
+                >
                   El título no debe exceder los 128 carácteres
                 </div>
               </div>
@@ -40,18 +64,39 @@
                 <label for="anio">Año </label>
               </div>
               <div class="col-md-8 col-lg-10 col-sm-8">
-                <input type="text" class="form-control" formControlName="anio" placeholder="Año de lanzamiento">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="anio"
+                  placeholder="Año de lanzamiento"
+                  i18n-placeholder
+                />
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('anio')?.hasError('required') && albumForm.get('anio')?.touched">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="
+                    albumForm.get('anio')?.hasError('required') &&
+                    albumForm.get('anio')?.touched
+                  "
+                  i18n
+                >
                   Debe ingresar un año para el álbum
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('anio')?.hasError('minlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('anio')?.hasError('minlength')"
+                  i18n
+                >
                   El año debe tener 4 números
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('anio')?.hasError('maxlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('anio')?.hasError('maxlength')"
+                  i18n
+                >
                   El año debe tener 4 números
                 </div>
               </div>
@@ -59,20 +104,34 @@
           </div>
 
           <div class="form-group my-2">
-            <div class=" row">
+            <div class="row">
               <div class="col-md-4 col-lg-2 col-sm-4 text-start">
-                <label for="medio">Medio </label>
+                <label for="medio" i18n>Medio </label>
               </div>
               <div class="col-md-8 col-lg-10 col-sm-8">
                 <select class="form-select" formControlName="medio">
-                  <option value="" disabled>Selecciona el medio del álbum</option>
-                  <option *ngFor="let medio of medios" value={{medio.llave}}>{{medio.llave}}</option>
+                  <option value="" disabled i18n>
+                    Selecciona el medio del álbum
+                  </option>
+                  <option
+                    *ngFor="let medio of medios"
+                    value="{{ medio.llave }}"
+                  >
+                    {{ medio.llave }}
+                  </option>
                 </select>
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('medio')?.hasError('required') && albumForm.get('medio')?.touched">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="
+                    albumForm.get('medio')?.hasError('required') &&
+                    albumForm.get('medio')?.touched
+                  "
+                  i18n
+                >
                   Debe seleccionar el medio del álbum
                 </div>
               </div>
@@ -82,21 +141,41 @@
           <div class="form-group my-2">
             <div class="row">
               <div class="col-md-4 col-lg-2 col-sm-4 text-start">
-                <label for="descripcion">Descripción </label>
+                <label for="descripcion" i18n>Descripción </label>
               </div>
               <div class="col-md-8 col-lg-10 col-sm-8">
-                <textarea class=" form-control" formControlName="descripcion" placeholder="Descripción del álbum"></textarea>
+                <textarea
+                  class="form-control"
+                  formControlName="descripcion"
+                  placeholder="Descripción del álbum"
+                  i18n-placeholder
+                ></textarea>
               </div>
             </div>
             <div class="row justify-content-center">
               <div class="col-8">
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('descripcion')?.hasError('required') && albumForm.get('descripcion')?.touched">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="
+                    albumForm.get('descripcion')?.hasError('required') &&
+                    albumForm.get('descripcion')?.touched
+                  "
+                  i18n
+                >
                   Debe ingresar una descripción para el álbum
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('descripcion')?.hasError('minlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('descripcion')?.hasError('minlength')"
+                  i18n
+                >
                   La descripción del álbum debe tener por lo menos un carácter
                 </div>
-                <div class="alert alert-danger my-3" *ngIf="albumForm.get('descripcion')?.hasError('maxlength')">
+                <div
+                  class="alert alert-danger my-3"
+                  *ngIf="albumForm.get('descripcion')?.hasError('maxlength')"
+                  i18n
+                >
                   La descripción del álbum no debe superar los 512 carácteres
                 </div>
               </div>
@@ -105,18 +184,34 @@
 
           <div class="row mt-4">
             <div class="col-6 text-center">
-              <button class="btn btn-danger" type="button" (click)="cancelCreate()">Cancelar</button>
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="cancelCreate()"
+                i18n
+              >
+                Cancelar
+              </button>
             </div>
             <div class="col-6 text-center">
-              <button type="submit" class="btn btn-primary" [disabled]="!albumForm.valid">Guardar cambios</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!albumForm.valid"
+                i18n
+              >
+                Guardar cambios
+              </button>
             </div>
           </div>
-
-
         </form>
 
         <div class="d-flex justify-content-center" *ngIf="!albumInstance">
-          <div class="spinner-border" role="status" style="width:3rem;height:3rem">
+          <div
+            class="spinner-border"
+            role="status"
+            style="width: 3rem; height: 3rem"
+          >
             <span class="sr-only"></span>
           </div>
         </div>

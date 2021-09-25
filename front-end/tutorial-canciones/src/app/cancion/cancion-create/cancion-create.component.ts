@@ -44,7 +44,6 @@ export class CancionCreateComponent implements OnInit {
     this.cancionForm.get('minutos')?.setValue(parseInt(this.cancionForm.get('minutos')?.value))
     this.cancionForm.get('segundos')?.setValue(parseInt(this.cancionForm.get('segundos')?.value))
 
-    console.log(newCancion)
     this.cancionService.crearCancion(newCancion,this.userId,this.token)
     .subscribe(cancion => {
       this.showSuccess(cancion)

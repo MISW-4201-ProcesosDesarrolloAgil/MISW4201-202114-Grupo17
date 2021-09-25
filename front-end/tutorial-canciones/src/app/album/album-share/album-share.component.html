@@ -2,7 +2,9 @@
   <div class="modal-content">
     <div *ngIf="usuarios">
       <div class="modal-header">
-        <h5 class="col-10">Seleccione usuarios con los que desea compartir</h5>
+        <h5 i18n class="col-10">
+          Seleccione usuarios con los que desea compartir
+        </h5>
         <div class="col-2 my-0 mx-0">
           <button
             type="button"
@@ -18,8 +20,8 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Consecutivo</th>
-                <th>Nombre de Usuario</th>
+                <th i18n>Consecutivo</th>
+                <th i18n>Nombre de Usuario</th>
               </tr>
             </thead>
             <tbody>
@@ -41,15 +43,17 @@
           type="button"
           data-bs-dismiss="modal"
           (click)="terminarcompartir()"
+          i18n
         >
-          Close
+          Cerrar
         </button>
         <button
           class="btn btn-primary"
           type="button"
           (click)="compartirUsuarios()"
+          i18n
         >
-          Save
+          Guardar
         </button>
       </div>
     </div>

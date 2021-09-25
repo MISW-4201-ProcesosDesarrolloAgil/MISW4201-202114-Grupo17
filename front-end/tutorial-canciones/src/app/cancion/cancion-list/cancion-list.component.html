@@ -8,7 +8,7 @@
               #busqueda
               type="search"
               class="form-control"
-              placeholder="Buscar cancion"
+              placeholder="Buscar cancion" i18n-placeholder
               aria-label="Search"
               (keyup)="buscarCancion(busqueda.value)"
             />
@@ -16,7 +16,7 @@
           <div class="album-list-container">
             <div class="row">
               <div class="col-10 text-left">
-                <label class="fs-4">Canciones</label>
+                <label class="fs-4" i18n>Canciones</label>
               </div>
               <div class="col-2 add-button-container">
                 <button
@@ -34,11 +34,11 @@
               aria-describedby="colecName"
             >
               <thead class="d-none d-lg-block header-table">
-                <th>Titulo</th>
-                <th>Duración</th>
-                <th>Interprete</th>
-                <th>Compartida por</th>
-                <th>Interactuar</th>
+                <th i18n>Titulo</th>
+                <th i18n>Duración</th>
+                <th i18n>Interprete</th>
+                <th i18n>Compartida por</th>
+                <th i18n>Interactuar</th>
               </thead>
               <tbody *ngIf="canciones">
                 <tr

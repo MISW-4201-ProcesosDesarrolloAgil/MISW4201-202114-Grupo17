@@ -51,16 +51,6 @@ export class CancionListComponent implements OnInit {
     this.cancionService.getAlbumes(this.token,this.userId)
      .subscribe(albumes => {
        this.mostrarAlbumes = albumes
-       for (let i = 0; i<this.mostrarAlbumes.length;i++){
-        if (this.mostrarAlbumes[i].usuario != this.userId) {
-        this.cancionService.getCancionesAlbum(this.mostrarAlbumes[i].id ,this.token,this.userId)
-        .subscribe(cancionesAlbumCompartido=> {
-          for (let j = 0; j<cancionesAlbumCompartido.length;j++){
-            this.mostrarCanciones.push(cancionesAlbumCompartido[j])
-          }
-        })
-       }
-     }
      })
   }
 
@@ -92,7 +82,6 @@ export class CancionListComponent implements OnInit {
 
   getUsers() {
     this.cancionService.getUsers(this.token).subscribe(users => {
-      console.log(users)
     this.applicationUsers = users
     },error => {
       this.showError("Ha ocurrido un error, " + error.message)

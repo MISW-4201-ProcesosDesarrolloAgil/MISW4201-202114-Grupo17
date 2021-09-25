@@ -8,7 +8,7 @@ import { AlbumService } from '../album.service';
 @Component({
   selector: 'app-album-edit',
   templateUrl: './album-edit.component.html',
-  styleUrls: ['./album-edit.component.css'],
+  styleUrls: ['./album-edit.component.scss'],
 })
 export class AlbumEditComponent implements OnInit {
   albumInstance:Album;

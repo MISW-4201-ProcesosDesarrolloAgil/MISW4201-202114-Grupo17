@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-album-share',
   templateUrl: './album-share.component.html',
-  styleUrls: ['./album-share.component.css']
+  styleUrls: ['./album-share.component.scss']
 })
 export class AlbumShareComponent implements OnInit {
 

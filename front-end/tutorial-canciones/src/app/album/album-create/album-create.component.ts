@@ -9,7 +9,7 @@ import { Album, Medio } from '../album';
 @Component({
   selector: 'app-album-create',
   templateUrl: './album-create.component.html',
-  styleUrls: ['./album-create.component.css']
+  styleUrls: ['./album-create.component.scss']
 })
 export class AlbumCreateComponent implements OnInit {
 

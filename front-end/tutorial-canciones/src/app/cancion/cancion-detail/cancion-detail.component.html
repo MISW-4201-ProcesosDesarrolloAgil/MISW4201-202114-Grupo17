@@ -8,14 +8,14 @@
   </div>
   <div class="song-list-container" *ngIf="finishLoad">
       <div class="col-12 text-center mb-2">
-        <label class="fs-4 fw-bold">Canción: {{ cancion?.titulo }}</label>
+        <label class="fs-4 fw-bold" i18n>Canción: {{ cancion?.titulo }}</label>
       </div>
     <div class="row mt-2">
       <div class="col-6">
         <div class="card">
           <div class="card-body">
             <p class="my-0">
-              <span class="fw-bold">Duración: </span>
+              <span class="fw-bold" i18n>Duración: </span>
               <span class="text-capitalize"
                 >{{ cancion?.minutos }}:{{ cancion?.segundos }}</span
               >
@@ -27,7 +27,7 @@
         <div class="card">
           <div class="card-body">
             <p class="my-0">
-              <span class="fw-bold">Intérpretes: </span>
+              <span class="fw-bold" i18n>Intérpretes: </span>
               <span class="text-capitalize">{{ cancion?.interprete }}</span>
             </p>
           </div>
@@ -37,15 +37,15 @@
 
     <div class="row">
       <div class="col-12 mt-3 mb-2 ms-2">
-        <h5>Álbumes</h5>
+        <h5 i18n>Álbumes</h5>
       </div>
       <div class="col-12">
         <table class="table table-hover table-bordered">
           <thead class="table-light">
             <tr>
-              <th scope="col" class="text-center">Título</th>
-              <th scope="col" class="text-center">Año</th>
-              <th scope="col" class="text-center">Medio</th>
+              <th scope="col" class="text-center" i18n>Título</th>
+              <th scope="col" class="text-center" i18n>Año</th>
+              <th scope="col" class="text-center" i18n>Medio</th>
             </tr>
           </thead>
           <tbody>
@@ -64,14 +64,14 @@
                 *ngIf="cancion.usuario !== userId"
                 class="users-shared-container"
               >
-                <label class="fs-5">Compartido por:</label>
+                <label class="fs-5" i18n>Compartido por:</label>
                 <p>{{ this.getSongUser(cancion.usuario) }}</p>
               </div>
               <div
                 *ngIf="cancion.usuarios_compartidos.length > 0"
                 class="users-shared-container"
               >
-                <label class="fs-5">Compartido con:</label>
+                <label class="fs-5" i18n>Compartido con:</label>
                 <p *ngFor="let usuario of cancion.usuarios_compartidos">
                   {{ this.getSongUser(usuario) }}
                 </p>

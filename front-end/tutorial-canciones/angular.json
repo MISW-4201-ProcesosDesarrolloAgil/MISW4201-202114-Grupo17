@@ -19,11 +19,17 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale":"es",
+        "locales": {
+          "en-US": "src/locale/messages.en-US.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tutorial-canciones",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -45,6 +51,9 @@
             ]
           },
           "configurations": {
+            "en-US": {
+              "localize":["en-US"]
+            },
             "production": {
               "budgets": [
                 {
@@ -82,6 +91,9 @@
           "configurations": {
             "production": {
               "browserTarget": "tutorial-canciones:build:production"
+            },
+            "en-US":{
+              "browserTarget": "tutorial-canciones:build:en-US"
             },
             "development": {
               "browserTarget": "tutorial-canciones:build:development"

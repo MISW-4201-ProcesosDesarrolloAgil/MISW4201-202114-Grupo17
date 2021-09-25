@@ -40,12 +40,14 @@
                 <th>Medio</th>
                 <th>Descripción</th>
                 <th>Compartido por</th>
+                <th>Interactuar</th>
               </thead>
               <tbody>
                 <tr
                   *ngFor="let album of mostrarAlbumes; index as i"
                   (click)="onSelect(album, i)"
                   [ngClass]="{ selected: i === indiceSeleccionado }"
+                  class="d-lg-none"
                 >
                   <td>{{ album.titulo }}</td>
                   <td class="d-none d-lg-table-cell content-table">
@@ -69,6 +71,47 @@
                         <p class="mx-3">
                           {{ this.getAlbumUser(album.usuario) }}
                         </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  *ngFor="let album of mostrarAlbumes; index as i"
+                  [ngClass]="{ selected: i === indiceSeleccionado }"
+                  class="d-none d-lg-table-row"
+                >
+                  <td>{{ album.titulo }}</td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.anio }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ enumAsString(album.medio) }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.descripcion }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    <div class="row-container">
+                      <div
+                        *ngIf="album.usuario !== userId"
+                        class="users-shared-container"
+                      >
+                        <p class="mx-3">
+                          {{ this.getAlbumUser(album.usuario) }}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    <div class="row">
+                      <div class="icon-comments-container col-6">
+                        <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                      </div>
+                      <div class="icon-comments-container col-6">
+                        <i
+                          class="bi bi-eye-fill icon-comments"
+                          (click)="onSelect(album, i)"
+                        ></i>
                       </div>
                     </div>
                   </td>

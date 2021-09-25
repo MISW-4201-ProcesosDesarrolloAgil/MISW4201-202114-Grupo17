@@ -9,7 +9,7 @@ import { CancionService } from '../cancion.service';
 @Component({
   selector: 'app-cancion-edit',
   templateUrl: './cancion-edit.component.html',
-  styleUrls: ['./cancion-edit.component.css']
+  styleUrls: ['./cancion-edit.component.scss']
 })
 export class CancionEditComponent implements OnInit {
 

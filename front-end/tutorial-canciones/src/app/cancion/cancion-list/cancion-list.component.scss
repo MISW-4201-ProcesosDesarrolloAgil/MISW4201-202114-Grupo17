@@ -22,6 +22,7 @@
     display: table-row !important;
   }
 }
+
 .minutes-mobile{
   text-align: right;
 }
@@ -37,7 +38,7 @@
 }
 
 .selected {
-  background-color: #ececec;
+  background-color: $white;
 }
 
 input {

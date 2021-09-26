@@ -1,8 +1,9 @@
 @import "../../../theme/breakpoints.scss";
 @import "../../../../node_modules/bootstrap/scss/mixins/";
+@import "../../../theme/colors.scss";
 
 .selecteduser {
-  background: #ff6835;
+  background: $paletteOrange;
 }
 
 .btn-close {

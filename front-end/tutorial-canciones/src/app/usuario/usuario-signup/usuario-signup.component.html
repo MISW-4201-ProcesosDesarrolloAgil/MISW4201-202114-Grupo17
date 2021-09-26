@@ -20,7 +20,7 @@
             <div class="mb-3 row">
               <label for="nombre" class="col-lg-3 col-form-label" i18n>Usuario</label>
               <div class="col-lg-9  ">
-                <input formControlName="nombre" type="text" class="form-control" placeholder="ejemplo@ejemplo.com">
+                <input formControlName="nombre" type="text" class="form-control" placeholder="john@nnn.com">
               </div>
             </div>
             <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched" i18n>
@@ -72,7 +72,7 @@
           </div>
 
           <div class="col-12 text-center mt-3">
-            <button  type="submit" class="btn btn-primary col-8" [disabled]="!usuarioForm.valid || usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">Registrarse</button>
+            <button  type="submit" class="btn btn-primary col-8" [disabled]="!usuarioForm.valid || usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value" i18n>Registrarse</button>
           </div>
           <div class="col-12 text-center mt-2">
             <p i18n>¿Ya tienes cuenta? <a href="/">Inicia sesión</a></p>

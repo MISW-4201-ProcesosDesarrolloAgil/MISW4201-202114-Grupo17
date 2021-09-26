@@ -47,7 +47,6 @@ export class AlbumService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    console.log(album)
     return this.http.put<Album>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, album, {headers: headers})
   }
 
@@ -58,8 +57,11 @@ export class AlbumService {
     return this.http.delete<Album>(`${this.backUrl}/usuario/${idUsuario}/album/${albumId}`, {headers: headers})
   }
 
-  asociarCancion(albumId: number, cancionId: number): Observable<Cancion>{
-    return this.http.post<Cancion>(`${this.backUrl}/album/${albumId}/canciones`, {"id_cancion": cancionId})
+  asociarCancion(albumId: number, cancionId: number,userId:number,token:string): Observable<Cancion>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post<Cancion>(`${this.backUrl}/usuario/${userId}/album/${albumId}/canciones`, {"id_cancion": cancionId},{headers:headers})
   }
 
   getUsers( token: string): Observable<Usuario[]>{
@@ -73,7 +75,6 @@ export class AlbumService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    console.log(usuarioscompartidos)
     const usuarioscompartidosjson=
     {
       "usuarioscompartidos":usuarioscompartidos

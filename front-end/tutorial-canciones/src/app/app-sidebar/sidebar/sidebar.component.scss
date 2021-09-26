@@ -1,0 +1,113 @@
+@import "../../../../node_modules/bootstrap/scss/mixins/";
+@import "../../../theme/breakpoints.scss";
+///node_modules/bootstrap/scss/mixins";
+
+@include media-breakpoint-up(md) {
+  :host {
+    font-weight: bold;
+    min-width: 220px;
+    max-width: 250px;
+    background-color: #333333;
+  }
+  
+  nav {
+    padding: 10px;
+    padding-top: 100px;
+  }
+  
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  li {
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .active {
+    border-radius: 5px;
+    background-color: #0081a7;
+    color: black;
+  }
+  
+  a {
+    color: #fff;
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background-color: #0081a7;
+  }
+  
+  p {
+    font-size: 16pt;
+    color: #ffff;
+    margin-bottom: 0px;
+  }
+  
+}
+
+@include media-breakpoint-down(sm) {
+  :host {
+    font-weight: bold;
+    background-color: #333333 !important;
+  }
+  
+  nav {
+    background-color: #333333 !important;
+    padding: 10px;
+    margin-bottom: 1em;
+  }
+  
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  li {
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .active {
+    border-radius: 5px;
+    background-color: #0081a7;
+    color: black;
+  }
+  
+  a {
+    color: #fff;
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background-color: #0081a7;
+  }
+  
+  p {
+    font-size: 0.6em;
+    color: #ffff;
+    margin-bottom: 0px;
+  }
+  
+}
+

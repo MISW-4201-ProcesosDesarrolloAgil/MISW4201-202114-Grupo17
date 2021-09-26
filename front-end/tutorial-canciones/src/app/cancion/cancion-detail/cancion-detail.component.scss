@@ -1,0 +1,72 @@
+@import "../../../theme/colors.scss";
+@import "../../../theme/breakpoints.scss";
+@import "../../../../node_modules/bootstrap/scss/mixins/";
+
+@include media-breakpoint-down(lg) {
+  .opciones-right {
+    display: flex;
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+  .buttonsActions {
+    display: flex;
+    width: 30%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.song-list-container {
+    background-color: $white;
+    border-radius: $divRadius;
+    padding: 2em;
+    box-shadow: $box-shados-feed-cards;
+    z-index: 2;
+    margin-top: 2em;
+}
+th {
+    background-color: $paletteOrange;
+    color: $white;
+    text-align: start;
+  }
+
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+
+  .btn-circle {
+    background-color: $paletteOrange;
+    border-color: currentColor !important;
+    color: $white !important;
+    height: 3em;
+    width: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
+    i {
+      font-size: 1.5em;
+    }
+  }
+
+  .back-button{
+    color: $white !important;
+    border: currentColor !important;
+    height: 3em;
+    width:  5em;
+    margin: 0;
+    box-shadow: $box-shados-feed-cards;
+}
+
+  .table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: rgba($paletteOrange, 0.3); // Choose your own color here
+}

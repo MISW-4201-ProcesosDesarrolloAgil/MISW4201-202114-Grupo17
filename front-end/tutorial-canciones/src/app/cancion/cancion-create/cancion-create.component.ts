@@ -8,7 +8,7 @@ import { CancionService } from '../cancion.service';
 @Component({
   selector: 'app-cancion-create',
   templateUrl: './cancion-create.component.html',
-  styleUrls: ['./cancion-create.component.css']
+  styleUrls: ['./cancion-create.component.scss']
 })
 export class CancionCreateComponent implements OnInit {
 
@@ -43,7 +43,8 @@ export class CancionCreateComponent implements OnInit {
   createCancion(newCancion: Cancion){
     this.cancionForm.get('minutos')?.setValue(parseInt(this.cancionForm.get('minutos')?.value))
     this.cancionForm.get('segundos')?.setValue(parseInt(this.cancionForm.get('segundos')?.value))
-    this.cancionService.crearCancion(newCancion)
+
+    this.cancionService.crearCancion(newCancion,this.userId,this.token)
     .subscribe(cancion => {
       this.showSuccess(cancion)
       this.cancionForm.reset()

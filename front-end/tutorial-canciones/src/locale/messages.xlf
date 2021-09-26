@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3292061941569400462" datatype="html">
+        <source>Somos Ionic</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1411075832380041264" datatype="html">
+        <source>Una aplicación de albumes y canciones que te permite gestionar tu musica y organizarla de la manera que tu quieras!!!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app-footer/footer/footer.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1372173599787735409" datatype="html">
+        <source>Guardar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1794538555496851088" datatype="html">
+        <source>Guardar tus canciones y albumes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3367646580763901870" datatype="html">
+        <source>Compartir</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8621426220675019836" datatype="html">
+        <source>Compartir tus albumes y canciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="100362117136376976" datatype="html">
+        <source>Comentar y calificar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4236004787122295263" datatype="html">
+        <source>Comentar y puntuar cualquier album o canción, para generar hilos de conversación entre usuarios!!!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2416409800787464800" datatype="html">
+        <source>Nuestro equipo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9191238681219331369" datatype="html">
+        <source>Representante PO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2034068311304432450" datatype="html">
+        <source>Desarrollador</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2062726801370468575" datatype="html">
+        <source>Scrum Master</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/about-us/about-us.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2159432421750559730" datatype="html">
+        <source>Crear Álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8391683729251003076" datatype="html">
+        <source>Título </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5422927309176750292" datatype="html">
+        <source>Titulo del album</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2702362029900912503" datatype="html">
+        <source> Debe ingresar un título para el álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8655500090362944951" datatype="html">
+        <source> El título debe tener por lo menos un carácter </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3326570129613101071" datatype="html">
+        <source> El título no debe exceder los 128 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2996251430514380520" datatype="html">
+        <source>Año </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1199134572905483057" datatype="html">
+        <source>Año de lanzamiento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5233002201066672495" datatype="html">
+        <source> Debe ingresar un año para el álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8081332122171999471" datatype="html">
+        <source> El año debe tener 4 números </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">100,101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1263987398853579433" datatype="html">
+        <source>Medio </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3999070475961433507" datatype="html">
+        <source>Selecciona el medio del álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5791737707679732046" datatype="html">
+        <source> Debe seleccionar el medio del álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">135,136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4941222623752729948" datatype="html">
+        <source>Descripción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1342067916135600402" datatype="html">
+        <source>Descripción del álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5160065669509585156" datatype="html">
+        <source> Debe ingresar una descripción para el álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">165,166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8446044700783960906" datatype="html">
+        <source> La descripción del álbum debe tener por lo menos un carácter </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">96,97</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">172,173</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6693863162912447911" datatype="html">
+        <source> La descripción del álbum no debe superar los 512 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">179,180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6402951927316857780" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8284705088749866157" datatype="html">
+        <source>Crear</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-create/album-create.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5066278581749843579" datatype="html">
+        <source>Medio: <x id="INTERPOLATION" equiv-text="{{ album?.medio?.llave }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2665781399099373735" datatype="html">
+        <source>Descripción:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5123317665968838251" datatype="html">
+        <source>Canciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2925056160404963579" datatype="html">
+        <source>Titulo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7621423567406868751" datatype="html">
+        <source>Duración</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3132430609862081033" datatype="html">
+        <source>Artista</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4680306916977333293" datatype="html">
+        <source>Opciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5631356237670626274" datatype="html">
+        <source>Compartido por:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="154673733599685833" datatype="html">
+        <source>Compartido con:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7269620205798374604" datatype="html">
+        <source>Editar álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7141335941778683347" datatype="html">
+        <source>Agregar canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8221320404763948829" datatype="html">
+        <source>Eliminar álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1311742845758996991" datatype="html">
+        <source>Compartir álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-detail/album-detail.component.html</context>
+          <context context-type="linenumber">170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7713071519029816568" datatype="html">
+        <source>Editar Álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2591882498696154345" datatype="html">
+        <source> Selecciona el medio del álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6060080757060540228" datatype="html">
+        <source> Cancelar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">193,194</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">170,171</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5681858329013258618" datatype="html">
+        <source> Guardar cambios </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-edit/album-edit.component.html</context>
+          <context context-type="linenumber">203,204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3775984714822400862" datatype="html">
+        <source>Asociar Canción a Álbum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5014407997938871609" datatype="html">
+        <source>Canción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7998107941829866866" datatype="html">
+        <source> Seleccione la cancición que desea asociar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1696975294767265744" datatype="html">
+        <source> Debe seleccionar una canción para asociarla al álbum </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1149003831611519137" datatype="html">
+        <source> Asociar canción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-join-cancion/album-join-cancion.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3772242912379819129" datatype="html">
+        <source>Buscar álbumes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4954504721001733894" datatype="html">
+        <source>Álbumes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4448379371353374337" datatype="html">
+        <source>Año</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2532244954635323482" datatype="html">
+        <source>Medio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2702769239797460498" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7907538483458739338" datatype="html">
+        <source>Compartido por</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-list/album-list.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3797072324665504732" datatype="html">
+        <source> Seleccione usuarios con los que desea compartir </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-share/album-share.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-share/cancion-share.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8938447668567968470" datatype="html">
+        <source>Consecutivo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-share/album-share.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-share/cancion-share.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6466018265249142975" datatype="html">
+        <source>Nombre de Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-share/album-share.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-share/cancion-share.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1474143840599769159" datatype="html">
+        <source> Cerrar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-share/album-share.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-share/cancion-share.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4113182804267037649" datatype="html">
+        <source> Guardar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/album/album-share/album-share.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-share/cancion-share.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2379082776169073909" datatype="html">
+        <source>Acerca de</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app-footer/footer/footer.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7561060183100598492" datatype="html">
+        <source>Salir</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app-header/header/header.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5413374529030538734" datatype="html">
+        <source>ÁLBUMES</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app-sidebar/sidebar/sidebar.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2482875125394730721" datatype="html">
+        <source>CANCIONES</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app-sidebar/sidebar/sidebar.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6844764430170724801" datatype="html">
+        <source>Crear Canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6512918709803398588" datatype="html">
+        <source>Titulo de la canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7204692506210611459" datatype="html">
+        <source> Debe ingresar un título para la canción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4482724984527908796" datatype="html">
+        <source>Tiempo </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6593412932946285491" datatype="html">
+        <source> Debe ingresar un tiempo de duración para la canción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3253570244510173646" datatype="html">
+        <source> Los minutos no deben exceder los 2 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">101,102</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2370918516916032309" datatype="html">
+        <source> Los segundos no deben exceder los 2 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8310827501664507988" datatype="html">
+        <source> Solo debe ingresar números </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8690849213797614099" datatype="html">
+        <source>Interprete </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5833293209494219468" datatype="html">
+        <source>Interprete de la canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8554766801919108228" datatype="html">
+        <source> Debe ingresar un interprete para la canción </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">149,150</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5329132082184280450" datatype="html">
+        <source> El interprete no debe exceder los 128 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">156,157</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3537661427620985266" datatype="html">
+        <source> Crear </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-create/cancion-create.component.html</context>
+          <context context-type="linenumber">180,181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3512568754203997916" datatype="html">
+        <source>Canción: <x id="INTERPOLATION" equiv-text="{{ cancion?.titulo }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3317165257585176053" datatype="html">
+        <source>Duración: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3626124218042964423" datatype="html">
+        <source>Intérpretes: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8331458230102334089" datatype="html">
+        <source>Título</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8454084940593485303" datatype="html">
+        <source>Editar canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1494009497745453741" datatype="html">
+        <source>Eliminar canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6315415685363337781" datatype="html">
+        <source>Compartir canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-detail/cancion-detail.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5160577546474321684" datatype="html">
+        <source>Editar Canción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2153980152639237955" datatype="html">
+        <source>Editar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-edit/cancion-edit.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="601536031942015416" datatype="html">
+        <source>Buscar cancion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7718755312859898026" datatype="html">
+        <source>Interprete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2545517667733557331" datatype="html">
+        <source>Compartida por</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3244025912590483546" datatype="html">
+        <source>Interactuar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/cancion/cancion-list/cancion-list.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3717137665049145473" datatype="html">
+        <source>Tutorial canciones</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3459634135253564911" datatype="html">
+        <source>El sitio para almacenar la información de su colección de música. En este podrá buscar de manera más facil las canciones que tiene en su fonoteca y que quiere escuchar ...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1076988773126325327" datatype="html">
+        <source>Ingreso</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8164954346734442598" datatype="html">
+        <source> Usuario o contraseña incorrectos </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9016536884183098576" datatype="html">
+        <source>Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7132730488496169673" datatype="html">
+        <source>Contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5752331855682104921" datatype="html">
+        <source>Ingresar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5530294858323799437" datatype="html">
+        <source>¿No tienes cuenta? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a  href=&quot;/signup&quot;&gt;"/>Registrate<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-login/usuario-login.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1824343322741992092" datatype="html">
+        <source>Registro</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6747745252375824442" datatype="html">
+        <source> Debe ingresar un usuario para registrarse </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="829244198214363922" datatype="html">
+        <source> El usuario no debe exceder los 50 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3751861990187059134" datatype="html">
+        <source> Debe ingresar una contraseña para registrarse </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6551637795384691640" datatype="html">
+        <source> La contraseña no debe exceder los 50 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7980501787985609695" datatype="html">
+        <source> La contraseña debe tener más de 4 carácteres </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4538720711278608121" datatype="html">
+        <source>Confirmar contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2120854701985117807" datatype="html">
+        <source> Las contraseñas no coinciden </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3854215443743812691" datatype="html">
+        <source>Registrarse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4320666547619029563" datatype="html">
+        <source>¿Ya tienes cuenta? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/&quot;&gt;"/>Inicia sesión<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuario/usuario-signup/usuario-signup.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

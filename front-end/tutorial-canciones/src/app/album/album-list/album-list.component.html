@@ -8,7 +8,7 @@
               #busqueda
               type="search"
               class="form-control"
-              placeholder="Buscar álbumes"
+              placeholder="Buscar álbumes" i18n-placeholder
               aria-label="Search"
               (keyup)="buscarAlbum(busqueda.value)"
             />
@@ -16,7 +16,7 @@
           <div class="album-list-container">
             <div class="row">
               <div class="col-10 text-left">
-                <label class="fs-4">Álbumes</label>
+                <label class="fs-4" i18n>Álbumes</label>
               </div>
               <div class="col-2 add-button-container">
                 <button
@@ -32,26 +32,35 @@
             <table
               class="table table-hover mb-0 table-striped"
               aria-describedby="colecName"
+              *ngIf="albumes"
             >
-              <thead>
-                <th>Titulo</th>
-                <th>Año</th>
-                <th>Medio</th>
-                <th>Descripción</th>
-                <th>Compartido por</th>
+              <thead class="d-none d-lg-block header-table">
+                <th i18n>Titulo</th>
+                <th i18n>Año</th>
+                <th i18n>Medio</th>
+                <th i18n>Descripción</th>
+                <th i18n>Compartido por</th>
+                <th i18n>Opciones</th>
               </thead>
               <tbody>
                 <tr
                   *ngFor="let album of mostrarAlbumes; index as i"
                   (click)="onSelect(album, i)"
                   [ngClass]="{ selected: i === indiceSeleccionado }"
+                  class="d-lg-none"
                 >
                   <td>{{ album.titulo }}</td>
-                  <td>{{ album.anio }}</td>
-                  <td>{{ enumAsString(album.medio) }}</td>
-                  <td>{{ album.descripcion }}</td>
-                  <td>
-                    <div (click)="irCrearAlbum()" class="row-container">
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.anio }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ enumAsString(album.medio) }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.descripcion }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    <div class="row-container">
                       <div class="icon-comments-container">
                         <i class="bi bi-chat-left-text-fill icon-comments"></i>
                       </div>
@@ -66,8 +75,62 @@
                     </div>
                   </td>
                 </tr>
+                <tr
+                  *ngFor="let album of mostrarAlbumes; index as i"
+                  [ngClass]="{ selected: i === indiceSeleccionado }"
+                  class="d-none d-lg-table-row"
+                >
+                  <td>{{ album.titulo }}</td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.anio }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ enumAsString(album.medio) }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    {{ album.descripcion }}
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    <div class="row-container">
+                      <div
+                        *ngIf="album.usuario !== userId"
+                        class="users-shared-container"
+                      >
+                        <p class="mx-3">
+                          {{ this.getAlbumUser(album.usuario) }}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="d-none d-lg-table-cell content-table">
+                    <div class="row">
+                      <div class="icon-comments-container col-6">
+                        <i class="bi bi-chat-left-text-fill icon-comments"></i>
+                      </div>
+                      <div class="icon-comments-container col-6">
+                        <i
+                          class="bi bi-eye-fill icon-comments"
+                          (click)="onSelect(album, i)"
+                        ></i>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
+
+            <div
+              class="d-flex justify-content-center"
+              *ngIf="!applicationUsers && !albumes"
+            >
+              <div
+                class="spinner-border"
+                role="status"
+                style="width: 3rem; height: 3rem"
+              >
+                <span class="sr-only"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

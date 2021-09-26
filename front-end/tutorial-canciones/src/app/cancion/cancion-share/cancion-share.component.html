@@ -1,0 +1,57 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="col-10" i18n>
+        Seleccione usuarios con los que desea compartir
+      </h5>
+      <button
+        type="button"
+        class="btn-close position-absolute"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="terminarcompartir()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th i18n>Consecutivo</th>
+              <th i18n>Nombre de Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let usuario of usuarios; index as i"
+              [ngClass]="{ selecteduser: selectedUsers.includes(usuario.id) }"
+              (click)="selectUser(i)"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ usuario.nombre }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="btn btn-light"
+        type="button"
+        data-bs-dismiss="modal"
+        (click)="terminarcompartir()"
+		i18n
+      >
+        Cerrar
+      </button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="compartirUsuarios()"
+		i18n
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>

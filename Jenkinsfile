@@ -4,14 +4,15 @@ pipeline {
         HOME = "${WORKSPACE}"
         GIT_CREDENTIAL_ID = '67fc884e-63ed-47cc-8a49-e91b798c7178'
         GIT_REPO = 'MISW4201-202114-Grupo17'
+        GITHUB_TOKEN_ID = '782f4107-6a99-44c4-88ac-f6bd82b81b1d'
     }
     stages {
         stage('Checkout') { 
             steps {
                 scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
                 git branch: 'develop',  
-                credentialsId: env.GIT_CREDENTIAL_ID,
-                url: 'https://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@github.com/MISW-4102-ProcesosDeDesarrolloAgil/' + env.GIT_REPO
+                credentialsId: env.GITHUB_TOKEN_ID,
+                url: 'https://github.com/MISW-4102-ProcesosDeDesarrolloAgil/' + env.GIT_REPO
             }
         }
         stage('Gitinspector') {
@@ -24,13 +25,13 @@ pipeline {
                         '''
                     }
                 }
-                withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: env.GITHUB_TOKEN_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh('git config --global user.email "ci-isis2603@uniandes.edu.co"')
                     sh('git config --global user.name "ci-isis2603"')
                     sh('git add ./reports/index.html')
                     sh('git commit -m "[ci-skip] GitInspector report added"')
-                    sh('git pull https://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@github.com/MISW-4102-ProcesosDeDesarrolloAgil/${GIT_REPO} develop')
-                    sh('git push https://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@github.com/MISW-4102-ProcesosDeDesarrolloAgil/${GIT_REPO} develop')
+                    sh('git pull https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4102-ProcesosDeDesarrolloAgil/${GIT_REPO} develop')
+                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4102-ProcesosDeDesarrolloAgil/${GIT_REPO} develop')
                 }  
             }
         }
@@ -46,24 +47,48 @@ pipeline {
                 }
             }
         }
-        stage('Testing') {
-            steps {
-                script {
-                    docker.image('python:3.7.6').inside {
-                        sh '''
-                            cd backtest
-                            python -m unittest discover -s tests -v
-                        '''
+        
+        stage('Run Testing') {
+            parallel
+                {
+                    stage('start redis-server')
+                    {
+                        options
+                        {
+                            timeout(unit:'SECONDS', time:9)
+                        }
+                        steps{
+                            script{
+                                docker.image('redis:latest').inside
+                                {
+                                    sh '''
+                                        redis-server
+                                    '''
+                                }
+                            }
+                        }
+                    }
+                    stage('Run backend test')
+                    {
+                        steps {
+                            script {
+                                docker.image('python:3.7.6').inside {
+                                    sh '''
+                                        python -m unittest backtest/backtest.py -v
+                                    '''
+                                }
+                            }
+                        }
                     }
                 }
-            }
         }
+
         stage('Coverage') {
             steps {
                 script {
                     docker.image('python:3.7.6').inside {
                         sh '''
-                            python -m coverage run -m unittest discover -s
+                            python -m coverage run -m unittest backtest/backtest.py -v
                             python -m coverage html
                         ''' 
                     }

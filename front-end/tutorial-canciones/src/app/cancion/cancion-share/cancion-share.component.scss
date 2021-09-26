@@ -1,0 +1,48 @@
+@import "../../../theme/breakpoints.scss";
+@import "../../../../node_modules/bootstrap/scss/mixins/";
+@import "../../../theme/colors.scss";
+
+.selecteduser {
+  background: $paletteOrange;
+}
+
+.btn-close {
+  font-size: 10px;
+}
+
+.modal-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+.button-container{
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+@include media-breakpoint-down(lg) {
+  .modal-dialog {
+    width: 80%;
+  }
+
+  .modal-header{
+    h5{
+      font-size: 1.5em;
+    }
+    button{
+      top: 0 + 2em;
+      right: 0 + 2em
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  .modal-header{
+    button{
+      top: 0 + 2em;
+      right: 0 + 2em
+    }
+  }
+}

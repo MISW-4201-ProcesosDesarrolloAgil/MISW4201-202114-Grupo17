@@ -1,4 +1,6 @@
 @import "../../../theme/colors.scss";
+@import "../../../theme/breakpoints.scss";
+@import "../../../../node_modules/bootstrap/scss/mixins/";
 
 .btn-circle {
   width: 30px;
@@ -11,7 +13,7 @@
 }
 
 .selected {
-  background-color: #ececec;
+  background-color: $white;
 }
 
 input {
@@ -58,6 +60,7 @@ input {
     margin: auto;
   }
 }
+
 .icon-comments-container {
   flex: 1;
   cursor: pointer;
@@ -65,7 +68,6 @@ input {
     font-size: 2em;
   }
 }
-
 .users-shared-container {
   flex: 3;
 }
@@ -80,3 +82,10 @@ thead {
     font-weight: 400;
   }
 }
+
+@include media-breakpoint-up(lg) {
+  .header-table {
+    display: table-header-group !important;
+  }
+}
+

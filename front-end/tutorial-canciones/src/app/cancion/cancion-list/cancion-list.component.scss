@@ -1,0 +1,109 @@
+@import "../../../theme/colors.scss";
+@import "../../../theme/breakpoints.scss";
+@import "../../../../node_modules/bootstrap/scss/mixins/";
+
+@include media-breakpoint-up(lg) {
+  .header-table{
+    display: table-header-group !important;
+  }
+
+  thead {
+    height: 3em;
+    font-size: 1.1em;
+    th {
+      height: 3em;
+      vertical-align: middle;
+      padding-left: 0.5em;
+      font-weight: 400;
+    }
+  }
+
+  .table-lg{
+    display: table-row !important;
+  }
+}
+
+.minutes-mobile{
+  text-align: right;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.selected {
+  background-color: $white;
+}
+
+input {
+  box-shadow: $box-shados-feed-cards;
+}
+
+.album-list-container {
+  background-color: $white;
+  border-radius: $divRadius;
+  padding: 2em;
+  box-shadow: $box-shados-feed-cards;
+  z-index: 2;
+  margin-top: 2em;
+
+  th {
+    background-color: $paletteOrange;
+    color: $white;
+    text-align: start;
+  }
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  .btn-circle {
+    background-color: $paletteOrange;
+    border-color: currentColor !important;
+    color: $white !important;
+  }
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: rgba($paletteOrange, 0.3); // Choose your own color here
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p {
+    margin: auto;
+  }
+}
+.icon-comments-container {
+  flex: 1;
+  cursor: pointer;
+  .icon-comments {
+    font-size: 2em;
+  }
+}
+
+.users-shared-container {
+  flex: 3;
+}
+
+thead {
+  height: 3em;
+  font-size: 1.1em;
+  th {
+    height: 3em;
+    vertical-align: middle;
+    padding-left: 0.5em;
+    font-weight: 400;
+  }
+}

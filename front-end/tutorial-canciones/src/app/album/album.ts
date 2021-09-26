@@ -7,7 +7,7 @@ export class Album {
     medio: Medio;
     usuario: number;
     interpretes: Array<string>;
-    canciones: Array<Cancion>
+    canciones: Array<number>
     usuarioscompartidos: number[]
 
     constructor(
@@ -18,7 +18,7 @@ export class Album {
         medio: Medio,
         usuario: number,
         interpretes: Array<string>,
-        canciones: Array<Cancion>,
+        canciones: Array<number>,
         usuarioscompartidos?:Array<number>
     ){
         this.id = id,
@@ -46,24 +46,4 @@ export class Medio{
     }
 }
 
-export class Cancion{
-    id: number;
-    titulo: string;
-    minutos: number;
-    segundos: number;
-    interprete: string;
 
-    constructor(
-        id: number,
-        titulo: string,
-        minutos: number,
-        segundos: number,
-        interprete: string
-    ){
-        this.id = id,
-        this.titulo = titulo,
-        this.minutos = minutos,
-        this.segundos = segundos,
-        this.interprete = interprete
-    }
-}

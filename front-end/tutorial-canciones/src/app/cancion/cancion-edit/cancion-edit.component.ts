@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +9,7 @@ import { CancionService } from '../cancion.service';
 @Component({
   selector: 'app-cancion-edit',
   templateUrl: './cancion-edit.component.html',
-  styleUrls: ['./cancion-edit.component.css']
+  styleUrls: ['./cancion-edit.component.scss']
 })
 export class CancionEditComponent implements OnInit {
 
@@ -32,7 +33,7 @@ export class CancionEditComponent implements OnInit {
     else{
       this.userId = parseInt(this.router.snapshot.params.userId)
       this.token = this.router.snapshot.params.userToken
-      this.cancionService.getCancion(this.router.snapshot.params.cancionId)
+      this.cancionService.getCancion(this.router.snapshot.params.cancionId,this.userId,this.token)
       .subscribe(cancion => {
         this.cancionId = cancion.id
         this.cancionForm = this.formBuilder.group({
@@ -47,21 +48,28 @@ export class CancionEditComponent implements OnInit {
 
   cancelCreate(){
     this.cancionForm.reset()
-    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+    this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
   }
 
   editarCancion(newCancion: Cancion){
     this.cancionForm.get('minutos')?.setValue(parseInt(this.cancionForm.get('minutos')?.value))
     this.cancionForm.get('segundos')?.setValue(parseInt(this.cancionForm.get('segundos')?.value))
-    this.cancionService.editarCancion(newCancion, this.cancionId)
+    this.cancionService.editarCancion(newCancion, this.cancionId,this.userId,this.token)
     .subscribe(cancion => {
       this.showSuccess(cancion)
       this.cancionForm.reset()
-      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}`])
+      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
     },
-    error=> {
-      if(error.statusText === "UNAUTHORIZED"){
-        this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+    (error:HttpErrorResponse)=> {
+      if(error.status === 401){
+        if(error.error.mensaje)
+        {
+          this.showWarning(error.error.mensaje)
+        }
+        else{
+          this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+        }
+        
       }
       else if(error.statusText === "UNPROCESSABLE ENTITY"){
         this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
@@ -69,6 +77,7 @@ export class CancionEditComponent implements OnInit {
       else{
         this.showError("Ha ocurrido un error. " + error.message)
       }
+      this.routerPath.navigate([`/canciones/${this.userId}/${this.token}/${this.cancionId}`])
     })
   }
 

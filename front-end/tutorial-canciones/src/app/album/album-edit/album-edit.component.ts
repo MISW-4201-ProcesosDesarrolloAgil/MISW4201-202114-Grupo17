@@ -8,7 +8,7 @@ import { AlbumService } from '../album.service';
 @Component({
   selector: 'app-album-edit',
   templateUrl: './album-edit.component.html',
-  styleUrls: ['./album-edit.component.css'],
+  styleUrls: ['./album-edit.component.scss'],
 })
 export class AlbumEditComponent implements OnInit {
   albumInstance:Album;
@@ -91,8 +91,7 @@ export class AlbumEditComponent implements OnInit {
   }
 
   cancelCreate() {
-    this.albumForm.reset();
-    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}`]);
+    this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumInstance.id}`]);
   }
 
   editarAlbum() {
@@ -110,9 +109,17 @@ export class AlbumEditComponent implements OnInit {
         },
         (error) => {
           if (error.statusText === 'UNAUTHORIZED') {
+            if(error.error.mensaje)
+            {
+              this.showWarning(
+                error.error.mensaje
+              );
+            }
+          else{
             this.showWarning(
               'Su sesión ha caducado, por favor vuelva a iniciar sesión.'
             );
+          }
           } else if (error.statusText === 'UNPROCESSABLE ENTITY') {
             this.showError(
               'No hemos podido identificarlo, por favor vuelva a iniciar sesión.'
@@ -120,6 +127,7 @@ export class AlbumEditComponent implements OnInit {
           } else {
             this.showError('Ha ocurrido un error. ' + error.message);
           }
+          this.routerPath.navigate([`/albumes/${this.userId}/${this.token}/${this.albumId}`])
         }
       );
   }
